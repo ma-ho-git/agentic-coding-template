@@ -14,6 +14,8 @@ from _common import project_dir  # noqa: E402
 BOARD = "knowledge/10-pm/board.md"
 MANIFEST = "knowledge/90-meta/environment-manifest.md"
 TASKS = "knowledge/10-pm/tasks"
+REQUIREMENTS = "knowledge/05-requirements"
+GATE = "knowledge/05-requirements/baseline.md"
 BOOTSTRAP_MAX_AGE = 30
 
 
@@ -35,6 +37,31 @@ def bootstrap_line():
     if age > BOOTSTRAP_MAX_AGE:
         return "BOOTSTRAP REQUIRED: last verified {0} ({1} days ago). Run /bootstrap first.".format(newest, age)
     return "Environment last verified {0} ({1} days ago).".format(newest, age)
+
+
+def requirement_counts():
+    """Requirement status -> how many carry it."""
+    root = os.path.join(project_dir(), REQUIREMENTS)
+    counts = {}
+    for name in sorted(os.listdir(root)) if os.path.isdir(root) else []:
+        if not name.startswith("REQ-") or not name.endswith(".md"):
+            continue
+        match = re.search(r"^status:\s*(\w+)", read_text(os.path.join(REQUIREMENTS, name)), re.M)
+        if match:
+            counts[match.group(1)] = counts.get(match.group(1), 0) + 1
+    return counts
+
+
+def requirements_line():
+    """Gate state and requirement counts; the start gate governs whether code may be written."""
+    counts = requirement_counts()
+    if not counts:
+        return "Requirements: none yet. Run /req-elicit before writing any code."
+    summary = ", ".join("{0} {1}".format(count, status) for status, count in sorted(counts.items()))
+    if "baseline_status: vereinbart" in read_text(GATE):
+        return "Requirements: {0}. Start gate open.".format(summary)
+    return ("REQUIREMENTS GATE CLOSED: {0}. Agree the framework via /req-elicit and "
+            "/req-validate before writing production code.".format(summary))
 
 
 def board_summary():
@@ -70,7 +97,8 @@ def stale_notes():
 
 def render(lanes, stale):
     """Assemble the briefing text."""
-    parts = ["Project state (from .claude/hooks/session_brief.py):", bootstrap_line()]
+    parts = ["Project state (from .claude/hooks/session_brief.py):", bootstrap_line(),
+             requirements_line()]
     if lanes:
         counts = ", ".join("{0} {1}".format(len(cards), lane) for lane, cards in lanes.items())
         parts.append("Board: " + counts)

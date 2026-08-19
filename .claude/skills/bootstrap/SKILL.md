@@ -41,9 +41,26 @@ Do not rewrite entries you did not verify. An honest `unknown` beats a guessed `
 2. Ask which stack profile applies. Copy the chosen file from `stacks/` to `stacks/active.md`
    and fill in the concrete commands.
 3. Replace the template placeholders in `knowledge/00-index.md` and `README.md`.
-4. Seed the board: create the first tasks the project needs with `/task-new`.
+4. Delete `examples/` — it demonstrates the workflow and is not part of a real project.
 
-## Step 3 — Orient the user
+## Step 3 — Elicit the framework, before any task
+
+This comes **before** the board, not after. A task without a requirement is work nobody
+asked for, and a board seeded ahead of the requirements invites exactly that.
+
+1. Run `/req-elicit` in framework mode. It clarifies what is being built and walks all six
+   categories: functional, technical, organisational, security, legal, quality.
+2. Run `/req-validate` and report the findings.
+3. Ask the user to set `baseline_status: vereinbart` in
+   `knowledge/05-requirements/baseline.md`. **Never set it yourself** — an agent proposes
+   the framework, the human agrees it.
+4. Only then seed the board with `/task-new`, each task naming the requirement it serves.
+
+If the user wants to postpone this, say plainly what it costs: without an agreed framework
+the target artefact stays vague, and architecture-shaping constraints surface after work is
+already finished. Then let them decide.
+
+## Step 4 — Orient the user
 
 Then, and only then, tell the user — **short, three headings, no preamble**:
 
@@ -59,7 +76,7 @@ Then, and only then, tell the user — **short, three headings, no preamble**:
 
 Write this part in German. Keep it under 20 lines total.
 
-## Step 4 — Record it
+## Step 5 — Record it
 
 Append a progress entry to `knowledge/10-pm/progress/` naming what you verified,
 what changed, and what you set up.

@@ -13,12 +13,16 @@ a task that is not done stays not done.
 Walk the list in `.claude/rules/workflow.md` and state the result of each item:
 
 1. Every acceptance criterion in the task file checked off.
-2. Tests: run the full suite from `stacks/active.md`. Green, no skips added.
-3. Linter and type checker: no new findings.
-4. `@contract` blocks of all touched files accurate and dated today.
-5. Contract consumers: updated, or a follow-up task exists in `Ready` and is linked.
-6. Knowledge captured (step 2 below).
-7. Progress logged (step 4 below).
+2. The requirement's **Abnahme** is actually satisfied — not the task's criteria, the
+   requirement's. If they diverge, the task was scoped wrong; say so rather than papering
+   over it.
+3. Tests: run the full suite from `stacks/active.md`. Green, no skips added.
+4. Linter and type checker: no new findings.
+5. `@contract` blocks of all touched files accurate and dated today.
+6. Contract consumers: updated, or a follow-up task exists in `Ready` and is linked.
+7. Traceability: `tools/check_traceability.py` reports no errors.
+8. Knowledge captured (step 2 below).
+9. Progress logged (step 4 below).
 
 Any failure → fix it, or move the card to `Review` with a note. Not to `Done`.
 
@@ -33,10 +37,16 @@ Ask yourself, and answer in writing:
 
 "Nothing worth writing down" is a valid answer, but say it explicitly.
 
-## 3. Update task and board
+## 3. Update task, requirement and board
 
 - Task file: `status: done`, `finished: <today>`, criteria checked, links to any note written.
 - Board: move the one card line to the `Done` lane and change `- [ ]` to `- [x]`.
+- Requirement: when **every** task in its `tasks:` list is now done, set it to
+  `status: umgesetzt` and `updated:` to today. While any task is open, leave it
+  `vereinbart` — `tools/check_traceability.py` reports the mismatch otherwise.
+- Learned something that sharpens the requirement without changing its statement? Record it
+  under `Präzisierungen` there. A changed statement is not a sharpening — that is
+  `/req-change`.
 
 ## 4. Log progress
 

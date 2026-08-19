@@ -1,9 +1,22 @@
 # Workflow
 
+## Before the board exists
+
+Nothing is built until the framework is agreed. `knowledge/05-requirements/baseline.md`
+must read `baseline_status: vereinbart` before the first line of production code.
+See `.claude/rules/requirements.md`.
+
+Per development stage afterwards: `/req-elicit` for that stage's detail requirements,
+then tasks. Never tasks first.
+
 ## Task lifecycle
 
 A task is a file in `knowledge/10-pm/tasks/` and a card in `knowledge/10-pm/board.md`.
 Nothing else counts as work in progress.
+
+Every task names the requirement it serves in `implements:`. The only exception is
+infrastructure and maintenance work, which states its reason in `infrastruktur:`.
+A hook enforces this on write, `tools/check_traceability.py` re-checks it in CI.
 
 Lanes: `Backlog` → `Ready` → `Doing` → `Review` → `Done`.
 
@@ -21,13 +34,17 @@ never put task detail on the card.
 A task may only move to `Done` when all of these hold:
 
 1. All acceptance criteria in the task file are checked off.
-2. Tests exist that fail without the change and pass with it. Full suite is green.
-3. Linter and type checker (per the active stack profile) report no new findings.
-4. `@contract` blocks of every touched file are accurate and dated today.
-5. Every consumer affected by a contract change is either updated, or has a follow-up
+2. The **Abnahme** of the requirement it implements is satisfied — not just the task's own
+   criteria. Diverging criteria mean the task was scoped wrong; say so instead of hiding it.
+3. Tests exist that fail without the change and pass with it. Full suite is green.
+4. Linter and type checker (per the active stack profile) report no new findings.
+5. `@contract` blocks of every touched file are accurate and dated today.
+6. Every consumer affected by a contract change is either updated, or has a follow-up
    task in `Ready` linked from this task. Never `Backlog` — contract debt is urgent.
-6. Anything learned that is worth knowing again is in `knowledge/` (see `knowledge-base.md`).
-7. Progress log entry appended in `knowledge/10-pm/progress/`.
+7. `tools/check_traceability.py` reports no errors, and the requirement moves to
+   `umgesetzt` once all of its tasks are done.
+8. Anything learned that is worth knowing again is in `knowledge/` (see `knowledge-base.md`).
+9. Progress log entry appended in `knowledge/10-pm/progress/`.
 
 ## Parallel work
 

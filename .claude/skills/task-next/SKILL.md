@@ -5,6 +5,15 @@ allowed-tools: Read, Glob, Grep, Edit
 
 # Next task
 
+## 0. Is the gate open?
+
+Read `knowledge/05-requirements/baseline.md`. If `baseline_status` is not `vereinbart`,
+the framework is not agreed and production code does not start yet. Say so and point at
+`/req-elicit` instead of picking a task.
+
+Exception: tasks marked `infrastruktur:` may proceed — tooling and repo chores do not wait
+on the product framework.
+
 ## 1. Read the board
 
 `knowledge/10-pm/board.md`. Work down this order:
@@ -19,9 +28,14 @@ Never start something from Backlog while Ready has cards.
 
 Open the task file. It is only ready when:
 
+- it names a requirement in `implements:`, and that requirement is `status: vereinbart` —
+  or it carries an `infrastruktur:` reason
 - acceptance criteria are present and testable
 - all `Abhängigkeiten` tasks are Done
 - the goal is understandable without asking the user
+
+A task pointing at a requirement still in `entwurf` is not ready. Finish the discussion
+with `/req-elicit` or `/req-validate` first — building on a draft is how rework happens.
 
 If not, fix the task file first (or move it back to Backlog and say why), then pick again.
 

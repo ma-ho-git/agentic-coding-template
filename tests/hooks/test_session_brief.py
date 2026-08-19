@@ -38,3 +38,40 @@ def test_stale_manifest_flags_bootstrap(tmp_path):
     context = json.loads(out)["hookSpecificOutput"]["additionalContext"]
     assert code == 0
     assert "BOOTSTRAP REQUIRED" in context
+
+
+def add_requirements(tmp_path, gate, statuses):
+    """Requirements folder with a baseline gate and one REQ file per status."""
+    folder = tmp_path / "knowledge" / "05-requirements"
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / "baseline.md").write_text("---\nbaseline_status: {0}\n---\n".format(gate))
+    for index, status in enumerate(statuses, start=1):
+        (folder / "REQ-000{0} X.md".format(index)).write_text(
+            "---\ntype: requirement\nstatus: {0}\n---\n".format(status)
+        )
+
+
+def brief(tmp_path):
+    _code, out, _err = run_hook("session_brief.py", project_dir=tmp_path)
+    return json.loads(out)["hookSpecificOutput"]["additionalContext"]
+
+
+def test_no_requirements_prompts_elicit(tmp_path):
+    make_project(tmp_path, "2026-08-19")
+    assert "/req-elicit" in brief(tmp_path)
+
+
+def test_closed_gate_is_flagged(tmp_path):
+    make_project(tmp_path, "2026-08-19")
+    add_requirements(tmp_path, "entwurf", ["vereinbart", "entwurf"])
+    context = brief(tmp_path)
+    assert "GATE CLOSED" in context
+    assert "1 entwurf" in context and "1 vereinbart" in context
+
+
+def test_open_gate_shows_counts(tmp_path):
+    make_project(tmp_path, "2026-08-19")
+    add_requirements(tmp_path, "vereinbart", ["vereinbart", "vereinbart"])
+    context = brief(tmp_path)
+    assert "GATE CLOSED" not in context
+    assert "2 vereinbart" in context
