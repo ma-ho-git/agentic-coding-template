@@ -2,6 +2,8 @@
 id: T-0010
 title: CI-Workflow für die Regelprüfung
 type: task
+implements: []
+infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
 status: done
 priority: mittel
 agent: claude-code

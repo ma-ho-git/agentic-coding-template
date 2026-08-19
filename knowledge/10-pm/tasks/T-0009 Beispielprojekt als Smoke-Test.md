@@ -2,6 +2,8 @@
 id: T-0009
 title: Beispielprojekt als Smoke-Test
 type: task
+implements: []
+infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
 status: done
 priority: niedrig
 agent: claude-code

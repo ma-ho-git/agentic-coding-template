@@ -2,6 +2,8 @@
 id: T-0002
 title: Hooks zur Durchsetzung der Vorgaben
 type: task
+implements: []
+infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
 status: done
 priority: hoch
 agent: claude-code

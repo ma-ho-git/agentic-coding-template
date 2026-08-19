@@ -2,6 +2,8 @@
 id: T-0017
 title: Anforderungskette am Beispiel nachweisen
 type: task
+implements: []
+infrastruktur: Aufbau der Anforderungsebene selbst - kann sich nicht auf eine Anforderung stützen, die es noch nicht gibt
 status: ready
 priority: mittel
 agent: claude-code

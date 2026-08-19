@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0014 Rückverfolgbarkeit maschinell prüfen]]
 - [ ] [[T-0015 Bestehenden Arbeitszyklus anpassen]]
 - [ ] [[T-0016 Architekturschritt aus Qualitätsanforderungen]]
 - [ ] [[T-0017 Anforderungskette am Beispiel nachweisen]]
@@ -34,6 +33,7 @@ kanban-plugin: board
 - [x] [[T-0011 matches_any() Pfadabgleich reparieren]]
 - [x] [[T-0012 Anforderungsregeln und Vault-Struktur]]
 - [x] [[T-0013 Skills für die Anforderungserhebung]]
+- [x] [[T-0014 Rückverfolgbarkeit maschinell prüfen]]
 
 %% kanban:settings
 ```

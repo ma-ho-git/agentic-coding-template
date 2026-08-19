@@ -2,6 +2,8 @@
 id: T-XXXX
 title: <Kurzer Titel>
 type: task
+implements: ["[[REQ-XXXX Titel]]"]   # mindestens eine vereinbarte Anforderung
+infrastruktur:           # nur wenn implements leer: Begründung, warum kein Fachbezug
 status: backlog          # backlog | ready | doing | review | done
 priority: mittel         # hoch | mittel | niedrig
 agent: claude-code       # claude-code | cowork
@@ -14,6 +16,11 @@ related: []
 ---
 
 # T-XXXX <Kurzer Titel>
+
+## Anforderung
+
+<Welche Anforderung wird damit erfüllt, und welcher Teil davon?
+ Bei Infrastrukturaufgaben: warum es keine gibt.>
 
 ## Ziel
 

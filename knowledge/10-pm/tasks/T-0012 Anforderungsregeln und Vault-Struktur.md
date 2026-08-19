@@ -2,6 +2,8 @@
 id: T-0012
 title: Anforderungsregeln und Vault-Struktur
 type: task
+implements: []
+infrastruktur: Aufbau der Anforderungsebene selbst - kann sich nicht auf eine Anforderung stützen, die es noch nicht gibt
 status: done
 priority: hoch
 agent: claude-code

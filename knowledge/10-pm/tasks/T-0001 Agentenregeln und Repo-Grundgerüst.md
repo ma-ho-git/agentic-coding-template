@@ -2,6 +2,8 @@
 id: T-0001
 title: Agentenregeln und Repo-Grundgerüst
 type: task
+implements: []
+infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
 status: done
 priority: hoch
 agent: claude-code

@@ -2,6 +2,8 @@
 id: T-0008
 title: Schreibzugriff auf das GitHub-Repo
 type: task
+implements: []
+infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
 status: done
 priority: hoch
 agent: cowork

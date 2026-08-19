@@ -2,6 +2,8 @@
 id: T-0015
 title: Bestehenden Arbeitszyklus anpassen
 type: task
+implements: []
+infrastruktur: Aufbau der Anforderungsebene selbst - kann sich nicht auf eine Anforderung stützen, die es noch nicht gibt
 status: ready
 priority: hoch
 agent: claude-code
