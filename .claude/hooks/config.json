@@ -1,0 +1,18 @@
+{
+  "_comment": "Thresholds for .claude/hooks/check_file.py. Tune per project; do not delete keys.",
+  "max_function_lines": 20,
+  "max_parameters": 3,
+  "max_name_words": 3,
+  "max_file_lines": 300,
+  "max_nesting_depth": 3,
+  "contract_required": true,
+  "contract_exempt_globs": [
+    "**/test_*.*", "**/*_test.*", "**/*.test.*", "**/*.spec.*",
+    "**/tests/**", "**/__tests__/**", "**/spec/**",
+    "**/__init__.py", "**/conftest.py",
+    "**/migrations/**", "**/generated/**", "**/*.generated.*",
+    "**/node_modules/**", "**/dist/**", "**/build/**", "**/vendor/**",
+    ".claude/**"
+  ],
+  "min_lines_for_contract": 10
+}

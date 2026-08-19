@@ -1,0 +1,33 @@
+# Local, personal, never committed
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/worktrees/
+
+# Obsidian workspace state (per-user, noisy)
+knowledge/.obsidian/workspace.json
+knowledge/.obsidian/workspace-mobile.json
+knowledge/.obsidian/cache
+knowledge/.trash/
+
+# Common build & tooling output
+node_modules/
+dist/
+build/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+coverage/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cowork skill build output
+cowork/dist/
+__pycache__/

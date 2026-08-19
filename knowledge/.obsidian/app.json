@@ -1,0 +1,9 @@
+{
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": false,
+  "newLinkFormat": "shortest",
+  "attachmentFolderPath": "90-meta/attachments",
+  "showUnsupportedFiles": false,
+  "strictLineBreaks": false,
+  "readableLineLength": true
+}
