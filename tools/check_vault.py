@@ -20,7 +20,7 @@ import sys
 VAULT = "knowledge"
 INDEX = "00-index.md"
 REQUIRED = ("title", "type", "tags", "status", "created")
-DATED_TYPES = ("knowledge", "troubleshooting", "decision", "progress")
+DATED_TYPES = ("knowledge", "troubleshooting", "decision", "progress", "requirement")
 LINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
 FENCE = re.compile(r"```.*?```|`[^`\n]+`", re.S)
 SKIP_DIRS = {".obsidian", "templates", "attachments"}

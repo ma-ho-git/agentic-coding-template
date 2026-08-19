@@ -10,14 +10,19 @@ run `/bootstrap` before anything else. Do not skip it, do not do it silently.
 
 ## 1. Non-negotiables
 
-1. **Test-driven.** Failing test first, then the code that makes it pass, then refactor.
+1. **Requirements before code.** The framework — what is being built, and which technical,
+   functional, organisational, security, legal and quality requirements hold — is agreed
+   **before** the first line of production code. Details follow per development stage and
+   may be sharpened while coding. No task without a requirement it serves.
+   Gate: `knowledge/05-requirements/baseline.md`. See `.claude/rules/requirements.md`.
+2. **Test-driven.** Failing test first, then the code that makes it pass, then refactor.
    No production code without a test that demanded it.
-2. **Contract comments.** Every source file starts with an `@contract` block. Keep it current.
+3. **Contract comments.** Every source file starts with an `@contract` block. Keep it current.
    See `.claude/rules/contracts.md`.
-3. **Knowledge base is part of the work, not paperwork.** Research, decisions, and any
+4. **Knowledge base is part of the work, not paperwork.** Research, decisions, and any
    problem that took more than one attempt get written down. See `.claude/rules/knowledge-base.md`.
-4. **The board is the truth.** No work outside a task in `knowledge/10-pm/board.md`.
-5. **Never endanger the project.** No destructive git operations, no force-push, no rewriting
+5. **The board is the truth.** No work outside a task in `knowledge/10-pm/board.md`.
+6. **Never endanger the project.** No destructive git operations, no force-push, no rewriting
    published history, no spending on paid services, no touching anything outside this repo.
 
 ## 2. Where things live
@@ -28,13 +33,28 @@ run `/bootstrap` before anything else. Do not skip it, do not do it silently.
 | `.claude/skills/` | Workflows. Invoke with `/name`. Loaded on demand. |
 | `.claude/agents/` | Subagent definitions. |
 | `.claude/hooks/` | Deterministic checks. These run whether or not you agree with them. |
+| `knowledge/05-requirements/` | Requirements, the framework and its start gate. German. |
 | `knowledge/` | Obsidian vault: project management, knowledge, troubleshooting. German. |
 | `stacks/` | Stack profiles (test runner, linter, docstring standard). Pick one at bootstrap. |
 | `cowork/` | Setup material for Claude Cowork, which cannot read this repo's `.claude/`. |
 
 ## 3. The work cycle
 
+**Once per project, before any code:**
+
 ```
+/req-elicit    clarify what is being built and which framework requirements hold
+   ↓
+/req-validate  check the set: validity, consistency, completeness, realism, verifiability
+   ↓
+   the user sets baseline.md to `vereinbart` — the gate opens
+```
+
+**Then per development stage, repeatedly:**
+
+```
+/req-elicit    detail requirements for this stage only, never stockpiled
+   ↓
 /task-next     pick the next task, get an agent-routing recommendation
    ↓
    write the failing test
@@ -46,7 +66,9 @@ run `/bootstrap` before anything else. Do not skip it, do not do it silently.
 /task-done     verify Definition of Done, update board + knowledge base
 ```
 
-Full detail: `.claude/rules/workflow.md`.
+A requirement that changes goes through `/req-change`, never a silent edit.
+
+Full detail: `.claude/rules/workflow.md` and `.claude/rules/requirements.md`.
 
 ## 4. Code rules in one screen
 

@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0012 Anforderungsregeln und Vault-Struktur]]
 - [ ] [[T-0013 Skills für die Anforderungserhebung]]
 - [ ] [[T-0014 Rückverfolgbarkeit maschinell prüfen]]
 - [ ] [[T-0015 Bestehenden Arbeitszyklus anpassen]]
@@ -34,6 +33,7 @@ kanban-plugin: board
 - [x] [[T-0009 Beispielprojekt als Smoke-Test]]
 - [x] [[T-0007 Selbstverifikation des Templates]]
 - [x] [[T-0011 matches_any() Pfadabgleich reparieren]]
+- [x] [[T-0012 Anforderungsregeln und Vault-Struktur]]
 
 %% kanban:settings
 ```

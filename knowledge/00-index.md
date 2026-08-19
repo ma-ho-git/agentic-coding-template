@@ -19,6 +19,18 @@ related: ["[[Konventionen der Wissensdatenbank]]"]
 Einstiegspunkt des Vaults. Jede Notiz ist von hier aus erreichbar — direkt oder über eine
 Themennotiz. Waisen sind ein Fehler und gehören repariert.
 
+## Anforderungen
+
+Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.md`.
+
+- [[Rahmen und Startgate]] — **entscheidet, ob entwickelt werden darf**
+- [[Projektvision]] — Problem, Zielartefakt, Erfolgskriterien, Nicht-Ziele
+- [[Stakeholder]] — wer beteiligt ist und wer entscheidet
+- [[Glossar]] — verbindliches Vokabular, auch für die Benennung im Code
+- [[Randbedingungen]] — was von außen feststeht
+- [[Risiken]] — was das Projekt gefährdet, und was dagegen läuft
+- Einzelanforderungen: `05-requirements/REQ-XXXX ….md`
+
 ## Projektmanagement
 
 - [[board|Kanban-Board]] — aktueller Stand aller Aufgaben

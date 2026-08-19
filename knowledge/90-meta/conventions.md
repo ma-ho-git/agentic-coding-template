@@ -22,6 +22,7 @@ Gelten für Menschen und Agenten gleichermaßen. Änderungen hier zuerst, dann i
 | Ordner | Inhalt |
 | --- | --- |
 | `00-index.md` | Einstiegspunkt, Themenübersicht, Hub aller Bereiche |
+| `05-requirements/` | Anforderungen, Rahmen und Startgate, Vision, Stakeholder, Glossar |
 | `10-pm/` | Projektmanagement: Board, Tasks, ADRs, Fortschritt |
 | `20-knowledge/` | recherchiertes und projektrelevantes Wissen |
 | `30-troubleshooting/` | Problem → Ursache → Lösung |
@@ -30,6 +31,7 @@ Gelten für Menschen und Agenten gleichermaßen. Änderungen hier zuerst, dann i
 ## Dateinamen
 
 - Tasks: `T-0042 Kurzer Titel.md` — vierstellige ID, Leerzeichen, sprechender Titel
+- Anforderungen: `REQ-0042 Kurzer Titel.md`
 - ADRs: `ADR-0007 Kurzer Titel.md`
 - Wissen und Troubleshooting: sprechender Titel, keine ID
 - Keine Umlaute-Ersetzung nötig, keine Unterstriche, keine Datumspräfixe
@@ -55,9 +57,9 @@ Pflichtfelder in **jeder** Notiz:
 | Feld | Werte |
 | --- | --- |
 | `title` | wie die Überschrift |
-| `type` | `knowledge`, `troubleshooting`, `decision`, `task`, `progress` |
+| `type` | `knowledge`, `troubleshooting`, `decision`, `task`, `progress`, `requirement` |
 | `tags` | Liste, Namespaces siehe unten |
-| `status` | `active` oder `deprecated` |
+| `status` | `active` oder `deprecated` — **Ausnahme** siehe unten |
 | `created` | JJJJ-MM-TT |
 | `updated` | JJJJ-MM-TT — wann zuletzt gegen die Realität geprüft |
 | `review_after` | JJJJ-MM-TT — 3 Monate Stack/API, 12 Monate Domäne |
@@ -65,6 +67,20 @@ Pflichtfelder in **jeder** Notiz:
 
 Zusätzlich bei `deprecated`: `deprecated_on`, `deprecated_reason`, optional `superseded_by`.
 Zusätzlich bei Troubleshooting: `occurrences` (hochzählen bei Wiederauftreten).
+
+### Ausnahme: Notizen mit eigenem Lebenszyklus
+
+`task` und `requirement` führen in `status` ihren **Lebenszyklus** statt `active`/`deprecated`:
+
+| Typ | Werte |
+| --- | --- |
+| `task` | `backlog`, `ready`, `doing`, `review`, `done` |
+| `requirement` | `entwurf`, `vereinbart`, `umgesetzt`, `verworfen` |
+
+Anforderungen tragen zusätzlich `ebene`, `kategorie`, `prioritaet`, `quelle`, `nachweis`
+und `tasks` — verbindlich beschrieben in `.claude/rules/requirements.md`.
+`baseline.md` trägt zusätzlich `baseline_status` (`entwurf` oder `vereinbart`); dieses Feld
+ist das Startgate für die Entwicklung.
 
 ## Tag-Namespaces
 
