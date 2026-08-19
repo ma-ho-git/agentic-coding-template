@@ -34,6 +34,7 @@ kanban-plugin: board
 - [x] [[T-0013 Skills für die Anforderungserhebung]]
 - [x] [[T-0014 Rückverfolgbarkeit maschinell prüfen]]
 - [x] [[T-0015 Bestehenden Arbeitszyklus anpassen]]
+- [x] [[T-0018 Grenzwerte auf die Projektvorgabe zurückführen]]
 
 %% kanban:settings
 ```

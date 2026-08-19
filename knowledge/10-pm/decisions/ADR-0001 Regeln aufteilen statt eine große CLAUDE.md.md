@@ -50,3 +50,18 @@ Dreiteilung nach Ladeverhalten:
 
 - Claude Code das Kontextbudget für Instruktionsdateien deutlich anhebt
 - Sich zeigt, dass pfad-gebundene Regeln zu spät oder gar nicht laden
+
+## Richtigstellung 2026-08-19
+
+Die Zahl **288** oben ist eine Beobachtung, **kein Grenzwert**. Aus ihr wurde später
+fälschlich eine „300-Zeilen-Grenze für immer geladene Regeln" abgeleitet — zuerst als
+Akzeptanzkriterium in [[T-0007 Selbstverifikation des Templates]], dann in T-0015 als harte
+Vorgabe behandelt, die eine inhaltliche Kürzung von `requirements.md` getrieben hat.
+
+Diese Grenze existiert nicht und ist auch nirgends im Code durchgesetzt worden. Was bleibt,
+ist der qualitative Grund: immer geladene Dateien kosten in jeder Sitzung Kontext, und die
+Befolgungsrate sinkt, je länger sie werden. Also knapp halten — aber ohne eine Zahl, die
+sich niemand hergeleitet hat.
+
+Aufgedeckt durch ein Audit des Nutzers, siehe
+[[T-0018 Grenzwerte auf die Projektvorgabe zurückführen]].

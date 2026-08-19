@@ -1,6 +1,6 @@
 {
   "_comment": "Thresholds for check_quality.py and check_contract.py. Tune per project; do not delete keys.",
-  "max_function_lines": 20,
+  "max_assignments": 20,
   "max_parameters": 3,
   "max_name_words": 3,
   "max_file_lines": 300,

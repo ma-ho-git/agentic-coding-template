@@ -101,6 +101,9 @@ def check_reachable(names, linked, errors):
 
 
 def check_claude_md(warnings):
+    """Warn when CLAUDE.md outgrows the length Anthropic recommends for memory files."""
+    # 200 comes from Anthropic's CLAUDE.md guidance, not from this project's brief.
+    # Every session loads the file in full, and adherence drops as it grows.
     for path, limit in (("CLAUDE.md", 200),):
         if not os.path.exists(path):
             warnings.append("{0} is missing".format(path))

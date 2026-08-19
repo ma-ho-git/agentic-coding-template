@@ -6,16 +6,33 @@ paths:
 # Code Quality
 
 Hard limits. The hooks in `.claude/hooks/` check these and will tell you when you cross them.
+Thresholds live in `.claude/hooks/config.json` and are meant to be tuned per project.
 
 ## Size and shape
 
-| Limit | Value | Enforcement |
-| --- | --- | --- |
-| Function length | ≤ 20 lines (excluding docstring/comments) | warn |
-| Function parameters | ≤ 3 | warn |
-| Identifier length | ≤ 3 words | warn |
-| File length | ≤ 300 lines | warn |
-| Nesting depth | ≤ 3 | warn |
+The **Source** column matters: some limits come from this project's own brief, others the
+template added. The added ones are defaults, not doctrine — change them if they do not fit.
+
+| Limit | Value | Enforcement | Source |
+| --- | --- | --- | --- |
+| Assignments per function | ≤ 20 | warn | project brief |
+| Function parameters | ≤ 3 | warn | project brief |
+| Identifier length | ≤ 3 words | warn | project brief |
+| Nesting depth | ≤ 3 | warn | template addition |
+| File length | ≤ 300 lines | warn | template addition |
+
+**Assignments, not lines.** The measure is how much state a function juggles: `x = …`,
+`x += …`, `x: T = …` and walrus, counted anywhere inside the function. A long function that
+only branches is not flagged; twenty-one bindings are.
+
+Why the two additions exist:
+
+- **Nesting depth** — each level is one more condition a reader must hold in their head to
+  understand the innermost line, and the innermost branch is the least tested. An agent does
+  not *feel* a deep `elif` chain the way a person does, so the mechanical limit stands in for
+  the missing discomfort.
+- **File length** — a crude proxy for "this module has more than one responsibility".
+  Genuinely cohesive files (parsers, constant tables) may exceed it; it only warns.
 
 Over a limit, the default answer is **split**. Extract a named helper, introduce a value object,
 or move a branch into a polymorphic type. Keep the limit only if splitting would genuinely make

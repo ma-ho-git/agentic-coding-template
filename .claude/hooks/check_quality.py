@@ -28,15 +28,14 @@ def split_words(name):
     return [word for word in words if word]
 
 
-def body_length(node):
-    """Statement lines of a function, docstring excluded."""
-    body = node.body
-    if body and isinstance(body[0], ast.Expr) and isinstance(body[0].value, ast.Constant) \
-            and isinstance(body[0].value.value, str):
-        body = body[1:]
-    if not body:
-        return 0
-    return (body[-1].end_lineno or body[-1].lineno) - body[0].lineno + 1
+# Explicit binding statements only. Loop and `with` targets bind names too, but
+# reading them as "assignments" would surprise anyone counting by hand.
+ASSIGNMENTS = (ast.Assign, ast.AugAssign, ast.AnnAssign, ast.NamedExpr)
+
+
+def count_assignments(node):
+    """Assignments in a function - how much state it juggles."""
+    return sum(1 for child in ast.walk(node) if isinstance(child, ASSIGNMENTS))
 
 
 def count_params(node):
@@ -76,10 +75,10 @@ def inspect_python(source, limits):
 def check_function(node, limits):
     """Size, parameter, nesting and naming findings for one function node."""
     findings = []
-    length = body_length(node)
-    if length > limits["lines"]:
-        findings.append("L{0}: {1}() is {2} lines (limit {3}) - split it"
-                        .format(node.lineno, node.name, length, limits["lines"]))
+    assignments = count_assignments(node)
+    if assignments > limits["assignments"]:
+        findings.append("L{0}: {1}() makes {2} assignments (limit {3}) - split it"
+                        .format(node.lineno, node.name, assignments, limits["assignments"]))
     params = count_params(node)
     if params > limits["params"]:
         findings.append("L{0}: {1}() takes {2} parameters (limit {3}) - group them into an object"
@@ -116,7 +115,7 @@ def inspect_generic(source, limits):
 def read_limits():
     config = load_config()
     return {
-        "lines": config.get("max_function_lines", 20),
+        "assignments": config.get("max_assignments", 20),
         "params": config.get("max_parameters", 3),
         "words": config.get("max_name_words", 3),
         "file": config.get("max_file_lines", 300),
