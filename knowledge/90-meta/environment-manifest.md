@@ -69,17 +69,26 @@ Feldbedeutung: `verified` = Datum der letzten Prüfung gegen die Quelle.
   `%% kanban:settings` am Dateiende
 - **verified:** 2026-08-19
 - **state:** ok
-- **source:** Parser-Quellcode `src/parsers/formats/list.ts` im Repo `obsidian-community/obsidian-kanban`
+- **source:** Parser-Quellcode `src/parsers/formats/list.ts` im Repo `community-archive/obsidian-kanban`
 - **action:** —
 
-## Obsidian — Kanban-Plugin sucht Maintainer
+## Obsidian — Kanban-Plugin ohne aktive Wartung
 
-- **assumption:** Original `mgmeyers/obsidian-kanban` ist archiviert; Fortführung als
-  `obsidian-community/obsidian-kanban`; Autor sucht seit Januar 2026 Nachfolger
+- **assumption:** Kanonisches Repo ist `community-archive/obsidian-kanban` — die früher hier
+  notierten `mgmeyers/obsidian-kanban` und `obsidian-community/obsidian-kanban` leiten beide
+  dorthin um. Nicht formal als archiviert markiert (`archived: false`), aber in einer
+  Organisation namens `community-archive`, letzter Push 2026-03-06, 599 offene Issues,
+  README sucht neue Maintainer.
 - **verified:** 2026-08-19
-- **state:** ok
-- **source:** https://github.com/obsidian-community/obsidian-kanban/blob/main/MAINTAINERS.md
-- **action:** Risiko akzeptiert — das Board ist reines Markdown und bleibt ohne Plugin lesbar
+- **state:** changed
+- **source:** GitHub-Such-API (`obsidian-kanban in:name`), Feld `full_name`, `archived`,
+  `pushed_at`, `open_issues_count`; README des Repos — abgerufen 2026-08-19
+- **action:** Falsche Organisation in `README.md` und
+  [[Obsidian-Kanban Dateiformat]] korrigiert. Risiko weiterhin akzeptiert: kein Code hängt
+  am Plugin (`session_brief.py` parst das Board selbst), das Board bleibt ohne Plugin
+  lesbares Markdown. Aktivere Alternative beobachten: `xiwcx/obsidian-bases-kanban`
+  ("Kanban Bases View", MIT, Push 2026-06-26) — würde Lanes direkt aus dem `status:`-Feld
+  der Task-Dateien bilden, wäre aber ein Umbau von ADR-0003.
 
 ## GitHub — Schreibzugriff aus Cloud-Sessions
 

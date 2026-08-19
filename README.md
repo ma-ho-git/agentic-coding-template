@@ -21,9 +21,14 @@ nur zu empfehlen.
 
 - **Claude Code** — lädt die Konfiguration im Repo automatisch
 - **Python 3** — für die Hook-Skripte
-- **Obsidian** *(optional)* — für die Wissensdatenbank; das Kanban-Board braucht das
-  [Kanban-Plugin](https://github.com/obsidian-community/obsidian-kanban).
-  Ohne Obsidian bleibt alles normales, lesbares Markdown.
+- **Obsidian** *(optional)* — für die Wissensdatenbank. Alles bleibt auch ohne Obsidian
+  normales, lesbares Markdown.
+- **Kanban-Plugin** *(optional)* — nur für die Drag-and-Drop-Ansicht des Boards. In Obsidian
+  unter Community-Plugins als **„Kanban"** zu finden
+  ([Repo](https://github.com/community-archive/obsidian-kanban)). Kein Code des Templates
+  hängt daran: `board.md` ist ohne Plugin eine klickbare Checkliste, die Prüfskripte lesen
+  das Board selbst. Beachte, dass das Plugin derzeit keine aktive Wartung hat —
+  Details in `knowledge/20-knowledge/Obsidian-Kanban Dateiformat.md`.
 - **Claude Cowork** *(optional)* — siehe `cowork/README.md`; Cowork liest die Repo-Konfiguration
   **nicht** und braucht einen einmaligen Einrichtungsschritt
 

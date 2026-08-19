@@ -59,3 +59,13 @@ der Mensch bestätigen.
   (0 days ago)".
 - `config.json`-Kommentar korrigiert (verwies auf nicht existierendes `check_file.py`).
 - Offen bleibt nur: Obsidian-Rendering — das kann kein Agent bestätigen.
+- **2026-08-19, zweiter Fund (Doku widerspricht der Realität):** Auf Nachfrage nach dem
+  nötigen Obsidian-Plugin geprüft — `README.md` und [[Obsidian-Kanban Dateiformat]] nannten
+  `obsidian-community/obsidian-kanban` als Fortführung. Falsch: kanonisch ist
+  `community-archive/obsidian-kanban`, beide alten URLs leiten dorthin um. Wartungslage war
+  zudem untertrieben (letzter Push 2026-03-06, 599 offene Issues). Korrigiert in `README.md`,
+  der Wissensnotiz, dem Umgebungs-Manifest und als Nachprüfung in
+  [[ADR-0003 Kanban-Board mit Wikilink-Karten]].
+- Dabei bestätigt: **kein Code hängt am Plugin.** `session_brief.py` parst das Board mit
+  eigener Regex, die Test-Suite braucht weder Obsidian noch Plugin, `.obsidian/` aktiviert
+  nur Core-Plugins. Das Plugin ist reiner Komfort für den Menschen.

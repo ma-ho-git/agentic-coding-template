@@ -52,3 +52,16 @@ Die Wahrheit ist das `status`-Feld im Frontmatter der Task-Datei; das Board ist 
 
 - Das Kanban-Plugin endgültig unmaintained ist und das Format bricht
 - Sich zeigt, dass Board und Frontmatter regelmäßig divergieren — dann Board generieren
+
+## Nachprüfung 2026-08-19
+
+Entscheidung bleibt bestehen. Auslöser der Prüfung: Frage nach dem nötigen Obsidian-Plugin.
+
+- Wartungslage des Plugins hat sich verschlechtert (Org `community-archive`, letzter Push
+  2026-03-06) — siehe [[Obsidian-Kanban Dateiformat]]. Das Format ist aber **nicht** gebrochen,
+  die erste Revidierungsbedingung ist damit nicht erfüllt.
+- Der eigentliche Wert der Entscheidung ist unabhängig vom Plugin: kein Code hängt daran,
+  `board.md` bleibt ohne Plugin lesbar. Das Plugin ist reiner Komfort.
+- `xiwcx/obsidian-bases-kanban` würde Lanes aus dem `status:`-Feld generieren und damit die
+  zweite Revidierungsbedingung vorwegnehmen. Bewusst nicht umgestellt: kleineres Projekt,
+  und Divergenz ist bisher nicht real aufgetreten (`/board-sync` meldete zuletzt 0 Abweichungen).
