@@ -8,6 +8,13 @@ kanban-plugin: board
 
 ## Ready
 
+- [ ] [[T-0012 Anforderungsregeln und Vault-Struktur]]
+- [ ] [[T-0013 Skills für die Anforderungserhebung]]
+- [ ] [[T-0014 Rückverfolgbarkeit maschinell prüfen]]
+- [ ] [[T-0015 Bestehenden Arbeitszyklus anpassen]]
+- [ ] [[T-0016 Architekturschritt aus Qualitätsanforderungen]]
+- [ ] [[T-0017 Anforderungskette am Beispiel nachweisen]]
+
 ## Doing
 
 ## Review

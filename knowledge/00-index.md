@@ -31,6 +31,7 @@ Themennotiz. Waisen sind ein Fehler und gehören repariert.
 - [[ADR-0002 Prüfbare Vorgaben in Hooks statt in Prosa]]
 - [[ADR-0003 Kanban-Board mit Wikilink-Karten]]
 - [[ADR-0004 Cowork über ein leichtes Paket anbinden]]
+- [[ADR-0005 Anforderungen als Pflicht vor dem Code]]
 
 ## Projektwissen
 
@@ -47,6 +48,11 @@ Themennotiz. Waisen sind ein Fehler und gehören repariert.
 ### Code und Dokumentation
 
 - [[Dokumentationsstandards je Sprache]] — Vorauswahl je Sprache, samt ihrer Belastbarkeit
+
+### Anforderungen und Vorgehen
+
+- [[Sommerville Software Engineering - was das Template übernimmt]] — welche Konzepte
+  übernommen werden, in welcher Vereinfachung, und was bewusst wegbleibt
 
 ## Troubleshooting
 
