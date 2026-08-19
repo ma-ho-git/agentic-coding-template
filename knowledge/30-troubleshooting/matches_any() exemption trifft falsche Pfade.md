@@ -42,19 +42,40 @@ Datei darunter zu exemptieren.
 
 ## Lösung
 
-Noch nicht behoben — Fix ist nicht trivial, weil `matches_any()` von `check_contract.py`
-**und** `check_quality.py` genutzt wird und ein sauberer Fix (`pathlib.PurePath.match`
-oder `fnmatch.translate` mit echter Pfadsegment-Trennung) gegen beide Aufrufer getestet
-werden muss. Follow-up: [[T-0011 matches_any() Pfadabgleich reparieren]].
+**Behoben am 2026-08-19** in [[T-0011 matches_any() Pfadabgleich reparieren]].
 
-Workaround für eigene Tests in der Zwischenzeit: `CLAUDE_PROJECT_DIR` explizit auf das
-`tmp_path`-Verzeichnis selbst setzen, dann ist der relative Pfad nur der Dateiname ohne
-die pytest-eigenen `test_...`-Verzeichnisnamen im Präfix.
+`fnmatch` durch eine eigene, pfadbewusste Glob-Übersetzung ersetzt
+(`glob_regex()` + `next_token()` in `.claude/hooks/_common.py`):
+
+| Glob | Regex | Bedeutung |
+| --- | --- | --- |
+| `**/` | `(?:[^/]+/)*` | null oder mehr **ganze** Segmente |
+| `**` | `.*` | beliebig, auch über `/` |
+| `*` | `[^/]*` | beliebig **innerhalb** eines Segments |
+| `?` | `[^/]` | ein Zeichen, kein `/` |
+
+Match gegen `regex + \Z`, also gegen den ganzen Pfad. Die Token-Tabelle ist
+längster-Treffer-zuerst sortiert, damit `**/` vor `**` vor `*` greift.
+
+Zwei Nebeneffekte, beide gewollt:
+
+- Pfade außerhalb des Projekts (`../../tmp/…`) matchen keine Exemption mehr → sie gelten
+  als **nicht** exempt. Fail closed, entspricht `.claude/rules/security.md`.
+- Verzeichnisse wie `generated_reports/` werden korrekt **nicht** mehr von `**/generated/**`
+  erfasst. Vorher verschluckte `fnmatch` sie still.
+
+Der frühere Workaround (`CLAUDE_PROJECT_DIR` in Tests auf `tmp_path` setzen) ist nicht mehr
+nötig. Er bleibt in `tests/tools/test_ci_check.py` trotzdem stehen — hermetische Tests, die
+nicht vom Ablageort des Repos abhängen, sind ohnehin die bessere Praxis.
 
 ## Sackgassen
 
 - Keine — der Bug wurde beim ersten Testlauf von `tools/ci_check.py` sofort sichtbar
   (Testfall erwartete einen Block, bekam aber 0 Fehler).
+- Beim Nachstellen des Fixes lief allerdings eine erste End-to-End-Prüfung in einem
+  Temp-Verzeichnis **ohne** `.claude/hooks/config.json`. Dann liefert `load_config()` ein
+  leeres Dict, die Exemption-Liste ist leer und *alles* blockt — sah nach einem kaputten
+  Fix aus, war aber ein kaputter Testaufbau. Config mitkopieren.
 
 ## Vorbeugung
 

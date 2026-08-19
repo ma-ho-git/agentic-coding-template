@@ -8,13 +8,9 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0011 matches_any() Pfadabgleich reparieren]]
-
 ## Doing
 
 ## Review
-
-- [ ] [[T-0007 Selbstverifikation des Templates]]
 
 ## Done
 
@@ -29,6 +25,8 @@ kanban-plugin: board
 - [x] [[T-0008 Schreibzugriff auf das GitHub-Repo]]
 - [x] [[T-0010 CI-Workflow für die Regelprüfung]]
 - [x] [[T-0009 Beispielprojekt als Smoke-Test]]
+- [x] [[T-0007 Selbstverifikation des Templates]]
+- [x] [[T-0011 matches_any() Pfadabgleich reparieren]]
 
 %% kanban:settings
 ```

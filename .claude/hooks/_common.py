@@ -4,9 +4,9 @@ Hooks are tooling, not project source: they are exempt from the contract rule.
 """
 from __future__ import annotations
 
-import fnmatch
 import json
 import os
+import re
 import sys
 
 CODE_EXTENSIONS = {
@@ -52,14 +52,38 @@ def relative(path):
         return path
 
 
+# longest first: '**/' must win over '**', which must win over '*'
+GLOB_TOKENS = (
+    ("**/", "(?:[^/]+/)*"),   # zero or more whole segments, so '**/a' also matches 'a'
+    ("**", ".*"),
+    ("*", "[^/]*"),
+    ("?", "[^/]"),
+)
+
+
+def next_token(pattern, index):
+    """Wildcard at index with its regex, else the literal char there."""
+    for token, regex in GLOB_TOKENS:
+        if pattern.startswith(token, index):
+            return token, regex
+    return pattern[index], re.escape(pattern[index])
+
+
+def glob_regex(pattern):
+    """Glob -> regex source. '/' is a real boundary, unlike fnmatch."""
+    parts = []
+    index = 0
+    while index < len(pattern):
+        token, regex = next_token(pattern, index)
+        parts.append(regex)
+        index += len(token)
+    return "".join(parts)
+
+
 def matches_any(rel_path, globs):
+    """True when rel_path matches a glob. Paths outside the root never match."""
     posix = rel_path.replace(os.sep, "/")
-    for pattern in globs:
-        if fnmatch.fnmatch(posix, pattern) or fnmatch.fnmatch(posix, pattern.lstrip("*/")):
-            return True
-        if fnmatch.fnmatch("x/" + posix, pattern):
-            return True
-    return False
+    return any(re.match(glob_regex(pattern) + r"\Z", posix) for pattern in globs)
 
 
 def is_code(path):

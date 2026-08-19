@@ -2,13 +2,13 @@
 id: T-0007
 title: Selbstverifikation des Templates
 type: task
-status: review
+status: done
 priority: hoch
 agent: claude-code
 owner: claude-cowork
 created: 2026-08-19
 started: 2026-08-19
-finished:
+finished: 2026-08-19
 tags: [topic/meta]
 related: ["[[T-0002 Hooks zur Durchsetzung der Vorgaben]]", "[[T-0003 Wissensdatenbank aufsetzen]]"]
 ---
@@ -21,7 +21,7 @@ Das Template hält seine eigenen Vorgaben ein, nachweislich und nicht nur behaup
 
 ## Akzeptanzkriterien
 
-- [ ] Board-Datei in Obsidian mit installiertem Kanban-Plugin geöffnet und korrekt gerendert
+- [x] Board-Datei in Obsidian mit installiertem Kanban-Plugin geöffnet und korrekt gerendert
 - [x] Alle Hooks gegen Positiv- und Negativfälle geprüft, Ergebnisse protokolliert
 - [x] Kein Wikilink im Vault zeigt ins Leere
 - [x] Keine Waisen-Notiz: alles von `00-index.md` aus erreichbar
