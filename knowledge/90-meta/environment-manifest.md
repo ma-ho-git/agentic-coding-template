@@ -92,7 +92,13 @@ Feldbedeutung: `verified` = Datum der letzten Prüfung gegen die Quelle.
 
 ## Aktiver Stack
 
-- **assumption:** noch nicht festgelegt — `stacks/active.md` fehlt
-- **verified:** —
-- **state:** unknown
-- **action:** Bei `/bootstrap` gemeinsam mit dem Nutzer festlegen
+- **assumption:** Python-Profil (`stacks/python.md`) passt, da alles Code in diesem Repo
+  (`.claude/hooks/`, `tools/`) Python ist. Layout und Commands mussten an die Realität
+  angepasst werden (kein `src/<package>/`, kein `pyproject.toml`, keine Runtime-Deps).
+- **verified:** 2026-08-19
+- **state:** changed
+- **source:** `stacks/python.md` gegen `find .claude/hooks tools -type f` und installierte
+  Toolchain (`which uv pytest ruff mypy`, `python3 --version`) geprüft
+- **action:** `stacks/active.md` angelegt, Python-Version auf 3.11+ korrigiert (installiert:
+  3.11.15, Vorlage sagte 3.12+), Layout/Commands auf `.claude/hooks/`+`tools/` umgestellt.
+  Fehlendes `pyproject.toml` für Test-Setup an T-0007 verwiesen, nicht hier erledigt.
