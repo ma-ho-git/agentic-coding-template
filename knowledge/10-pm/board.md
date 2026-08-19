@@ -14,7 +14,6 @@ kanban-plugin: board
 ## Doing
 
 - [ ] [[T-0007 Selbstverifikation des Templates]]
-- [ ] [[T-0008 Schreibzugriff auf das GitHub-Repo]]
 
 ## Review
 
@@ -28,6 +27,7 @@ kanban-plugin: board
 - [x] [[T-0004 Stack-Profile und Doku-Schema]]
 - [x] [[T-0005 Cowork-Onboarding-Paket]]
 - [x] [[T-0006 README und Lizenz]]
+- [x] [[T-0008 Schreibzugriff auf das GitHub-Repo]]
 
 %% kanban:settings
 ```
