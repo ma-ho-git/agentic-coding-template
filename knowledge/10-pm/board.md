@@ -6,8 +6,6 @@ kanban-plugin: board
 
 ## Backlog
 
-- [ ] [[T-0009 Beispielprojekt als Smoke-Test]]
-
 ## Ready
 
 - [ ] [[T-0011 matches_any() Pfadabgleich reparieren]]
@@ -30,6 +28,7 @@ kanban-plugin: board
 - [x] [[T-0006 README und Lizenz]]
 - [x] [[T-0008 Schreibzugriff auf das GitHub-Repo]]
 - [x] [[T-0010 CI-Workflow für die Regelprüfung]]
+- [x] [[T-0009 Beispielprojekt als Smoke-Test]]
 
 %% kanban:settings
 ```
