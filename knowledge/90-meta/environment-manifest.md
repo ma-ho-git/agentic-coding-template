@@ -7,7 +7,7 @@ status: active
 created: 2026-08-19
 updated: 2026-08-19
 review_after: 2026-09-18
-related: ["[[00-index]]"]
+related: ["[[00-index]]", "[[SessionStart meldet BOOTSTRAP REQUIRED trotz aktuellem Manifest]]"]
 ---
 
 # Umgebungs-Manifest

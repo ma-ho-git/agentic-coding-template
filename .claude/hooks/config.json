@@ -1,5 +1,5 @@
 {
-  "_comment": "Thresholds for .claude/hooks/check_file.py. Tune per project; do not delete keys.",
+  "_comment": "Thresholds for check_quality.py and check_contract.py. Tune per project; do not delete keys.",
   "max_function_lines": 20,
   "max_parameters": 3,
   "max_name_words": 3,

@@ -27,7 +27,7 @@ def read_text(relative_path):
 
 def bootstrap_line():
     """Whether the environment assumptions were verified recently enough."""
-    dates = re.findall(r"verified:\s*(\d{4}-\d{2}-\d{2})", read_text(MANIFEST))
+    dates = re.findall(r"verified:\**\s*(\d{4}-\d{2}-\d{2})", read_text(MANIFEST))
     if not dates:
         return "BOOTSTRAP REQUIRED: no verified entry in the environment manifest. Run /bootstrap first."
     newest = max(dates)

@@ -13,9 +13,9 @@ kanban-plugin: board
 
 ## Doing
 
-- [ ] [[T-0007 Selbstverifikation des Templates]]
-
 ## Review
+
+- [ ] [[T-0007 Selbstverifikation des Templates]]
 
 ## Done
 
