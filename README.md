@@ -14,7 +14,7 @@ nur zu empfehlen.
 | **Regeln** | TDD verpflichtend, harte Größen- und Namensgrenzen, Design-Pattern-Prüfung vor dem Schreiben, Sicherheitsvorgaben |
 | **Contract-Kommentare** | Jede Quelldatei nennt ihre Abhängigkeiten und ihre bekannten Aufrufer — der Wirkungsradius einer Änderung ist am Code ablesbar, ohne die Codebasis zu durchsuchen |
 | **Wissensdatenbank** | Obsidian-Vault: Projektmanagement, Kanban-Board, Recherchewissen, Troubleshooting, ADRs — inklusive Deprecation-Workflow für veraltetes Wissen |
-| **Durchsetzung** | Hooks blockieren Geheimnisse, fehlende Contract-Kommentare und zerstörerische Kommandos; Größen- und Namensverstöße erzeugen Hinweise |
+| **Durchsetzung** | Hooks blockieren Geheimnisse, fehlende Contract-Kommentare und zerstörerische Kommandos; Größen- und Namensverstöße erzeugen Hinweise. Läuft zusätzlich als GitHub-Actions-Check auf jedem Pull Request — gilt auch für Beiträge ohne die lokalen Hooks |
 | **Agenten-Routing** | Für jede Aufgabe wird entschieden, ob Claude Code oder Cowork besser passt |
 
 ## Voraussetzungen
@@ -73,7 +73,10 @@ Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
 | `knowledge/` | Obsidian-Vault, deutschsprachig |
 | `stacks/` | Stack-Profile (Python, TypeScript, Vorlage) |
 | `cowork/` | Einrichtung für Claude Cowork |
-| `tools/` | Prüfskripte, z. B. `check_vault.py` für die Wissensdatenbank |
+| `tools/` | Prüfskripte, z. B. `check_vault.py`, `ci_check.py` |
+| `tests/` | Tests für die Hooks und Tools selbst |
+| `.github/workflows/` | CI: prüft Pull Requests mit denselben Skripten wie die Hooks |
+| `examples/` | Kleines Beispielfeature, zeigt den Zyklus TDD → Contract → `/contract-sync`; beim eigenen Projektstart löschen |
 
 ## Anpassen
 
