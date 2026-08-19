@@ -1,0 +1,42 @@
+name: Rules
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  hooks:
+    name: Contract, secrets, quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: List changed files
+        run: |
+          git fetch origin "${{ github.event.pull_request.base.ref }}"
+          git diff --name-only --diff-filter=ACMR \
+            "origin/${{ github.event.pull_request.base.ref }}...HEAD" \
+            > changed_files.txt
+          cat changed_files.txt
+
+      - name: Run rule checks
+        run: |
+          if [ -s changed_files.txt ]; then
+            python3 tools/ci_check.py $(cat changed_files.txt)
+          else
+            echo "No changed files to check."
+          fi
+
+      - name: Vault check
+        run: python3 tools/check_vault.py
+
+      - name: Hook test suite
+        run: |
+          python3 -m pip install --quiet pytest
+          python3 -m pytest tests -q

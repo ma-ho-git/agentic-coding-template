@@ -52,6 +52,7 @@ Themennotiz. Waisen sind ein Fehler und gehören repariert.
 
 - [[Git-Proxy verweigert Push - Repo nicht in der Session freigegeben]]
 - [[SessionStart meldet BOOTSTRAP REQUIRED trotz aktuellem Manifest]]
+- [[matches_any() exemption trifft falsche Pfade]]
 
 ## Meta
 
