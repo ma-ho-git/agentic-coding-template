@@ -9,7 +9,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _common import project_dir  # noqa: E402
+from _common import load_config, project_dir  # noqa: E402
 
 BOARD = "knowledge/10-pm/board.md"
 MANIFEST = "knowledge/90-meta/environment-manifest.md"
@@ -17,6 +17,15 @@ TASKS = "knowledge/10-pm/tasks"
 REQUIREMENTS = "knowledge/05-requirements"
 GATE = "knowledge/05-requirements/baseline.md"
 BOOTSTRAP_MAX_AGE = 30
+
+# Project scope scales documentation duty and elicitation depth - never requirements,
+# never rigid guardrails. See .claude/rules/workflow.md.
+SCOPES = {
+    "skript": "throwaway or personal - a one-line reason per category is enough",
+    "werkzeug": "shared tool - real answers for funktional, technisch, sicherheit, recht",
+    "produkt": "full ceremony - every category answered, ADR for every real alternative",
+}
+DEFAULT_SCOPE = "produkt"  # unknown scope falls back to more ceremony, never less
 
 
 def read_text(relative_path):
@@ -37,6 +46,16 @@ def bootstrap_line():
     if age > BOOTSTRAP_MAX_AGE:
         return "BOOTSTRAP REQUIRED: last verified {0} ({1} days ago). Run /bootstrap first.".format(newest, age)
     return "Environment last verified {0} ({1} days ago).".format(newest, age)
+
+
+def scope_line():
+    """Which scope this project runs at, and what that changes."""
+    scope = load_config().get("project_scope", DEFAULT_SCOPE)
+    if scope not in SCOPES:
+        return ("Project scope: '{0}' is not a known scope - treating it as {1}. "
+                "Fix project_scope in .claude/hooks/config.json.".format(scope, DEFAULT_SCOPE))
+    return ("Project scope: {0} - {1}. Scope scales documentation duty only; "
+            "rigid guardrails hold in every scope.".format(scope, SCOPES[scope]))
 
 
 def requirement_counts():
@@ -98,7 +117,7 @@ def stale_notes():
 def render(lanes, stale):
     """Assemble the briefing text."""
     parts = ["Project state (from .claude/hooks/session_brief.py):", bootstrap_line(),
-             requirements_line()]
+             scope_line(), requirements_line()]
     if lanes:
         counts = ", ".join("{0} {1}".format(len(cards), lane) for lane, cards in lanes.items())
         parts.append("Board: " + counts)

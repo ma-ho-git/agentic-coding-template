@@ -66,6 +66,20 @@ Every message carries its class. Without it a user cannot tell a wall from a hin
 whatever cannot be told apart is eventually treated the same — as noise. `block()`, `deny()` and
 `advise()` in `_common.py` prepend the label, so a new hook inherits it by using them.
 
+## Project scope never moves a rigid guardrail
+
+`project_scope` (`.claude/rules/workflow.md`) scales how much gets *written* — elicitation
+depth, ADR duty, progress detail. It does not scale what is *enforced*. All eight checks in
+the table above behave identically in `skript`, `werkzeug` and `produkt`, and no scope
+exempts a path, lowers a threshold to zero, or opens the start gate.
+
+This is deliberate. „Ist doch nur ein kleines Skript" is exactly the argument under which a
+secret reaches the history or a task loses its requirement — and those are the violations
+that cannot be repaired afterwards, which is what made them rigid in the first place. A
+scope that could switch them off would make the class meaningless.
+
+An unknown or missing scope is read as `produkt`: falling back costs ceremony, never safety.
+
 ## What this does not cover
 
 Guardrails constrain **how** work is done. They say nothing about **whether** it is worth

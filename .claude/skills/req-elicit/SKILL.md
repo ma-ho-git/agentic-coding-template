@@ -52,8 +52,19 @@ exam and gets abandoned.
 ## 3. Framework mode — before any production code
 
 Ask first what kind of thing is being built — script, tool, service, library, application.
-Every example below is then chosen to match. This answer also feeds the project sizing
-(`T-0022`).
+Every example below is then chosen to match.
+
+Read `project_scope` from `.claude/hooks/config.json` (`/bootstrap` sets it; missing means
+`produkt`). It sets how deep the answers need to be — never which questions get asked:
+
+| Scope | How deep |
+| --- | --- |
+| `skript` | ask all six categories; „trifft hier nicht zu, weil …" is a complete answer |
+| `werkzeug` | insist on real answers for `funktional`, `technisch`, `sicherheit`, `recht` |
+| `produkt` | every category gets an agreed requirement |
+
+Every scope passes through the start gate, and no scope skips a category.
+Details: `.claude/rules/workflow.md`.
 
 Then work in this order, writing each answer down before moving on.
 

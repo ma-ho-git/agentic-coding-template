@@ -8,10 +8,10 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0022 Projektzuschnitt bestimmt die Zeremonie]]
 
 
 ## Doing
+
 
 ## Review
 
@@ -40,6 +40,7 @@ kanban-plugin: board
 - [x] [[T-0019 Leitplanken benennen und klassifizieren]]
 - [x] [[T-0020 Startgate als starre Leitplanke durchsetzen]]
 - [x] [[T-0021 Anfängermodus für die Anforderungserhebung]]
+- [x] [[T-0022 Projektzuschnitt bestimmt die Zeremonie]]
 
 %% kanban:settings
 ```

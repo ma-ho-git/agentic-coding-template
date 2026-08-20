@@ -42,6 +42,39 @@ Do not rewrite entries you did not verify. An honest `unknown` beats a guessed `
    and fill in the concrete commands.
 3. Replace the template placeholders in `knowledge/00-index.md` and `README.md`.
 4. Delete `examples/` — it demonstrates the workflow and is not part of a real project.
+5. Determine the **project scope**. See Step 2a.
+
+## Step 2a — Determine the project scope
+
+The scope decides how much gets written down, and nothing else. Ask it here, before
+eliciting requirements — it sets how deep Step 3 goes.
+
+Explain before asking, then propose. Do not make the user guess what the words mean:
+
+> Wie groß ist das hier gedacht? Das ändert nur, wie viel dokumentiert wird — geprüft wird
+> in allen drei Fällen dasselbe.
+>
+> - **skript** — einmalige Sache, nur für dich, niemand pflegt das weiter
+> - **werkzeug** — du gibst es weiter, aber es bleibt überschaubar
+> - **produkt** — wird über längere Zeit gepflegt, mehrere Leute arbeiten daran
+>
+> Nach dem, was du bisher beschrieben hast, würde ich **werkzeug** nehmen. Passt das?
+
+Then do both of these, in the same step:
+
+1. Write the value into `.claude/hooks/config.json` as `project_scope`
+   (`skript` | `werkzeug` | `produkt`). It is what hooks and skills read.
+2. Write the **reason** into the Projektzuschnitt section of
+   `knowledge/05-requirements/baseline.md`, in the user's own words. A scope without a
+   recorded reason is an excuse rather than a decision, and the next agent cannot tell
+   which it was.
+
+Unsure, or the user does not care → `produkt`. Falling back costs writing, never safety.
+
+Say plainly what the scope does **not** change: requirements are elicited in every scope,
+all six categories are asked in every scope, TDD holds in every scope, and every rigid
+guardrail stays armed (`.claude/rules/guardrails.md`). Only documentation duty and the
+depth of the answers scale (`.claude/rules/workflow.md`).
 
 ## Step 3 — Elicit the framework, before any task
 

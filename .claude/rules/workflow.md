@@ -1,5 +1,37 @@
 # Workflow
 
+## Project scope
+
+Not every project deserves the same ceremony. A throwaway script and a product other people
+depend on need the same *guardrails*, but not the same amount of *writing*.
+
+`/bootstrap` asks which of three the project is and records the answer as `project_scope` in
+`.claude/hooks/config.json`. The **reason** for the choice goes into the Projektzuschnitt
+section of `knowledge/05-requirements/baseline.md` — a scope with no recorded reason is an
+excuse, not a decision. Unknown or missing value means `produkt`: the fallback buys more
+ceremony, never less.
+
+| Scope | What it is | Elicitation | Documentation |
+| --- | --- | --- | --- |
+| `skript` | throwaway, personal, no second user | all six categories still asked; a one-line „trifft hier nicht zu" is a fine answer | vision three lines; ADR only for decisions that are hard to undo; progress entries one line; troubleshooting notes still mandatory |
+| `werkzeug` | passed on to others, small surface | real answers for `funktional`, `technisch`, `sicherheit`, `recht`; the rest may be dismissed with a reason | vision, glossary and risks; ADR for every real alternative weighed |
+| `produkt` | maintained over time, more than one contributor | every category answered with an agreed requirement | everything in `.claude/rules/knowledge-base.md`, without reduction |
+
+**What scope never touches:**
+
+- **Requirements themselves.** Every scope passes through the start gate, and every category
+  is asked in every scope. What shrinks is the length of the answer, not the list of questions.
+- **Rigid guardrails.** Secrets, contract blocks, task traceability, destructive git, the
+  start gate — identical in all three. See `.claude/rules/guardrails.md`.
+- **TDD.** A failing test first, in every scope.
+
+Only flexible guardrails and documentation duties scale. If you find yourself arguing that a
+small scope should switch something off, you have found either a rule that was never worth
+having, or a rule you are about to break — say which.
+
+Changing scope later is a normal decision: change the config value, and write the new reason
+into `baseline.md` next to the old one. Never delete the old reason.
+
 ## Before the board exists
 
 Nothing is built until the framework is agreed. `knowledge/05-requirements/baseline.md`

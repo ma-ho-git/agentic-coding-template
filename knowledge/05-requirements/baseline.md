@@ -8,7 +8,7 @@ baseline_status: entwurf
 created: 2026-08-19
 updated: 2026-08-20
 review_after: 2026-11-20
-related: ["[[ADR-0005 Anforderungen als Pflicht vor dem Code]]", "[[Projektvision]]", "[[00-index]]"]
+related: ["[[ADR-0005 Anforderungen als Pflicht vor dem Code]]", "[[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]", "[[Projektvision]]", "[[00-index]]"]
 ---
 
 # Rahmen und Startgate
@@ -39,6 +39,21 @@ Vibe-Coding gibt: verbindliche Regeln, eine Obsidian-kompatible Wissensdatenbank
 Aufgabenverwaltung, verpflichtende Anforderungserhebung vor dem Codieren, und Prüfungen, die
 das durchsetzen statt es zu empfehlen. Ausführlich in [[Projektvision]].
 
+## Projektzuschnitt
+
+`project_scope: produkt` (`.claude/hooks/config.json`).
+
+**Begründung:** Das Template wird öffentlich bereitgestellt, von fremden Projekten geklont
+und über längere Zeit gepflegt. Es ist außerdem sein eigener Prüfstein — was hier an
+Dokumentationspflicht wegfällt, fällt in jedem geklonten Projekt als Vorbild ebenfalls weg.
+Ein kleinerer Zuschnitt wäre hier also nicht nur ungenau, sondern lehrreich falsch.
+
+Der Zuschnitt skaliert ausschließlich Dokumentationspflicht und Erhebungstiefe. Anforderungen,
+TDD und alle starren Leitplanken gelten in jedem Zuschnitt unverändert —
+siehe `.claude/rules/workflow.md` und `.claude/rules/guardrails.md`.
+
+Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen lassen.
+
 ## Kategorien
 
 ### Funktional
@@ -58,6 +73,7 @@ das durchsetzen statt es zu empfehlen. Ausführlich in [[Projektvision]].
 - [[REQ-0013 Der erste Lauf prüft die Annahmen und orientiert den Nutzer]]
 - [[REQ-0014 Subagenten nur nach Kosten-Nutzen-Prüfung]]
 - [[REQ-0017 Anforderungserhebung vor der Entwicklung]]
+- [[REQ-0019 Leitplanken in zwei Klassen]]
 
 ### Sicherheit
 
@@ -76,6 +92,7 @@ das durchsetzen statt es zu empfehlen. Ausführlich in [[Projektvision]].
 - [[REQ-0007 Grenzen für Funktionsgröße und Benennung]]
 - [[REQ-0008 Contract-Kommentar macht den Wirkungsradius lesbar]]
 - [[REQ-0018 Das Template hält seine eigenen Vorgaben ein]]
+- [[REQ-0020 Für unerfahrene Anwender nutzbar]]
 
 ## Freigabe
 
@@ -83,7 +100,7 @@ das durchsetzen statt es zu empfehlen. Ausführlich in [[Projektvision]].
 | --- | --- |
 | Rahmen vollständig geprüft am | 2026-08-20 (durch den Agenten vorgelegt) |
 | Freigegeben durch | — offen, siehe Hinweis |
-| Bemerkungen | Alle 18 Anforderungen stehen auf `status: entwurf`. Sie sind aus der Projektvorgabe vom 2026-08-19 abgeleitet, nicht erfunden — aber der Auftraggeber hat den Wortlaut noch nicht bestätigt. |
+| Bemerkungen | Alle 20 Anforderungen stehen auf `status: entwurf`. Sie sind aus der Projektvorgabe vom 2026-08-19 und den Ergänzungen vom 2026-08-20 abgeleitet, nicht erfunden — aber der Auftraggeber hat den Wortlaut noch nicht bestätigt. |
 
 **Hinweis zum Sonderfall dieses Repositories:** Das Template wurde gebaut, bevor es seine
 eigene Anforderungsebene besaß. Die Anforderungen sind daher nachträglich aus der

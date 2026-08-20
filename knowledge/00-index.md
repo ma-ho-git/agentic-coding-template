@@ -4,7 +4,7 @@ type: knowledge
 tags: [topic/meta]
 status: active
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-08-20
 review_after: 2027-02-19
 related: ["[[Konventionen der Wissensdatenbank]]"]
 ---
@@ -46,6 +46,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[ADR-0004 Cowork über ein leichtes Paket anbinden]]
 - [[ADR-0005 Anforderungen als Pflicht vor dem Code]]
 - [[ADR-0006 Zwei Klassen von Leitplanken]]
+- [[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]
 
 ## Projektwissen
 

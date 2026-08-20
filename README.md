@@ -56,6 +56,25 @@ Danach ist der Arbeitszyklus immer derselbe:
 /task-next  →  Test schreiben  →  Code schreiben  →  /contract-sync  →  /task-done
 ```
 
+## Projektzuschnitt — wie viel Zeremonie?
+
+Ein Wegwerfskript und ein gepflegtes Produkt brauchen dieselben Leitplanken, aber nicht
+dieselbe Menge an Dokumentation. `/bootstrap` fragt deshalb, was du baust, und hält die
+Antwort als `project_scope` in `.claude/hooks/config.json` fest — die **Begründung** dazu
+kommt nach `knowledge/05-requirements/baseline.md`.
+
+| Zuschnitt | Wofür | Anforderungserhebung | Dokumentation |
+| --- | --- | --- | --- |
+| `skript` | einmalig, nur für dich | alle sechs Kategorien werden gefragt, „trifft hier nicht zu, weil …" reicht als Antwort | Vision in drei Zeilen, ADR nur bei schwer umkehrbaren Entscheidungen, Fortschritt einzeilig |
+| `werkzeug` | du gibst es weiter, überschaubarer Umfang | echte Antworten für Funktion, Technik, Sicherheit, Recht | zusätzlich Glossar und Risiken, ADR bei echten Alternativen |
+| `produkt` | wird länger gepflegt, mehrere Beteiligte | jede Kategorie mit vereinbarter Anforderung | vollständig, ohne Abstriche |
+
+Was der Zuschnitt **nicht** ändert: Das Startgate gilt immer, alle sechs Kategorien werden
+immer gefragt, TDD gilt immer, und jede starre Leitplanke bleibt in jedem Zuschnitt scharf.
+Kleiner werden nur die Antworten und die Schreibarbeit — nie die Prüfungen.
+
+Ohne Angabe gilt `produkt`. Der Rückfall kostet Schreibarbeit, nie Sicherheit.
+
 ## Deine Aufgaben als Verwender
 
 Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
@@ -85,7 +104,9 @@ Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
 
 ## Anpassen
 
-- **Schwellenwerte** — `.claude/hooks/config.json` (Funktionslänge, Parameterzahl, Namenslänge …)
+- **Schwellenwerte** — `.claude/hooks/config.json` (Zuweisungen je Funktion, Parameterzahl, Namenslänge …)
+- **Projektzuschnitt** — `project_scope` in `.claude/hooks/config.json`; die Begründung gehört
+  in `knowledge/05-requirements/baseline.md`, die alte bleibt stehen
 - **Blockieren vs. warnen** — welche Prüfung wie hart ist, steht in
   `knowledge/10-pm/decisions/ADR-0002 …`; geändert wird es in `.claude/settings.json`
 - **Sprache der Dokumentation** — `CLAUDE.md` §7
