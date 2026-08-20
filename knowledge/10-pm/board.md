@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0032 Artefakttyp bestimmt die Beispiele]]
 - [ ] [[T-0033 Anpassbarkeit nachweisen]]
 
 
@@ -52,6 +51,7 @@ kanban-plugin: board
 - [x] [[T-0029 Fremdkomponenten rechtlich absichern]]
 - [x] [[T-0030 Funktional und nicht-funktional benennen]]
 - [x] [[T-0031 Qualitätsmerkmale vollständig abfragen]]
+- [x] [[T-0032 Artefakttyp bestimmt die Beispiele]]
 
 %% kanban:settings
 ```

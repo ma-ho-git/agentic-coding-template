@@ -56,8 +56,17 @@ offer `/szenario` once — describing the project is far easier than answering s
 A no is a complete answer and is not asked twice. If it does exist, work from Section 3a
 before anything else here.
 
-Ask first what kind of thing is being built — script, tool, service, library, application.
-Every example below is then chosen to match.
+Ask first what kind of thing is being built — script, library, command line tool, service or
+API, data pipeline, application with a user interface. **Then look up its profile** in
+`knowledge/20-knowledge/Qualitätsmerkmale je Artefakttyp.md` and take your examples from
+there, not from the table below, which is written for a command line tool.
+
+That lookup is the whole point of asking: a beginner cannot transfer a CLI example to their
+service — the transfer is exactly the knowledge they are missing. Mixed or unclear type
+(a tool with a web interface is both): offer both profiles rather than guessing.
+
+The profile changes **examples, measures and expected depth. Never the list of questions** —
+the same boundary the project scope has.
 
 Read `project_scope` from `.claude/hooks/config.json` (`/bootstrap` sets it; missing means
 `produkt`). It sets how deep the answers need to be — never which questions get asked:
@@ -79,7 +88,7 @@ Then work in this order, writing each answer down before moving on.
    conflict. Ask explicitly who was *not* asked.
 3. **The six categories** → one `REQ-XXXX` file per requirement, `ebene: rahmen`.
 
-   | Category | One sentence | Example — command line tool |
+   | Category | One sentence | Example — command line tool; for other types use the profile |
    | --- | --- | --- |
    | `funktional` | What it must be able to do to be worth building | „Liest eine CSV und schreibt eine bereinigte CSV" |
    | `technisch` | What it must run on and cope with | „Läuft mit Python 3.11 unter Linux, Dateien bis 100 MB" |
@@ -105,7 +114,8 @@ Then work in this order, writing each answer down before moving on.
    through in two minutes.
 
    **Pass 1 — show the list, ask which ones bite.** One screen, not eight questions. Mark the
-   two or three you expect to matter for *their* artefact and say why you think so:
+   two or three the artefact profile names as decisive and say why — a proposal to contradict
+   beats a blank page:
 
    > Was davon muss bei dir wirklich gut sein? Nenn einfach, was zutrifft — der Rest ist dann
    > bewusst kein Thema, und das schreiben wir auch so hin.
@@ -127,7 +137,9 @@ Then work in this order, writing each answer down before moving on.
 
    The list is the same in every scope and for every artefact. What changes is which entries
    get a real answer: a `skript` may dismiss seven of eight in one sentence, a service will
-   not get away with dismissing reliability.
+   not get away with dismissing reliability. The profile tells you where to insist — for a
+   library on compatibility, for a pipeline on repeatability, for a CLI on how it behaves
+   inside a pipe.
 
    Two of these are the ones users never raise on their own: **Wartbarkeit**, because the
    person maintaining it in a year is not in the room — and **Anpassbarkeit**, because nobody
