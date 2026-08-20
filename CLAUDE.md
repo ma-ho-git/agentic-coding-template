@@ -54,10 +54,10 @@ run `/bootstrap` before anything else. Do not skip it, do not do it silently.
    ↓
 /req-validate  check the set: validity, consistency, completeness, realism, verifiability
    ↓
-   the user sets baseline.md to `vereinbart` — the gate opens
+   the user sets baseline.md to `vereinbart` — the framework is agreed
    ↓
 /solution-scan does this already exist? The offer is mandatory, searching is not —
-               the answer is recorded either way, before the first code task
+               recording the answer is what opens the gate for production code
 ```
 
 **Then per development stage, repeatedly:**

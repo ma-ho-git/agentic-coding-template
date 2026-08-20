@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0028 Startgate verlangt die Fremdlösungs-Entscheidung]]
 - [ ] [[T-0029 Fremdkomponenten rechtlich absichern]]
 
 ## Doing
@@ -47,6 +46,7 @@ kanban-plugin: board
 - [x] [[T-0025 Robustheit als Pflicht des Agenten]]
 - [x] [[T-0026 Verschluckte Ausnahmen sichtbar machen]]
 - [x] [[T-0027 Bestehende Lösungen vor dem Codieren prüfen]]
+- [x] [[T-0028 Startgate verlangt die Fremdlösungs-Entscheidung]]
 
 %% kanban:settings
 ```

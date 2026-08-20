@@ -8,15 +8,15 @@ scan_status: gesucht
 created: 2026-08-20
 updated: 2026-08-20
 review_after: 2027-02-20
-related: ["[[Rahmen und Startgate]]", "[[Spec-Driven-Development - was andere Projekte machen]]", "[[ADR-0010 Eigene Umsetzung statt Fremdbasis]]", "[[00-index]]"]
+related: ["[[Rahmen und Startgate]]", "[[Spec-Driven-Development - was andere Projekte machen]]", "[[ADR-0010 Eigene Umsetzung statt Fremdbasis]]", "[[ADR-0011 Das Startgate hat zwei Bedingungen]]", "[[00-index]]"]
 ---
 
 # Fremdlösungen
 
 > **Diese Datei hält fest, ob vor dem Codieren nach einer bestehenden Lösung gesucht wurde.**
 > Gesucht **oder** bewusst übersprungen sind beide gültige Antworten — nicht beantwortet ist
-> keine. `scan_status` ist maschinenlesbar; die Durchsetzung über `check_gate.py` kommt mit
-> [[T-0028 Startgate verlangt die Fremdlösungs-Entscheidung]].
+> keine. `check_gate.py` liest `scan_status` und verweigert Produktivcode, solange `offen`
+> steht oder die Datei fehlt ([[ADR-0011 Das Startgate hat zwei Bedingungen]]).
 >
 > **Für ein eigenes Projekt:** Inhalt ersetzen, `scan_status` auf `offen` zurücksetzen.
 

@@ -23,7 +23,7 @@ a scan without a yardstick produces a list of popular projects, not an answer.
 Not later: once the home-made version exists it wins, because it exists — not because it is
 better. That is a decision made by inertia, and inertia is not an argument.
 
-The decision is recorded either way before the first code task — see Section 6.
+`check_gate.py` refuses production code until the decision is recorded either way.
 
 ## 2. Make the offer
 

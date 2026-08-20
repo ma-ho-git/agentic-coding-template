@@ -48,8 +48,9 @@ exist?** `/solution-scan` measures open-source candidates against the agreed req
 licence, maintenance, and per requirement whether it is fulfilled, partly fulfilled or not.
 
 The offer is mandatory, the search is not. Both answers are legitimate; an unanswered one is
-not. The answer lives in `knowledge/05-requirements/fremdloesungen.md` as `scan_status`:
-`gesucht`, `uebersprungen` — with the user's reason — or `offen` while it is undecided.
+not, and `check_gate.py` refuses production code while
+`knowledge/05-requirements/fremdloesungen.md` reads `scan_status: offen` or is missing.
+`gesucht` and `uebersprungen` — the latter with the user's reason — both open it.
 
 The timing is the point. Earlier there is no yardstick to measure a candidate against; later
 the home-made version wins because it exists, not because it is better. If a candidate is

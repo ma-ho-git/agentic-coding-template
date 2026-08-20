@@ -46,7 +46,8 @@ a wrongly flexible one costs quality.
 | Missing `@contract` block | rigid | `check_contract.py`, exit 2 |
 | Task without a requirement | rigid | `check_task.py`, exit 2 |
 | Destructive git commands | rigid | `git_guard.py`, `deny` |
-| Production code before the start gate opens | rigid | `check_gate.py`, `deny` |
+| Production code before the framework is agreed | rigid | `check_gate.py`, `deny` |
+| Production code before the existing-solutions decision | rigid | `check_gate.py`, `deny` |
 | Assignments, parameters, name length | flexible | `check_quality.py`, hint |
 | Nesting depth, file length | flexible | `check_quality.py`, hint |
 | Exception dropped without a reason | flexible | `check_quality.py`, hint |
@@ -55,8 +56,10 @@ a wrongly flexible one costs quality.
 Thresholds for the flexible ones live in `.claude/hooks/config.json` and are meant to be
 tuned per project. The rigid ones are not thresholds; they are boundaries.
 
-The start gate deserves a note: it is the one boundary that protects a decision reserved for
-the human, and `check_gate.py` refuses writes to product source while it is closed. Tooling,
+The start gate deserves a note: it is the one boundary that protects decisions reserved for
+the human, and `check_gate.py` refuses writes to product source while either of its two
+conditions is unmet — the framework is agreed, and the existing-solutions question is
+answered (`ADR-0011`). Tooling,
 tests, examples and everything that is not a source file stay writable — otherwise you could
 not build the machinery that lets the framework be agreed in the first place. A missing
 `baseline.md` counts as closed: fail closed, per `.claude/rules/security.md`.
@@ -70,7 +73,7 @@ whatever cannot be told apart is eventually treated the same — as noise. `bloc
 ## Project scope never moves a rigid guardrail
 
 `project_scope` (`.claude/rules/workflow.md`) scales how much gets *written* — elicitation
-depth, ADR duty, progress detail. It does not scale what is *enforced*. All nine checks in
+depth, ADR duty, progress detail. It does not scale what is *enforced*. All ten checks in
 the table above behave identically in `skript`, `werkzeug` and `produkt`, and no scope
 exempts a path, lowers a threshold to zero, or opens the start gate.
 

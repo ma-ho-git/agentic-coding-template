@@ -52,6 +52,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[ADR-0008 Aus dem Szenario ableiten, ohne zu erfinden]]
 - [[ADR-0009 Fehlerbehandlung ändert die Form, nicht die Grenze]]
 - [[ADR-0010 Eigene Umsetzung statt Fremdbasis]]
+- [[ADR-0011 Das Startgate hat zwei Bedingungen]]
 
 ## Projektwissen
 
