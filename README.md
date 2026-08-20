@@ -55,6 +55,12 @@ Dabei wird dir angeboten, dein Vorhaben zunächst in eigenen Worten zu **erzähl
 etwas fehlt. Daraus werden anschließend die Anforderungen abgeleitet. Optional; wenn du
 lieber direkt loslegst, entfällt der Schritt und lässt sich jederzeit nachholen.
 
+Sobald der Rahmen steht und **bevor** die erste Zeile Code entsteht, wird dir noch eine Frage
+gestellt: `/solution-scan` — gibt es das vielleicht schon fertig? Der Agent misst gefundene
+Projekte an deinen Anforderungen, prüft Lizenz und Wartungsstand und empfiehlt; entscheiden
+tust du. „Nichts davon passt" ist ein vollwertiges Ergebnis und wird mit Begründung
+festgehalten.
+
 Danach ist der Arbeitszyklus immer derselbe:
 
 ```

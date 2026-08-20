@@ -41,6 +41,20 @@ See `.claude/rules/requirements.md`.
 Per development stage afterwards: `/req-elicit` for that stage's detail requirements,
 then tasks. Never tasks first.
 
+## Before the first code task
+
+Between the open gate and the first line of code sits one more question: **does this already
+exist?** `/solution-scan` measures open-source candidates against the agreed requirements —
+licence, maintenance, and per requirement whether it is fulfilled, partly fulfilled or not.
+
+The offer is mandatory, the search is not. Both answers are legitimate; an unanswered one is
+not. The answer lives in `knowledge/05-requirements/fremdloesungen.md` as `scan_status`:
+`gesucht`, `uebersprungen` — with the user's reason — or `offen` while it is undecided.
+
+The timing is the point. Earlier there is no yardstick to measure a candidate against; later
+the home-made version wins because it exists, not because it is better. If a candidate is
+adopted, its legal obligations run through the register of third-party components.
+
 ## Task lifecycle
 
 A task is a file in `knowledge/10-pm/tasks/` and a card in `knowledge/10-pm/board.md`.

@@ -29,6 +29,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[Stakeholder]] — wer beteiligt ist und wer entscheidet
 - [[Glossar]] — verbindliches Vokabular, auch für die Benennung im Code
 - [[Methodenglossar]] — die Begriffe des Verfahrens, für den Einstieg ohne Vorkenntnisse
+- [[Fremdlösungen]] — ob vor dem Codieren nach einer bestehenden Lösung gesucht wurde
 - [[Randbedingungen]] — was von außen feststeht
 - [[Risiken]] — was das Projekt gefährdet, und was dagegen läuft
 - Einzelanforderungen: `05-requirements/REQ-XXXX ….md`
@@ -50,6 +51,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]
 - [[ADR-0008 Aus dem Szenario ableiten, ohne zu erfinden]]
 - [[ADR-0009 Fehlerbehandlung ändert die Form, nicht die Grenze]]
+- [[ADR-0010 Eigene Umsetzung statt Fremdbasis]]
 
 ## Projektwissen
 

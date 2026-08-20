@@ -5,7 +5,7 @@ type: knowledge
 tags: [topic/agents, topic/meta]
 status: active
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-08-20
 review_after: 2027-02-19
 related: ["[[Konventionen der Wissensdatenbank]]", "[[00-index]]"]
 ---
@@ -27,6 +27,7 @@ Prüfkriterien: `.claude/rules/agent-conduct.md`.
 | 2026-08-19 | Recherche zu externer Doku (mehrere Quellen, große Seiten) | `researcher` | ja | Rohtext der Doku-Seiten würde den Hauptkontext füllen; Antwort ist kompakt und prüfbar | offen |
 | 2026-08-19 | Regeldateien und Hooks im Template schreiben | — | nein | Erfordert den vollen Gesprächskontext und iterative Abstimmung mit dem Nutzer | inline erledigt, richtig so |
 | 2026-08-19 | Review einer Änderung gegen die Projektregeln | `code-reviewer` | ja | Eigener Kontext erzwingt frischen Blick; Ergebnis ist ohne Nacharbeit prüfbar | offen |
+| 2026-08-20 | Suche nach bestehenden Lösungen (`/solution-scan`) | `researcher` | ja | Viele abgerufene Projektseiten füllen sonst den Hauptkontext; das Ergebnis ist je Kandidat gegen die REQ-IDs prüfbar. **Die Bewertung bleibt beim Hauptagenten** — delegiert wird das Abrufen, nicht das Urteil | offen |
 
 ## Daumenregeln (aus den bisherigen Fällen)
 
