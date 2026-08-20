@@ -15,6 +15,8 @@ kanban-plugin: board
 
 ## Doing
 
+- [ ] [[T-0038 Übergabe von der Vorlage zum Projekt]]
+
 
 ## Review
 

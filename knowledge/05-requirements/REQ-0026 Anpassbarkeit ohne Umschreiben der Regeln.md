@@ -8,7 +8,7 @@ stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20 — Lücke aus dem Qualitätsmerkmale-Durchgang (T-0031)
 nachweis: demo
 status: vereinbart
-tasks: ["[[T-0004 Stack-Profile und Doku-Schema]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0033 Anpassbarkeit nachweisen]]", "[[T-0034 Erstlauf im frischen Klon durchspielen]]"]
+tasks: ["[[T-0004 Stack-Profile und Doku-Schema]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0033 Anpassbarkeit nachweisen]]", "[[T-0034 Erstlauf im frischen Klon durchspielen]]", "[[T-0038 Übergabe von der Vorlage zum Projekt]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
 updated: 2026-08-20
