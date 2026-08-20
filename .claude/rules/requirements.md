@@ -36,14 +36,44 @@ architecture-shaping constraints surface far too late.
 **Framework** (`ebene: rahmen`) — *what is being built, and what must hold while building it.*
 Complete and agreed **before the first line of production code**:
 
-| Category | Covers |
-| --- | --- |
-| `funktional` | the system's core service, coarse |
-| `technisch` | platform, interfaces, data, performance |
-| `organisatorisch` | operation, roles, delivery, process |
-| `sicherheit` | protection needs, authentication, privacy |
-| `recht` | regulation, licences, retention |
-| `qualitaet` | usability, reliability, maintainability |
+| Category | Covers | Sommerville |
+| --- | --- | --- |
+| `funktional` | the system's core service, coarse | functional |
+| `technisch` | platform, interfaces, data volumes, operating environment | product |
+| `qualitaet` | how good: performance, compatibility, usability, reliability, maintainability, flexibility, safety | product |
+| `sicherheit` | protection needs, authentication, privacy | product + external |
+| `organisatorisch` | operation, roles, delivery — **and how development itself is done**: process standards, coding standards, mandatory tooling | organisational |
+| `recht` | regulation, licences, retention, rights to the result | external |
+
+## Functional and non-functional — why they are elicited differently
+
+`funktional` is the functional category. **The other five are non-functional**, in
+Sommerville's three groups: product (how the delivered thing behaves), organisational (rules
+of the house, including development process), external (imposed from outside).
+
+That is not vocabulary for its own sake. The two kinds behave differently in elicitation:
+
+- **Functional requirements the user volunteers.** A scenario consists almost entirely of
+  them. Ask "what should it do" and you get answers.
+- **Non-functional requirements the user never volunteers.** Not because they do not care —
+  because nobody thinks to say "and it should still work when the network is down". They
+  only surface when asked **against a list**. That list is the point of the six categories.
+
+Second difference: a functional requirement is usually testable as written; a non-functional
+one is usually not, until it carries a number or an observable scenario. Hence the
+verifiability rule below, which exists almost entirely for the non-functional five.
+
+### Where does it go when two categories fit?
+
+`technisch` and `qualitaet` overlap, and so do `organisatorisch` and `qualitaet`. Faustregel:
+
+- **What the system must run on** → `technisch` ("Python 3.11 under Linux, files up to 100 MB")
+- **How well it must do it** → `qualitaet` ("10,000 rows in under 5 seconds")
+- **How the team must work** → `organisatorisch` ("test-driven", "docstrings per the profile")
+
+The categories are a **checklist for completeness, not a taxonomy**. A requirement filed one
+category off is not a defect; a category nobody asked about is. If a requirement plausibly
+fits two, pick one and move on — but never let a thing fall between them.
 
 **Detail** (`ebene: detail`) — per development stage, on demand, never stockpiled. While
 coding they may be *sharpened*: same statement, more precise, recorded with a date. A

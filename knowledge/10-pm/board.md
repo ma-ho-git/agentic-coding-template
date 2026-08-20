@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0030 Funktional und nicht-funktional benennen]]
 - [ ] [[T-0031 Qualitätsmerkmale vollständig abfragen]]
 - [ ] [[T-0032 Artefakttyp bestimmt die Beispiele]]
 
@@ -51,6 +50,7 @@ kanban-plugin: board
 - [x] [[T-0027 Bestehende Lösungen vor dem Codieren prüfen]]
 - [x] [[T-0028 Startgate verlangt die Fremdlösungs-Entscheidung]]
 - [x] [[T-0029 Fremdkomponenten rechtlich absichern]]
+- [x] [[T-0030 Funktional und nicht-funktional benennen]]
 
 %% kanban:settings
 ```

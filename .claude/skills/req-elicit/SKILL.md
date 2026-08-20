@@ -83,10 +83,15 @@ Then work in this order, writing each answer down before moving on.
    | --- | --- | --- |
    | `funktional` | What it must be able to do to be worth building | „Liest eine CSV und schreibt eine bereinigte CSV" |
    | `technisch` | What it must run on and cope with | „Läuft mit Python 3.11 unter Linux, Dateien bis 100 MB" |
-   | `organisatorisch` | Who operates it, how it ships, who may do what | „Wird als einzelne Datei weitergegeben, keine Installation" |
+   | `organisatorisch` | Who operates it, how it ships, and how development itself is done | „Wird als einzelne Datei weitergegeben, keine Installation" |
    | `sicherheit` | What needs protecting, and from whom | „Verarbeitet Kundendaten, legt nichts auf Platte ab" |
    | `recht` | Regulation, licences, retention, rights to the result | „Eingesetzte Bibliotheken müssen MIT oder Apache sein" |
    | `qualitaet` | How good, how fast, how usable | „10.000 Zeilen in unter 5 Sekunden" |
+
+   `funktional` is the functional category; **the other five are non-functional**. That is
+   why the list exists: functional requirements the user volunteers, non-functional ones
+   they never do - they only surface when asked against a list
+   (`.claude/rules/requirements.md`).
 
    **Ask about every category**, even the ones that look irrelevant — that is the point of
    having a list. A category may end up empty, but only with a written reason in

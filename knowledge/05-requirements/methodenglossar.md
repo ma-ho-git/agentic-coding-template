@@ -26,6 +26,15 @@ Wer einen Begriff in einer Rückfrage nicht kennt: hier steht er.
 Ein Satz darüber, was das System können oder einhalten muss — plus die Begründung und eine
 prüfbare Abnahme. Sagt *was*, nie *wie*.
 
+**Funktionale Anforderung**
+Was das System können muss. „Liest eine CSV und schreibt eine bereinigte CSV." Die erzählst
+du meist von selbst — sie stecken schon in deinem Szenario.
+
+**Nicht-funktionale Anforderung**
+Nicht *was*, sondern *wie gut, unter welchen Bedingungen und unter welchen Regeln*. Tempo,
+Zuverlässigkeit, Bedienbarkeit, Sicherheit, Recht, Arbeitsweise. Die erzählt fast niemand von
+selbst — deshalb fragt der Agent sie einzeln ab. Fünf der sechs Kategorien sind davon.
+
 **Rahmen**
 Die Anforderungen, die vor dem ersten Code feststehen müssen: was gebaut wird, und was
 dabei gilt. Wer sie spät entdeckt, wirft fertige Arbeit weg.

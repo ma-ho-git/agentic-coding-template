@@ -74,6 +74,8 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 
 ### Anforderungen und Vorgehen
 
+- [[Funktionale und nicht-funktionale Anforderungen]] — warum beide anders erhoben werden,
+  und was die Prüfung des eigenen Bestands ergab
 - [[Sommerville Software Engineering - was das Template übernimmt]] — welche Konzepte
   übernommen werden, in welcher Vereinfachung, und was bewusst wegbleibt
 
