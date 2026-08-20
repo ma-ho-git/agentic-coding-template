@@ -8,7 +8,7 @@ stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20 — "[[Szenario]]"
 nachweis: demo
 status: vereinbart
-tasks: ["[[T-0021 Anfängermodus für die Anforderungserhebung]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]"]
+tasks: ["[[T-0021 Anfängermodus für die Anforderungserhebung]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0032 Artefakttyp bestimmt die Beispiele]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
 updated: 2026-08-20
@@ -52,7 +52,12 @@ gerade Unerfahrene brauchen die Leitplanken am dringendsten.
 
 ## Präzisierungen
 
-- keine
+### 2026-08-20 — Beispiele müssen zum Artefakttyp passen
+
+`/req-elicit` fragt den Artefakttyp ab und benutzt danach für alle dieselben
+CLI-Beispiele. Ein Anfänger kann ein Beispiel für ein Kommandozeilenwerkzeug nicht auf
+seinen Dienst übertragen — genau das ist seine Lücke. Behoben in
+[[T-0032 Artefakttyp bestimmt die Beispiele]]. Der Wortlaut bleibt unverändert.
 
 ## Offene Fragen
 

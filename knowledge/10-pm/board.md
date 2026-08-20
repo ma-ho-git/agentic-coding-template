@@ -8,6 +8,10 @@ kanban-plugin: board
 
 ## Ready
 
+- [ ] [[T-0030 Funktional und nicht-funktional benennen]]
+- [ ] [[T-0031 Qualitätsmerkmale vollständig abfragen]]
+- [ ] [[T-0032 Artefakttyp bestimmt die Beispiele]]
+
 
 ## Doing
 
