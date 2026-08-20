@@ -8,7 +8,13 @@ kanban-plugin: board
 
 ## Ready
 
-
+- [ ] [[T-0023 Szenario als optionaler Einstieg]]
+- [ ] [[T-0024 Szenario trägt die Anforderungserhebung]]
+- [ ] [[T-0025 Robustheit als Pflicht des Agenten]]
+- [ ] [[T-0026 Verschluckte Ausnahmen sichtbar machen]]
+- [ ] [[T-0027 Bestehende Lösungen vor dem Codieren prüfen]]
+- [ ] [[T-0028 Startgate verlangt die Fremdlösungs-Entscheidung]]
+- [ ] [[T-0029 Fremdkomponenten rechtlich absichern]]
 
 ## Doing
 

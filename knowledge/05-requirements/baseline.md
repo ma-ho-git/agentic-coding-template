@@ -61,6 +61,7 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 - [[REQ-0001 Einsatzbereites Gerüst für strukturiertes Vibe-Coding]]
 - [[REQ-0002 Projektmanagement in der Wissensdatenbank]]
 - [[REQ-0003 Projektwissen wird eigenständig dokumentiert]]
+- [[REQ-0021 Szenario als optionaler Einstieg]]
 
 ### Technisch
 
@@ -74,6 +75,8 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 - [[REQ-0014 Subagenten nur nach Kosten-Nutzen-Prüfung]]
 - [[REQ-0017 Anforderungserhebung vor der Entwicklung]]
 - [[REQ-0019 Leitplanken in zwei Klassen]]
+- [[REQ-0022 Das Szenario trägt die weitere Entwicklung]]
+- [[REQ-0024 Vorhandene Lösungen werden vor dem Codieren geprüft]]
 
 ### Sicherheit
 
@@ -83,6 +86,7 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 ### Recht
 
 - [[REQ-0015 Öffentliche Bereitstellung mit geklärten Nutzungsrechten]]
+- [[REQ-0025 Übernommene Fremdkomponenten sind rechtlich geklärt]]
 
 ### Qualität
 
@@ -93,6 +97,7 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 - [[REQ-0008 Contract-Kommentar macht den Wirkungsradius lesbar]]
 - [[REQ-0018 Das Template hält seine eigenen Vorgaben ein]]
 - [[REQ-0020 Für unerfahrene Anwender nutzbar]]
+- [[REQ-0023 Fehler- und Ausfallverhalten wird bewusst entschieden]]
 
 ## Freigabe
 
@@ -100,7 +105,7 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 | --- | --- |
 | Rahmen vollständig geprüft am | 2026-08-20 (durch den Agenten vorgelegt) |
 | Freigegeben durch | — offen, siehe Hinweis |
-| Bemerkungen | Alle 20 Anforderungen stehen auf `status: entwurf`. Sie sind aus der Projektvorgabe vom 2026-08-19 und den Ergänzungen vom 2026-08-20 abgeleitet, nicht erfunden — aber der Auftraggeber hat den Wortlaut noch nicht bestätigt. |
+| Bemerkungen | Alle 25 Anforderungen stehen auf `status: entwurf`. Sie sind aus der Projektvorgabe vom 2026-08-19 und den Ergänzungen vom 2026-08-20 abgeleitet (REQ-0019 bis REQ-0025), nicht erfunden — aber der Auftraggeber hat den Wortlaut noch nicht bestätigt. |
 
 **Hinweis zum Sonderfall dieses Repositories:** Das Template wurde gebaut, bevor es seine
 eigene Anforderungsebene besaß. Die Anforderungen sind daher nachträglich aus der
