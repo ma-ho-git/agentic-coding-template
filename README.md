@@ -42,14 +42,31 @@ nur zu empfehlen.
 
 ## Erste Schritte
 
+**Der einfache Weg:** oben auf [**Use this template**](https://github.com/ma-ho-git/agentic-coding-template/generate)
+klicken. GitHub legt dir daraus ein eigenes Repository an — mit einem einzigen frischen
+Commit, ohne die Historie dieser Vorlage und ohne Verbindung zu ihr. Danach klonen und
+starten:
+
 ```bash
-git clone https://github.com/ma-ho-git/agentic-coding-template.git mein-projekt
+git clone https://github.com/DEIN-KONTO/mein-projekt.git
 cd mein-projekt
-rm -rf .git && git init
 claude
 ```
 
-Dann in Claude Code:
+**Ohne GitHub-Konto** geht es genauso, nur von Hand:
+
+```bash
+git clone https://github.com/ma-ho-git/agentic-coding-template.git mein-projekt
+cd mein-projekt
+rm -rf .git && git init    # trennt die Historie der Vorlage ab, macht daraus dein Projekt
+claude
+```
+
+Das `rm -rf .git` löscht die Versionsgeschichte **der frisch geklonten Vorlage** — deine
+Dateien bleiben, und ein anderes Repository ist nicht betroffen, solange du im richtigen
+Verzeichnis stehst. Wenn du unsicher bist, nimm den Weg über den Knopf.
+
+Dann in beiden Fällen, in Claude Code:
 
 ```
 /bootstrap

@@ -21,6 +21,7 @@ kanban-plugin: board
 
 ## Done
 
+- [x] [[T-0043 Erste Schritte nennen den Template-Knopf]]
 - [x] [[T-0042 README auf den gebauten Stand bringen]]
 - [x] [[T-0041 Testnamen von der Wortgrenze ausnehmen]]
 - [x] [[T-0040 Übergabe hinterlässt leere Formulare]]
