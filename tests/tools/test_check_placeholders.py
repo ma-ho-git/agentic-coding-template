@@ -44,3 +44,16 @@ def test_marker_survives_surrounding_text():
     """The marker sits inside a rendered blockquote; it must still be found."""
     text = "vor\n> Hinweis <!-- template-placeholder --> mehr Text\nnach\n"
     assert placeholders.has_marker(text)
+
+
+def test_archive_is_skipped(tmp_path):
+    """The example archive keeps template content on purpose (T-0038).
+
+    handover.py moves the template's own history there. Reporting it forever
+    would mean the handover could never come back clean.
+    """
+    archive = tmp_path / "knowledge" / "90-meta" / "beispiel"
+    archive.mkdir(parents=True)
+    (archive / "REQ-0001 Alt.md").write_text(MARKED, encoding="utf-8")
+    (tmp_path / "README.md").write_text(CLEAN, encoding="utf-8")
+    assert placeholders.markdown_files(str(tmp_path)) == ["README.md"]

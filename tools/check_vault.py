@@ -86,7 +86,10 @@ def check_links(path, text, titles):
     targets = {match.group(1).strip() for match in LINK.finditer(prose(text))}
     errors = ["{0}: broken wikilink [[{1}]]".format(stem, target)
               for target in sorted(targets) if target not in titles]
-    warnings = [] if targets or stem == INDEX else \
+    # The index and the board carry no prose links: the index is the hub, the
+    # board carries cards, and an empty board is a new project's normal start.
+    exempt = stem == INDEX or stem in PLUGIN_OWNED
+    warnings = [] if targets or exempt else \
         ["{0}: no outgoing wikilink (orphan)".format(stem)]
     return targets, errors, warnings
 

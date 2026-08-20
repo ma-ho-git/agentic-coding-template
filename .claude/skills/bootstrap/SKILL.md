@@ -50,9 +50,26 @@ Do not rewrite entries you did not verify. An honest `unknown` beats a guessed `
    must answer its canary with a refusal (ARMED on every line). Record the result as the
    "Leitplanken - Scharfschaltung" entry in the environment manifest. A FAILED line means
    the rigid layer is silently absent - stop and fix that before anything else.
-6. Determine the **project scope**. See Step 2a.
+6. **Hand the template over** (Step 2a), then determine the **project scope** (Step 2b).
 
-## Step 2a — Determine the project scope
+## Step 2a — Hand the template over to this project
+
+**Before Step 3, never after.** Run `python3 tools/handover.py --apply`.
+
+The template's own state travels with every clone. Until this has run, the project carries
+`baseline_status` and `scan_status` from the template - its **start gate is open before a
+single requirement exists**, and `/req-elicit` reads the same field and goes into stage mode,
+skipping framework elicitation entirely. That is why this cannot wait until after Step 3.
+
+What it does: resets both gate markers, empties the board, and **archives** the template's
+own requirements, tasks, ADRs, progress log and scenario to `knowledge/90-meta/beispiel/`.
+Archived, not deleted - a beginner learns more from a filled-in example than from an empty
+form. Say that when you report it, and offer to delete the archive if the user prefers.
+
+Knowledge notes and troubleshooting entries stay: they describe the tooling this project
+keeps using, not what the template once decided.
+
+## Step 2b — Determine the project scope
 
 The scope decides how much gets written down, and nothing else. Ask it here, before
 eliciting requirements — it sets how deep Step 3 goes.
@@ -105,6 +122,18 @@ If the user wants to postpone this, say plainly what it costs: without an agreed
 the target artefact stays vague, and architecture-shaping constraints surface after work is
 already finished. Then let them decide.
 
+## Step 3a — Check for leftovers
+
+Run `python3 tools/handover.py` (check mode - it changes nothing). It reports everything
+still marking this clone as the template: gate markers, leftover template history, and every
+document that still carries the template's own placeholder text. The four core documents — `README.md`,
+`knowledge/00-index.md`, `vision.md`, `baseline.md` — must come back clean; the rest may keep
+their notes if the user wants them.
+
+It must come back **clean** before you orient the user. Deliberately **not** a CI check: in
+the template repository red is the correct answer, so CI would be red forever. It belongs
+here, at the one moment a clone stops being a template.
+
 ## Step 4 — Orient the user
 
 Then, and only then, tell the user — **short, three headings, no preamble**:
@@ -120,16 +149,6 @@ Then, and only then, tell the user — **short, three headings, no preamble**:
 - answer the questions agents raise instead of letting them guess
 
 Write this part in German. Keep it under 20 lines total.
-
-## Step 4a — Check for leftovers
-
-Run `python3 tools/check_placeholders.py`. It lists every document that still carries the
-template's own placeholder text. The four core documents — `README.md`,
-`knowledge/00-index.md`, `vision.md`, `baseline.md` — must come back clean; the rest may keep
-their notes if the user wants them.
-
-Deliberately **not** a CI check: in the template repository the placeholders belong there, so
-CI would be red forever. It belongs here, at the one moment a clone stops being a template.
 
 ## Step 5 — Record it
 

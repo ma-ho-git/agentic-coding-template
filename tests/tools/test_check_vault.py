@@ -53,3 +53,15 @@ def test_requirement_without_review_date_fails():
     errors = check(WITHOUT_REVIEW)
     assert len(errors) == 1
     assert "review_after" in errors[0]
+
+
+def test_empty_board_is_not_an_orphan():
+    """A freshly handed-over project starts with an empty board (T-0038).
+
+    The board is plugin-owned and carries cards, not prose links. Empty is its
+    legitimate starting state and must not greet a new project with a warning.
+    """
+    _targets, errors, warnings = check_vault.check_links(
+        "knowledge/10-pm/board.md", "---\n\nkanban-plugin: board\n\n---\n\n## Ready\n", set())
+    assert errors == []
+    assert warnings == []

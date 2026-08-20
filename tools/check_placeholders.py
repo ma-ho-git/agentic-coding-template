@@ -1,6 +1,7 @@
 # @contract
 # provides:   CLI check for leftover template placeholders; exit 1 when any remain
-# depends-on: the marker <!-- template-placeholder --> in the template's own documents
+# depends-on: the marker <!-- template-placeholder --> in the template's own documents;
+#             tools/handover.py parks archived template history under the skipped path
 # consumers:  .claude/skills/bootstrap/SKILL.md (final step)
 # invariants: read-only; deliberately NOT wired into CI - in the template repository the
 #             placeholders are supposed to be present, so CI would always be red
@@ -20,6 +21,9 @@ import sys
 
 MARKER = "<!-- template-placeholder -->"
 SKIP_DIRS = (".git", "node_modules", "__pycache__")
+# handover.py parks the template's own history here on purpose; reporting it
+# forever would mean the handover could never come back clean.
+SKIP_PATHS = (os.path.join("knowledge", "90-meta", "beispiel"),)
 # The four documents a project cannot ship unadapted. Others may keep their notes.
 CORE = ("README.md", "knowledge/00-index.md",
         "knowledge/05-requirements/vision.md",
@@ -39,8 +43,11 @@ def scan(documents):
 def markdown_files(root):
     """Repository-relative posix paths of every markdown file worth checking."""
     found = []
+    skipped = tuple(os.path.join(root, path) for path in SKIP_PATHS)
     for folder, dirs, files in os.walk(root):
         dirs[:] = [name for name in dirs if name not in SKIP_DIRS]
+        if folder.startswith(skipped):
+            continue
         for name in sorted(files):
             if name.endswith(".md"):
                 path = os.path.relpath(os.path.join(folder, name), root)
