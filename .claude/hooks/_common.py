@@ -99,9 +99,21 @@ FLEXIBLE_NOTE = ("\nFlexible guardrail: you may exceed it when the case warrants
 
 
 def block(message):
-    """Reject the action. Rigid guardrail - the agent cannot override this."""
+    """Reject a completed action. Rigid guardrail, PostToolUse."""
     print("{0} {1}".format(RIGID, message), file=sys.stderr)
     sys.exit(2)
+
+
+def deny(message):
+    """Refuse a tool call before it runs. Rigid guardrail, PreToolUse."""
+    print(json.dumps({
+        "hookSpecificOutput": {
+            "hookEventName": "PreToolUse",
+            "permissionDecision": "deny",
+            "permissionDecisionReason": "{0} {1}".format(RIGID, message),
+        }
+    }))
+    sys.exit(0)
 
 
 def advise(message):

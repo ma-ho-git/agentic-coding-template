@@ -2,13 +2,12 @@
 """Deny shell commands that could destroy work or history. Runs before Bash."""
 from __future__ import annotations
 
-import json
 import os
 import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _common import RIGID, read_event  # noqa: E402
+from _common import deny, read_event  # noqa: E402
 
 DENIED = [
     (r"\bgit\s+push\b[^|;&]*\s(?:--force\b|-f\b)",
@@ -39,28 +38,15 @@ def find_violation(command):
     return None
 
 
-def deny(reason, command):
-    print(json.dumps({
-        "hookSpecificOutput": {
-            "hookEventName": "PreToolUse",
-            "permissionDecision": "deny",
-            "permissionDecisionReason": (
-                "{0} Blocked by .claude/rules/agent-conduct.md: {1}.\n"
-                "Command: {2}\n"
-                "If this really is needed, explain why and let the user run it."
-                .format(RIGID, reason, command.strip()[:200])
-            ),
-        }
-    }))
-    sys.exit(0)
-
-
 def main():
     event = read_event()
     command = (event.get("tool_input") or {}).get("command") or ""
     reason = find_violation(command)
     if reason:
-        deny(reason, command)
+        deny("Blocked by .claude/rules/agent-conduct.md: {0}.\n"
+             "Command: {1}\n"
+             "If this really is needed, explain why and let the user run it."
+             .format(reason, command.strip()[:200]))
     sys.exit(0)
 
 

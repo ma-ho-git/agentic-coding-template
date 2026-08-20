@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0020 Startgate als starre Leitplanke durchsetzen]]
 - [ ] [[T-0021 Anfängermodus für die Anforderungserhebung]]
 - [ ] [[T-0022 Projektzuschnitt bestimmt die Zeremonie]]
 
@@ -40,6 +39,7 @@ kanban-plugin: board
 - [x] [[T-0016 Architekturschritt aus Qualitätsanforderungen]]
 - [x] [[T-0017 Anforderungskette am Beispiel nachweisen]]
 - [x] [[T-0019 Leitplanken benennen und klassifizieren]]
+- [x] [[T-0020 Startgate als starre Leitplanke durchsetzen]]
 
 %% kanban:settings
 ```

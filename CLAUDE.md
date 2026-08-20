@@ -113,8 +113,17 @@ see `cowork/README.md`.
 
 ## 7. Language
 
-- Everything under `.claude/` and all code, comments and commit messages: **English**.
-- Everything under `knowledge/` and the top-level `README.md`: **German**.
+Two different things, do not confuse them:
+
+- **Fixed by Claude Code — not negotiable.** Event names (`SessionStart`, `PreToolUse`,
+  `PostToolUse`), the JSON keys of hook output (`hookSpecificOutput`, `permissionDecision`,
+  `additionalContext`, …), settings and skill frontmatter keys (`matcher`, `allowed-tools`,
+  `description`), and the paths `CLAUDE.md`, `.claude/rules/`, `.claude/skills/*/SKILL.md`.
+  These are identifiers. Translating one breaks it.
+- **Our own convention — a project may change it.** Prose under `.claude/`, code, comments
+  and commit messages in **English**; everything under `knowledge/` and the top-level
+  `README.md` in **German**. Claude reads both; this split exists so rules stay close to the
+  code's language and project knowledge stays close to the user's.
 
 ## 8. When rules collide
 

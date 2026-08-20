@@ -46,7 +46,7 @@ a wrongly flexible one costs quality.
 | Missing `@contract` block | rigid | `check_contract.py`, exit 2 |
 | Task without a requirement | rigid | `check_task.py`, exit 2 |
 | Destructive git commands | rigid | `git_guard.py`, `deny` |
-| Production code before the start gate opens | rigid | **not yet enforced** — T-0020 |
+| Production code before the start gate opens | rigid | `check_gate.py`, `deny` |
 | Assignments, parameters, name length | flexible | `check_quality.py`, hint |
 | Nesting depth, file length | flexible | `check_quality.py`, hint |
 | Stale `updated:` in a contract block | flexible | `check_contract.py`, hint |
@@ -54,14 +54,16 @@ a wrongly flexible one costs quality.
 Thresholds for the flexible ones live in `.claude/hooks/config.json` and are meant to be
 tuned per project. The rigid ones are not thresholds; they are boundaries.
 
-One row is honest about itself: the start gate is classified rigid but is still only carried
-by skills and a session-start notice, which is prose. By this file's own definition it is
-therefore not yet rigid. `T-0020` closes that gap.
+The start gate deserves a note: it is the one boundary that protects a decision reserved for
+the human, and `check_gate.py` refuses writes to product source while it is closed. Tooling,
+tests, examples and everything that is not a source file stay writable — otherwise you could
+not build the machinery that lets the framework be agreed in the first place. A missing
+`baseline.md` counts as closed: fail closed, per `.claude/rules/security.md`.
 
 ## Visibility is part of the design
 
 Every message carries its class. Without it a user cannot tell a wall from a hint, and
-whatever cannot be told apart is eventually treated the same — as noise. `block()` and
+whatever cannot be told apart is eventually treated the same — as noise. `block()`, `deny()` and
 `advise()` in `_common.py` prepend the label, so a new hook inherits it by using them.
 
 ## What this does not cover
