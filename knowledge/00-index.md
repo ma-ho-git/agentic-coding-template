@@ -44,6 +44,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[ADR-0003 Kanban-Board mit Wikilink-Karten]]
 - [[ADR-0004 Cowork über ein leichtes Paket anbinden]]
 - [[ADR-0005 Anforderungen als Pflicht vor dem Code]]
+- [[ADR-0006 Zwei Klassen von Leitplanken]]
 
 ## Projektwissen
 
@@ -51,6 +52,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 
 - [[Konfigurationsebenen von Claude Code]] — welche Ebene lädt wann, und was das kostet
 - [[Cowork liest die Repo-Konfiguration nicht]] — die zentrale Einschränkung für das Routing
+- [[Spec-Driven-Development - was andere Projekte machen]] — Marktumschau und Abgrenzung
 
 ### Wissensdatenbank und Format
 
