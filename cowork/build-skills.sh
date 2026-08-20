@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-# Package each skill under cowork/skills/ as a .skill archive for upload to claude.ai.
+# @contract
+# provides:   packages each skill under cowork/skills/ into dist/<name>.skill for claude.ai
+# depends-on: zip (system tool), cowork/skills/*/ (the skill sources)
+# consumers:  none - run by hand per cowork/README.md
+# invariants: overwrites only cowork/dist/; aborts on the first error (set -e);
+#             hidden files stay out of the archives
+# updated:    2026-08-20
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

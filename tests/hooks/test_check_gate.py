@@ -70,7 +70,8 @@ def test_denial_names_class_and_way(tmp_path):
 
 def test_tooling_stays_writable(tmp_path):
     make_project(tmp_path, "entwurf")
-    for path in (".claude/hooks/x.py", "tools/x.py", "tests/x.py", "examples/x.py"):
+    for path in (".claude/hooks/x.py", "tools/x.py", "tests/x.py", "examples/x.py",
+                 "cowork/build-skills.sh"):
         _code, decision = attempt(tmp_path, path)
         assert decision is None, path
 

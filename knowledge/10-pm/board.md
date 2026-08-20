@@ -8,6 +8,9 @@ kanban-plugin: board
 
 ## Ready
 
+- [ ] [[T-0036 CI als echter Rückhalt]]
+- [ ] [[T-0037 Scharfschaltung nachweisen]]
+
 - [ ] [[T-0034 Erstlauf im frischen Klon durchspielen]]
 
 
@@ -54,6 +57,7 @@ kanban-plugin: board
 - [x] [[T-0031 Qualitätsmerkmale vollständig abfragen]]
 - [x] [[T-0032 Artefakttyp bestimmt die Beispiele]]
 - [x] [[T-0033 Anpassbarkeit nachweisen]]
+- [x] [[T-0035 Durchsetzung am Commit]]
 
 %% kanban:settings
 ```

@@ -111,3 +111,7 @@ Multiple agents may work at once. To stay conflict-free:
 - Conventional commit subjects: `feat:`, `fix:`, `test:`, `docs:`, `refactor:`, `chore:`.
 - Reference the task: `feat: add token refresh (T-0042)`.
 - Commit only when the user asks. Never push to the default branch directly.
+- The commit is the choke point: a pre-commit hook (installed by `/bootstrap`) runs every
+  rule check over the staged files - the one gate every write path passes, including files
+  the Write|Edit hooks never saw. Skipping it (no-verify, a redirected hooksPath) is denied
+  by `git_guard`; if a check is wrong, fix the check, do not dodge it.

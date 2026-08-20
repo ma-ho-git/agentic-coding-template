@@ -21,7 +21,7 @@ SCAN = os.path.join("knowledge", "05-requirements", "fremdloesungen.md")
 SCAN_ANSWERED = ("gesucht", "uebersprungen")
 # Tooling, tests and examples are not the product. Without these you could not
 # even build the machinery that lets the framework be agreed in the first place.
-DEFAULT_EXEMPT = [".claude/**", "tools/**", "tests/**", "examples/**"]
+DEFAULT_EXEMPT = [".claude/**", "tools/**", "tests/**", "examples/**", "cowork/**"]
 FRAMEWORK_REFUSAL = (
     "Start gate closed: {0} is production code and the framework is not agreed yet.\n\n"
     "No production code before it is clear what is being built and which technical,\n"

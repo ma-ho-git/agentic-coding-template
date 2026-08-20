@@ -28,6 +28,10 @@ DENIED = [
      "recursive delete outside the project"),
     (r"\bgit\s+checkout\s+--\s+\.$|\bgit\s+restore\s+\.$",
      "discards all uncommitted changes in the tree"),
+    (r"\bgit\s+commit\b[^|;&]*\s(?:--no-verify|-n)\b",
+     "skips the pre-commit checks; the guardrails run there"),
+    (r"\bgit\b[^|;&]*\bcore\.hooksPath\b",
+     "redirects git hooks away from the installed checks"),
 ]
 
 

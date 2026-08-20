@@ -5,6 +5,8 @@
   "max_name_words": 3,
   "max_file_lines": 300,
   "max_nesting_depth": 3,
+  "_tests_comment": "Hints when changed code carries no test change in the same set. Only the presence of a test is checkable, not that it came first. Set false to switch off.",
+  "flag_missing_tests": true,
   "_swallow_comment": "Flags an except/catch block that drops the exception without a comment saying why. Set false to switch the check off.",
   "flag_swallowed_exceptions": true,
   "contract_required": true,
@@ -21,6 +23,6 @@
   "project_scope": "produkt",
   "_gate_comment": "Paths the start gate never blocks: tooling, tests and examples are not the product. Everything that is not a source file is exempt anyway.",
   "gate_exempt_globs": [
-    ".claude/**", "tools/**", "tests/**", "examples/**"
+    ".claude/**", "tools/**", "tests/**", "examples/**", "cowork/**"
   ]
 }

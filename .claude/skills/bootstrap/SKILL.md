@@ -42,7 +42,11 @@ Do not rewrite entries you did not verify. An honest `unknown` beats a guessed `
    and fill in the concrete commands.
 3. Replace the template placeholders in `knowledge/00-index.md` and `README.md`.
 4. Delete `examples/` — it demonstrates the workflow and is not part of a real project.
-5. Determine the **project scope**. See Step 2a.
+5. **Install the commit choke point:** `python3 tools/install_hooks.py`. From then on
+   every commit runs every rule check (`tools/check_all.py --staged`) - including files
+   written through Bash or another editor, which the Write|Edit hooks never see. An
+   existing pre-commit hook of the user's own is left alone and reported.
+6. Determine the **project scope**. See Step 2a.
 
 ## Step 2a — Determine the project scope
 

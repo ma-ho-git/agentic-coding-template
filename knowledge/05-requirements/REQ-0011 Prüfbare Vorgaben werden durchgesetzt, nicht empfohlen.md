@@ -8,7 +8,7 @@ stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: vereinbart
-tasks: ["[[T-0002 Hooks zur Durchsetzung der Vorgaben]]", "[[T-0010 CI-Workflow für die Regelprüfung]]"]
+tasks: ["[[T-0002 Hooks zur Durchsetzung der Vorgaben]]", "[[T-0010 CI-Workflow für die Regelprüfung]]", "[[T-0035 Durchsetzung am Commit]]", "[[T-0036 CI als echter Rückhalt]]", "[[T-0037 Scharfschaltung nachweisen]]"]
 tags: [topic/requirements, stack/claude-code]
 created: 2026-08-20
 updated: 2026-08-20

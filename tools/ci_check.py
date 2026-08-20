@@ -1,11 +1,12 @@
 # @contract
 # provides:   check_file(path) -> int failure count; main() CLI entry, exit 1 on failure
 # depends-on: .claude/hooks/check_secrets.py, .claude/hooks/check_contract.py,
+#             .claude/hooks/check_task.py,
 #             .claude/hooks/check_quality.py
-# consumers:  .github/workflows/rules.yml
+# consumers:  .github/workflows/rules.yml, tools/check_all.py
 # invariants: read-only; never writes to the repo; reuses hook scripts via subprocess,
 #             no rule logic duplicated here
-# updated:    2026-08-19
+# updated:    2026-08-20
 #!/usr/bin/env python3
 """Run the repo's own hooks against a list of files - for CI, no stdin event.
 
@@ -22,7 +23,7 @@ import subprocess
 import sys
 
 HOOKS_DIR = os.path.join(os.path.dirname(__file__), "..", ".claude", "hooks")
-BLOCKING_HOOKS = ("check_secrets.py", "check_contract.py")
+BLOCKING_HOOKS = ("check_secrets.py", "check_contract.py", "check_task.py")
 ADVISORY_HOOKS = ("check_quality.py",)
 
 
