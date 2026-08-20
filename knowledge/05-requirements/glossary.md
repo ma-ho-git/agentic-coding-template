@@ -22,6 +22,9 @@ Menschen aussagekräftig" ist nur einlösbar, wenn feststeht, wie die Dinge hei�
 
 **Regel:** Ein Begriff, eine Schreibweise, im Gespräch wie im Code.
 
+Die Begriffe des *Verfahrens* — Anforderung, Rahmen, Startgate, ADR — stehen nicht hier,
+sondern im [[Methodenglossar]].
+
 ## Begriffe
 
 | Begriff | Bedeutung | Im Code | Nicht verwenden |

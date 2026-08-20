@@ -27,6 +27,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[Projektvision]] — Problem, Zielartefakt, Erfolgskriterien, Nicht-Ziele
 - [[Stakeholder]] — wer beteiligt ist und wer entscheidet
 - [[Glossar]] — verbindliches Vokabular, auch für die Benennung im Code
+- [[Methodenglossar]] — die Begriffe des Verfahrens, für den Einstieg ohne Vorkenntnisse
 - [[Randbedingungen]] — was von außen feststeht
 - [[Risiken]] — was das Projekt gefährdet, und was dagegen läuft
 - Einzelanforderungen: `05-requirements/REQ-XXXX ….md`

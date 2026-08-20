@@ -66,6 +66,28 @@ Separately from the five checks, report whether `baseline.md` could move to `ver
 
 State the verdict as a recommendation. **Only the user opens the gate.**
 
+### Say what to do, not only what is missing
+
+Assume the reader has never opened a gate before. „Rahmen unvollständig" tells them nothing.
+Name the gap, and name the one action that closes it:
+
+```
+Noch offen, bevor das Gate aufgehen kann:
+
+  Kategorie Recht    — keine Anforderung, keine Begründung.
+                       Zu tun: entweder eine Anforderung ergänzen, oder in baseline.md
+                       hinschreiben, warum sie hier nicht greift („reines lokales
+                       Werkzeug, keine Weitergabe, keine Regulierung betroffen").
+
+  REQ-0004           — steht auf `entwurf`.
+                       Zu tun: Wortlaut lesen und bestätigen, dann auf `vereinbart` setzen.
+
+Alles andere ist beisammen. Am schnellsten geht das mit /req-elicit.
+```
+
+When everything is in place, say so just as concretely — which line to change, in which
+file, and that the change is the user's to make.
+
 ## 4. Report
 
 Group by check, most severe first. Per finding: requirement ID, what is wrong, and a
