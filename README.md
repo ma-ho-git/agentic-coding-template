@@ -50,6 +50,11 @@ Dann in Claude Code:
 `/bootstrap` prüft, ob die Annahmen des Templates noch stimmen (Claude Code, Cowork, GitHub,
 Stack), passt das Repo an, richtet das Projekt ein und erklärt dir kurz, wie es weitergeht.
 
+Dabei wird dir angeboten, dein Vorhaben zunächst in eigenen Worten zu **erzählen** —
+`/szenario`. Kein Formular: du schreibst drauflos, der Agent ordnet es und fragt nach, wo
+etwas fehlt. Daraus werden anschließend die Anforderungen abgeleitet. Optional; wenn du
+lieber direkt loslegst, entfällt der Schritt und lässt sich jederzeit nachholen.
+
 Danach ist der Arbeitszyklus immer derselbe:
 
 ```

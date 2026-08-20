@@ -23,6 +23,7 @@ Themennotiz. Waisen sind ein Fehler und gehören repariert.
 
 Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.md`.
 
+- [[Szenario]] — das Vorhaben in den Worten des Nutzers, Grundlage der Erhebung
 - [[Rahmen und Startgate]] — **entscheidet, ob entwickelt werden darf**
 - [[Projektvision]] — Problem, Zielartefakt, Erfolgskriterien, Nicht-Ziele
 - [[Stakeholder]] — wer beteiligt ist und wer entscheidet
@@ -75,6 +76,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[Git-Proxy verweigert Push - Repo nicht in der Session freigegeben]]
 - [[SessionStart meldet BOOTSTRAP REQUIRED trotz aktuellem Manifest]]
 - [[matches_any() exemption trifft falsche Pfade]]
+- [[Wikilink über Zeilenumbruch wird nicht erkannt]]
 
 ## Meta
 

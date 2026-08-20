@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0023 Szenario als optionaler Einstieg]]
 - [ ] [[T-0024 Szenario trägt die Anforderungserhebung]]
 - [ ] [[T-0025 Robustheit als Pflicht des Agenten]]
 - [ ] [[T-0026 Verschluckte Ausnahmen sichtbar machen]]
@@ -47,6 +46,7 @@ kanban-plugin: board
 - [x] [[T-0020 Startgate als starre Leitplanke durchsetzen]]
 - [x] [[T-0021 Anfängermodus für die Anforderungserhebung]]
 - [x] [[T-0022 Projektzuschnitt bestimmt die Zeremonie]]
+- [x] [[T-0023 Szenario als optionaler Einstieg]]
 
 %% kanban:settings
 ```

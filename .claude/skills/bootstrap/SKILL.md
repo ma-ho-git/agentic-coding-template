@@ -81,6 +81,10 @@ depth of the answers scale (`.claude/rules/workflow.md`).
 This comes **before** the board, not after. A task without a requirement is work nobody
 asked for, and a board seeded ahead of the requirements invites exactly that.
 
+0. **Offer the scenario first** — `/szenario`. Optional, asked once: the user describes the
+   project in their own words, and the elicitation derives from that instead of starting
+   cold. A beginner can narrate a plan long before they can answer six requirement
+   categories. A no is a complete answer; the scenario can be added later.
 1. Run `/req-elicit` in framework mode. It clarifies what is being built and walks all six
    categories: functional, technical, organisational, security, legal, quality.
 2. Run `/req-validate` and report the findings.

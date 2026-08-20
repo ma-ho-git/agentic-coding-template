@@ -51,6 +51,11 @@ exam and gets abandoned.
 
 ## 3. Framework mode — before any production code
 
+**Is there a scenario?** Read `knowledge/05-requirements/szenario.md`. If it exists, it is
+the basis of everything below — derive from it instead of asking cold. If it does not, offer
+`/szenario` once: the user describes the project in their own words, which is far easier
+than answering six categories. A no is a complete answer, and it is not asked twice.
+
 Ask first what kind of thing is being built — script, tool, service, library, application.
 Every example below is then chosen to match.
 

@@ -47,6 +47,9 @@ run `/bootstrap` before anything else. Do not skip it, do not do it silently.
 **Once per project, before any code:**
 
 ```
+/szenario      optional: the user describes the project in their own words — the basis
+               everything below is derived from, quotable and in the repository
+   ↓
 /req-elicit    clarify what is being built and which framework requirements hold
    ↓
 /req-validate  check the set: validity, consistency, completeness, realism, verifiability
