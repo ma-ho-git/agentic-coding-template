@@ -52,7 +52,9 @@ the code harder to read — and then write one line in the code saying why.
 
 ## Design patterns
 
-Before writing a non-trivial unit, check whether a known pattern fits the problem:
+Two different decisions, do not mix them:
+
+**Unit level — here.** Before writing a non-trivial unit, check whether a known pattern fits:
 
 - **Creation** — Factory, Builder, Dependency Injection
 - **Structure** — Adapter, Facade, Decorator, Composite
@@ -62,6 +64,11 @@ Before writing a non-trivial unit, check whether a known pattern fits the proble
 If one fits: use it, and name it in the `@contract` block (`pattern: Strategy`).
 If none fits: write the plain solution. A forced pattern is worse than no pattern.
 Record non-obvious pattern choices as an ADR in `knowledge/10-pm/decisions/`.
+
+**System level — not here.** How the components are arranged overall (layered, client-server,
+pipe and filter …) follows from the quality requirements, not from taste. That decision runs
+through `/architecture`, which names the conflict being resolved and writes the ADR.
+Repository appears in both lists because it spans the two levels.
 
 ## Things that get rejected
 

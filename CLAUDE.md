@@ -55,6 +55,9 @@ run `/bootstrap` before anything else. Do not skip it, do not do it silently.
 ```
 /req-elicit    detail requirements for this stage only, never stockpiled
    ↓
+/architecture  only when quality requirements constrain the structure — names the
+               conflict, decides it, records an ADR
+   ↓
 /task-next     pick the next task, get an agent-routing recommendation
    ↓
    write the failing test
