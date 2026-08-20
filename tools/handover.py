@@ -1,5 +1,6 @@
 # @contract
-# provides:   pending(root) -> [finding]; apply(root) -> [moved]; reset_field(text, k, v);
+# provides:   pending(root) -> [finding]; apply(root) -> [moved]; is_done(root) -> bool;
+#             reset_field(text, k, v);
 #             main() CLI: --check (default, read-only) | --apply
 # depends-on: tools/check_placeholders.py#scan, knowledge/05-requirements/,
 #             knowledge/10-pm/, knowledge/90-meta/beispiel/ (the archive)
@@ -23,6 +24,7 @@ Run from the repository root:
 from __future__ import annotations
 
 import datetime as dt
+import json
 import os
 import re
 import shutil
@@ -36,6 +38,8 @@ REQUIREMENTS = os.path.join("knowledge", "05-requirements")
 PROJECT_MANAGEMENT = os.path.join("knowledge", "10-pm")
 ARCHIVE = os.path.join("knowledge", "90-meta", "beispiel")
 BOARD = os.path.join(PROJECT_MANAGEMENT, "board.md")
+CONFIG = os.path.join(".claude", "hooks", "config.json")
+DONE_KEY = "handover_done"
 INDEX = os.path.join("knowledge", "00-index.md")
 INDEX_LINK = "- [[Beispielarchiv]] — die Anforderungen, Aufgaben und Entscheidungen der Vorlage"
 
@@ -77,6 +81,10 @@ Verschoben von `tools/handover.py`, damit sie das eigene Projekt nicht belasten.
 Ein ausgefülltes Beispiel zeigt mehr als eine leere Vorlage. Wer wissen will, wie eine
 brauchbare Anforderung aussieht, was in einen ADR gehört oder wie eine Aufgabe geschnitten
 wird, findet hier vier Dutzend echte Fälle — samt der Fehler, die dabei gemacht wurden.
+
+## Was hier liegt
+
+{inhalt}
 
 ## Was es nicht ist
 
@@ -153,25 +161,83 @@ def gate_findings(root):
     return findings
 
 
+def is_done(root):
+    """True once the handover ran here - recorded, not guessed from the tree.
+
+    Without this the check cannot tell the template's leftovers from the
+    project's own requirements, and would flag every new REQ file forever.
+    """
+    try:
+        with open(os.path.join(root, CONFIG), encoding="utf-8") as handle:
+            return bool(json.load(handle).get(DONE_KEY))
+    except (OSError, json.JSONDecodeError):
+        return False
+
+
+def mark_done(root):
+    """Record that this clone has become a project of its own."""
+    path = os.path.join(root, CONFIG)
+    try:
+        with open(path, encoding="utf-8") as handle:
+            config = json.load(handle)
+    except (OSError, json.JSONDecodeError):
+        return
+    config[DONE_KEY] = True
+    with open(path, "w", encoding="utf-8") as handle:
+        json.dump(config, handle, indent=2, ensure_ascii=False)
+        handle.write("\n")
+
+
 def pending(root):
-    """Everything still marking this clone as the template itself."""
-    findings = gate_findings(root)
-    for source, _destination in archive_plan(root):
-        findings.append("{0}: template history, not this project's"
-                        .format(os.path.relpath(source, root).replace(os.sep, "/")))
+    """Everything still marking this clone as the template itself.
+
+    Once the handover has run, only placeholders remain checkable: gate markers
+    and REQ files then belong to the project, not to the template.
+    """
     documents = read_documents(root, markdown_files(root))
-    findings.extend("{0}: template placeholder".format(path) for path in scan(documents))
-    return findings
+    findings = ["{0}: template placeholder".format(path) for path in scan(documents)]
+    if is_done(root):
+        return findings
+    inherited = gate_findings(root)
+    for source, _destination in archive_plan(root):
+        inherited.append("{0}: template history, not this project's"
+                         .format(os.path.relpath(source, root).replace(os.sep, "/")))
+    return inherited + findings
 
 
-def write_archive_readme(root):
-    """Explain the archive, and link it from the index so it can be found."""
+GROUPS = (("Anforderungen", "REQ-"), ("Aufgaben", "T-"), ("Entscheidungen", "ADR-"))
+
+
+def archive_contents(names):
+    """Grouped wikilinks to everything archived.
+
+    Every archived note must be linked from here: some were only ever reachable
+    through the index, and the project rewrites that.
+    """
+    remaining = sorted(names)
+    lines = []
+    for heading, prefix in GROUPS:
+        group = [name for name in remaining if name.startswith(prefix)]
+        if group:
+            lines.append("**{0}**\n".format(heading))
+            lines.extend("- [[{0}]]".format(name) for name in group)
+            lines.append("")
+        remaining = [name for name in remaining if not name.startswith(prefix)]
+    if remaining:
+        lines.append("**Weiteres**\n")
+        lines.extend("- [[{0}]]".format(name) for name in remaining)
+    return "\n".join(lines)
+
+
+def write_archive_readme(root, names):
+    """Explain the archive, link its contents, and link it from the index."""
     today = dt.date.today()
     review = today.replace(year=today.year + 1)
     path = os.path.join(root, ARCHIVE, "README.md")
     with open(path, "w", encoding="utf-8") as handle:
         handle.write(ARCHIVE_README.format(today=today.isoformat(),
-                                           review=review.isoformat()))
+                                           review=review.isoformat(),
+                                           inhalt=archive_contents(names)))
     index = os.path.join(root, INDEX)
     text = read_text(index)
     if not text or INDEX_LINK in text:
@@ -194,11 +260,13 @@ def apply(root):
     for source, destination in plan:
         shutil.move(source, destination)
     if os.path.isdir(os.path.join(root, ARCHIVE)):
-        write_archive_readme(root)
+        write_archive_readme(root, [os.path.splitext(os.path.basename(target))[0]
+                                    for _source, target in plan])
     board = os.path.join(root, BOARD)
     if os.path.exists(board):
         with open(board, "w", encoding="utf-8") as handle:
             handle.write(EMPTY_BOARD)
+    mark_done(root)
     return [destination for _source, destination in plan]
 
 

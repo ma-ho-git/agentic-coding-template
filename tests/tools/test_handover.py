@@ -28,6 +28,9 @@ BOARD = ("---\n\nkanban-plugin: board\n\n---\n\n## Backlog\n\n## Ready\n\n"
 
 def make_template(tmp_path):
     """A clone that has not been handed over yet - the template's own state."""
+    hooks = tmp_path / ".claude" / "hooks"
+    hooks.mkdir(parents=True)
+    (hooks / "config.json").write_text('{"handover_done": false}', encoding="utf-8")
     requirements = tmp_path / "knowledge" / "05-requirements"
     requirements.mkdir(parents=True)
     (requirements / "baseline.md").write_text(BASELINE, encoding="utf-8")
@@ -142,3 +145,47 @@ def test_index_link_added_once(tmp_path):
     handover.apply(str(tmp_path))
     # Count the link line itself: "Beispielarchiv" also appears in the heading.
     assert index.read_text(encoding="utf-8").count(handover.INDEX_LINK) == 1
+
+
+def test_own_requirements_are_not_flagged(tmp_path):
+    """After the handover, new requirements belong to the project (T-0034).
+
+    Found by the real walkthrough: --check reported the project's own freshly
+    written REQ files as template history, so bootstrap's final check could
+    never come back clean.
+    """
+    make_template(tmp_path)
+    handover.apply(str(tmp_path))
+    own = tmp_path / "knowledge" / "05-requirements" / "REQ-0001 Eigene Anforderung.md"
+    own.write_text("---\ntype: requirement\n---\n", encoding="utf-8")
+    assert handover.pending(str(tmp_path)) == []
+
+
+def test_own_open_gate_is_not_flagged(tmp_path):
+    """A project that opens its own gate later must not be called unfinished."""
+    make_template(tmp_path)
+    handover.apply(str(tmp_path))
+    baseline = tmp_path / "knowledge" / "05-requirements" / "baseline.md"
+    baseline.write_text("---\nbaseline_status: vereinbart\n---\n", encoding="utf-8")
+    assert handover.pending(str(tmp_path)) == []
+
+
+def test_apply_records_completion(tmp_path):
+    make_template(tmp_path)
+    assert not handover.is_done(str(tmp_path))
+    handover.apply(str(tmp_path))
+    assert handover.is_done(str(tmp_path))
+
+
+def test_archive_readme_links_everything(tmp_path):
+    """Nothing archived may become an orphan (T-0034).
+
+    Found by the real walkthrough: the progress log was linked only from the
+    index; once the project rewrote its index, check_vault called it an orphan.
+    """
+    make_template(tmp_path)
+    handover.apply(str(tmp_path))
+    text = (tmp_path / "knowledge" / "90-meta" / "beispiel" / "README.md").read_text(
+        encoding="utf-8")
+    for name in ("REQ-0001 Beispiel", "T-0001 Etwas", "ADR-0001 Wahl", "2026-08", "szenario"):
+        assert "[[" + name + "]]" in text, name

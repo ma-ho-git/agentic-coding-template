@@ -21,6 +21,8 @@
   "min_lines_for_contract": 10,
   "_scope_comment": "Project scope: skript, werkzeug or produkt. Scales documentation duty and elicitation depth only - never requirements, never rigid guardrails. See .claude/rules/workflow.md.",
   "project_scope": "produkt",
+  "_handover_comment": "Set to true by tools/handover.py --apply. While false, this checkout is still the template itself.",
+  "handover_done": false,
   "_gate_comment": "Paths the start gate never blocks: tooling, tests and examples are not the product. Everything that is not a source file is exempt anyway.",
   "gate_exempt_globs": [
     ".claude/**", "tools/**", "tests/**", "examples/**", "cowork/**"
