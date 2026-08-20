@@ -2,7 +2,7 @@
 id: T-0022
 title: Projektzuschnitt bestimmt die Zeremonie
 type: task
-implements: ["[[REQ-0020 Für unerfahrene Anwender nutzbar]]"]
+implements: ["[[REQ-0020 Für unerfahrene Anwender nutzbar]]", "[[REQ-0026 Anpassbarkeit ohne Umschreiben der Regeln]]"]
 status: done
 priority: mittel
 agent: claude-code

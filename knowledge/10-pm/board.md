@@ -9,6 +9,7 @@ kanban-plugin: board
 ## Ready
 
 - [ ] [[T-0032 Artefakttyp bestimmt die Beispiele]]
+- [ ] [[T-0033 Anpassbarkeit nachweisen]]
 
 
 ## Doing

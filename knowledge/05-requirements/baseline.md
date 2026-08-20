@@ -111,15 +111,20 @@ Abwahl mit Grund — sonst fällt es durch, ohne dass es jemand merkt. Geprüft 
 | **Zuverlässigkeit** | [[REQ-0023 Fehler- und Ausfallverhalten wird bewusst entschieden]] |
 | **Sicherheit** | Eigene Kategorie: [[REQ-0009 Kein Code mit bekannten Sicherheitslücken]], [[REQ-0010 Agenten gefährden weder das Projekt noch sein Umfeld]] |
 | **Wartbarkeit** | [[REQ-0005 Veraltetes Wissen wird gekennzeichnet statt gelöscht]], [[REQ-0007 Grenzen für Funktionsgröße und Benennung]], [[REQ-0008 Contract-Kommentar macht den Wirkungsradius lesbar]], [[REQ-0018 Das Template hält seine eigenen Vorgaben ein]] |
-| **Anpassbarkeit** | **Lücke.** Siehe unten. |
+| **Anpassbarkeit** | [[REQ-0026 Anpassbarkeit ohne Umschreiben der Regeln]] |
 | **Gefahr für Mensch oder Sachwert** | Trifft nicht zu. Das Template erzeugt Text und Prüfskripte; ein Fehler kostet Arbeitszeit, nicht Gesundheit oder Sachwerte. Der einzige Schadensfall wäre ein zerstörerisch handelnder Agent, und den deckt [[REQ-0010 Agenten gefährden weder das Projekt noch sein Umfeld]] ab. |
 
-**Offene Lücke — Anpassbarkeit.** Das Template *ist* anpassbar: Stack-Profile, Schwellwerte in
-`config.json`, Projektzuschnitt, austauschbare Regeldateien. Aber **keine Anforderung verlangt
-das**. Gefunden am 2026-08-20 beim ersten Durchgang der Merkmale einzeln — vorher war es unter
-der einen Frage „wie gut, wie schnell, wie bedienbar" nicht sichtbar. Zu entscheiden: entweder
-eine Anforderung ergänzen (dann ist sie vor dem Gate zu bestätigen) oder hier mit Grund
-abwählen. Bis dahin ist der Rahmen an dieser Stelle unvollständig.
+**Anpassbarkeit — Lücke am 2026-08-20 gefunden und geschlossen.** Das Template *war* längst
+anpassbar: Stack-Profile, Schwellwerte in `config.json`, Projektzuschnitt, austauschbare
+Regeldateien. Verlangt hatte es nur keine Anforderung. Sichtbar wurde das erst beim
+Einzeldurchgang der Qualitätsmerkmale; unter der einen Frage „wie gut, wie schnell, wie
+bedienbar" fiel es nicht auf. Ergänzt und am selben Tag bestätigt als
+[[REQ-0026 Anpassbarkeit ohne Umschreiben der Regeln]].
+
+Der **Nachweis** steht noch aus: Die Anpassungsstellen existieren, vorgeführt wurde keine.
+Das holt [[T-0033 Anpassbarkeit nachweisen]] nach. Die Anforderung bleibt bis dahin
+`vereinbart`, nicht `umgesetzt` — für das Startgate genügt das, denn das Gate fragt nach dem
+vereinbarten Rahmen, nicht nach erbrachten Nachweisen.
 - [[REQ-0023 Fehler- und Ausfallverhalten wird bewusst entschieden]]
 
 ## Freigabe
@@ -127,17 +132,17 @@ abwählen. Bis dahin ist der Rahmen an dieser Stelle unvollständig.
 | Feld | Wert |
 | --- | --- |
 | Rahmen vollständig geprüft am | 2026-08-20 |
-| Anforderungen einzeln bestätigt | 2026-08-20 durch Marcus (Auftraggeber), alle 25 einzeln vorgelegt und bestätigt |
+| Anforderungen einzeln bestätigt | 2026-08-20 durch Marcus (Auftraggeber), alle 26 einzeln vorgelegt und bestätigt |
+| Nachtrag nach der Bestätigung | REQ-0026 (Anpassbarkeit) kam am 2026-08-20 dazu, nachdem der Einzeldurchgang der Qualitätsmerkmale die Lücke sichtbar gemacht hatte. Ebenfalls einzeln vorgelegt und bestätigt. |
 | Änderung bei der Bestätigung | REQ-0020: Abnahme sagte „ein kleiner Zuschnitt schaltet Zeremonie ab" — widersprach [[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]. Vor der Bestätigung korrigiert: der Zuschnitt verringert Dokumentationspflicht und Erhebungstiefe und schaltet nie eine starre Leitplanke ab. |
 | Startgate freigegeben durch | — offen: `baseline_status` steht auf `entwurf` |
 
 **Kategorienabdeckung:** alle sechs belegt — funktional (4), technisch (2), organisatorisch (7),
-sicherheit (2), recht (2), qualitaet (8). Keine Kategorie ist als „nicht zutreffend" begründet;
+sicherheit (2), recht (2), qualitaet (9). Keine Kategorie ist als „nicht zutreffend" begründet;
 für dieses Projekt greift jede.
 
-**Offen seit 2026-08-20:** Innerhalb von `qualitaet` fehlt dem Merkmal **Anpassbarkeit** noch
-Anforderung wie Abwahl — gefunden beim Einzeldurchgang der Qualitätsmerkmale (siehe oben).
-Das ist vor dem Gate zu entscheiden.
+**Qualitätsmerkmale:** alle acht haben Anforderung oder begründete Abwahl (Abschnitt oben).
+Die letzte Lücke — Anpassbarkeit — wurde am 2026-08-20 gefunden und mit REQ-0026 geschlossen.
 
 **Hinweis zum Sonderfall dieses Repositories:** Das Template wurde gebaut, bevor es seine
 eigene Anforderungsebene besaß. Die Anforderungen sind daher nachträglich aus der

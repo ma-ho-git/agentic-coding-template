@@ -2,7 +2,7 @@
 id: T-0004
 title: Stack-Profile und Doku-Schema
 type: task
-implements: ["[[REQ-0016 Dokumentationsschema je Programmiersprache]]"]
+implements: ["[[REQ-0016 Dokumentationsschema je Programmiersprache]]", "[[REQ-0026 Anpassbarkeit ohne Umschreiben der Regeln]]"]
 status: done
 priority: hoch
 agent: claude-code
