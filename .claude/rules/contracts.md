@@ -38,6 +38,10 @@ updated:    YYYY-MM-DD
 - Empty value → write `none`. Never leave a key blank.
 - Paths are relative to the repository root.
 - `updated` is the date this block was last verified against the code — not the file's last edit.
+- `invariants:` **names the error behaviour** — what it raises, what it swallows, what it
+  does when a dependency is unavailable or slow. That is the part a caller cannot read off
+  the signature and the part they get wrong. „none" is an answer only for a unit that
+  genuinely cannot fail.
 
 ## Example (Python)
 

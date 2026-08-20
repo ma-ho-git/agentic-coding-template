@@ -88,6 +88,9 @@ Full detail: `.claude/rules/workflow.md` and `.claude/rules/requirements.md`.
 - Check for an applicable **design pattern before writing**. If one fits, use it and name it
   in the contract comment. If none fits, do not force one.
 - No known or obvious security holes. See `.claude/rules/security.md`.
+- **Decide what happens when it breaks.** Bad input, exceptions, timeouts, and a connected
+  system that is down, slow or answering wrongly — every one gets a deliberate answer, and
+  every handled path gets a test. See `.claude/rules/robustness.md`.
 - Document to the **dominant standard of the language** (recorded in the active stack profile),
   plus the `@contract` block. Telegraphic style, no filler words, no full sentences.
 

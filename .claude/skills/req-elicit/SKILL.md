@@ -93,6 +93,23 @@ Then work in this order, writing each answer down before moving on.
    `baseline.md`, never by being skipped. „Für ein Wegwerfskript brauche ich nichts" is a
    perfectly good reason; write it down as one.
 
+3a. **Ask what happens when things break.** For every connected system the user named —
+   network, service, database, file, device — ask what should happen when it is unavailable,
+   too slow, or answers wrongly. Beginners never volunteer this, and it is not a technical
+   detail: what the user *sees* on failure is their decision, and guessing it produces
+   software that does the wrong thing correctly.
+
+   Explain, then propose, as everywhere else:
+
+   > Was soll passieren, wenn der Server gerade nicht antwortet? Üblich wäre: dreimal
+   > versuchen, dann eine verständliche Meldung — statt stillem Abbruch oder endlosem
+   > Warten. Passt das, oder ist das bei dir anders?
+
+   Ask it once per dependency, not once in total. The answer becomes a requirement in
+   `technisch` or `qualitaet`. „Weiß ich nicht" is a valid answer and becomes an open point —
+   the mechanism is the agent's job (`.claude/rules/robustness.md`), the visible behaviour
+   is not.
+
 4. **Glossary** → `glossary.md`. Capture domain terms as they come up. Fix one spelling per
    term; the code will use exactly that.
 5. **Constraints and risks** → `constraints.md`, `risks.md` for anything fixed from outside

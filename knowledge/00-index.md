@@ -49,6 +49,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[ADR-0006 Zwei Klassen von Leitplanken]]
 - [[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]
 - [[ADR-0008 Aus dem Szenario ableiten, ohne zu erfinden]]
+- [[ADR-0009 Fehlerbehandlung ändert die Form, nicht die Grenze]]
 
 ## Projektwissen
 

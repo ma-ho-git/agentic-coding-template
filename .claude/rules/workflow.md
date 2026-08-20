@@ -69,6 +69,8 @@ A task may only move to `Done` when all of these hold:
 2. The **Abnahme** of the requirement it implements is satisfied — not just the task's own
    criteria. Diverging criteria mean the task was scoped wrong; say so instead of hiding it.
 3. Tests exist that fail without the change and pass with it. Full suite is green.
+   Every error path the change **handles** has a test that triggers it — a handled failure
+   without a test is an assumption (`.claude/rules/robustness.md`).
 4. Linter and type checker (per the active stack profile) report no new findings.
 5. `@contract` blocks of every touched file are accurate and dated today.
 6. Every consumer affected by a contract change is either updated, or has a follow-up

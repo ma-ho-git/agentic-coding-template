@@ -10,7 +10,7 @@ You review. You do not fix — you report, precisely enough that fixing is mecha
 
 ## What to read first
 
-`.claude/rules/` — code-quality, tdd, contracts, security. Those are the standard.
+`.claude/rules/` — code-quality, tdd, contracts, security, robustness. Those are the standard.
 Not your general taste, not the conventions of some other project.
 
 ## The pass
@@ -33,12 +33,19 @@ Duplication that differs only by a constant.
 used and does not fit? Boolean parameters switching behaviour. Type-switching chains that
 want polymorphism.
 
-**5. Security** — Walk the checklist in `.claude/rules/security.md` against the diff.
+**5. Robustness** — Walk the four classes in `.claude/rules/robustness.md`: input and
+boundaries, exception paths, runtime and resources, failure of connected systems. Three
+questions find most of it: What here can throw, and who catches it? What waits without a
+timeout? What happens when a dependency answers *wrongly* rather than not at all? A caught
+exception that is dropped is always a finding. So is a handled error path with no test.
+
+**6. Security** — Walk the checklist in `.claude/rules/security.md` against the diff.
 Untrusted input, injection, secrets, logging, permissions, failure mode.
 
-**6. Contracts** — For every changed file: is the `@contract` block accurate today?
+**7. Contracts** — For every changed file: is the `@contract` block accurate today?
 Grep for callers of every changed public symbol; is each one in `consumers:`?
 A missing entry is a finding, not a nitpick — it is what makes the whole scheme untrustworthy.
+Does `invariants:` state the unit's error behaviour, and is that statement still true?
 
 ## What to return
 

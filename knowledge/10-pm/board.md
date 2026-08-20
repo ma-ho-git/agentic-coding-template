@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0025 Robustheit als Pflicht des Agenten]]
 - [ ] [[T-0026 Verschluckte Ausnahmen sichtbar machen]]
 - [ ] [[T-0027 Bestehende Lösungen vor dem Codieren prüfen]]
 - [ ] [[T-0028 Startgate verlangt die Fremdlösungs-Entscheidung]]
@@ -47,6 +46,7 @@ kanban-plugin: board
 - [x] [[T-0022 Projektzuschnitt bestimmt die Zeremonie]]
 - [x] [[T-0023 Szenario als optionaler Einstieg]]
 - [x] [[T-0024 Szenario trägt die Anforderungserhebung]]
+- [x] [[T-0025 Robustheit als Pflicht des Agenten]]
 
 %% kanban:settings
 ```
