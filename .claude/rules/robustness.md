@@ -36,6 +36,8 @@ out of order, absent. Validate on entry, not at the point of use.
 **2. Exception paths.** What can throw here, and who is supposed to catch it? Catch narrow,
 never bare. An exception caught and dropped is the single worst line in this file — if a
 failure is genuinely ignorable, write *why* in the code, or a reader will read it as a bug.
+A hook flags the silent case (`[FLEXIBLE]`): a comment in the block clears it, because the
+point is not to forbid ignoring a failure but to make the decision visible.
 When you re-raise, keep the cause. Distinguish an expected outcome (a return value) from a
 defect (an exception); using exceptions for control flow hides both.
 

@@ -82,7 +82,8 @@ Repository appears in both lists because it spans the two levels.
 - Functions that both compute and print/write. Separate decision from effect.
 - Deep chains of `if` on type — that is a missing polymorphism or Strategy.
 - Dead code, commented-out code, `TODO` without a task ID.
-- Catching an exception and doing nothing with it.
+- Catching an exception and doing nothing with it. A hook flags the silent case;
+  if a failure really is ignorable, the comment saying why is the price of ignoring it.
 - Magic numbers and magic strings outside a named constant.
 - Comments restating the code. Comment *why*, never *what*.
 

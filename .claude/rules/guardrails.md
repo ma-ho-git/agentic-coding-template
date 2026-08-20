@@ -49,6 +49,7 @@ a wrongly flexible one costs quality.
 | Production code before the start gate opens | rigid | `check_gate.py`, `deny` |
 | Assignments, parameters, name length | flexible | `check_quality.py`, hint |
 | Nesting depth, file length | flexible | `check_quality.py`, hint |
+| Exception dropped without a reason | flexible | `check_quality.py`, hint |
 | Stale `updated:` in a contract block | flexible | `check_contract.py`, hint |
 
 Thresholds for the flexible ones live in `.claude/hooks/config.json` and are meant to be
@@ -69,7 +70,7 @@ whatever cannot be told apart is eventually treated the same — as noise. `bloc
 ## Project scope never moves a rigid guardrail
 
 `project_scope` (`.claude/rules/workflow.md`) scales how much gets *written* — elicitation
-depth, ADR duty, progress detail. It does not scale what is *enforced*. All eight checks in
+depth, ADR duty, progress detail. It does not scale what is *enforced*. All nine checks in
 the table above behave identically in `skript`, `werkzeug` and `produkt`, and no scope
 exempts a path, lowers a threshold to zero, or opens the start gate.
 

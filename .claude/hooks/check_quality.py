@@ -18,6 +18,12 @@ SIGNATURE = re.compile(
 SKIP_GLOBS = ["**/node_modules/**", "**/dist/**", "**/build/**", "**/vendor/**",
               "**/generated/**", "**/*.min.js"]
 
+# An empty catch body, optionally a stray semicolon. Deliberately narrow: a catch
+# that returns a fallback is a visible decision, and one holding a comment carries
+# its reason. Only the silent-and-unexplained case is a finding.
+EMPTY_CATCH = re.compile(r"catch\s*(?:\([^)]*\))?\s*\{\s*;?\s*\}")
+SWALLOW_ADVICE = "handle it, re-raise it, or write in the code why it is ignorable"
+
 
 def split_words(name):
     """Identifier -> word list, for snake_case, kebab-case and camelCase."""
@@ -56,13 +62,44 @@ def max_depth(node, level=0):
     return deepest
 
 
+def drops_exception(handler):
+    """True when the except body only passes or evaluates a bare literal."""
+    return all(isinstance(node, ast.Pass)
+               or (isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant))
+               for node in handler.body)
+
+
+def carries_reason(lines, handler):
+    """True when any line of the except block holds a comment."""
+    last = max(getattr(node, "end_lineno", handler.lineno) for node in handler.body)
+    return any("#" in line for line in lines[handler.lineno - 1:last])
+
+
+def find_swallowed(tree, lines):
+    """Except blocks that drop the exception and never say why."""
+    handlers = [node for node in ast.walk(tree) if isinstance(node, ast.ExceptHandler)]
+    silent = [node for node in handlers
+              if drops_exception(node) and not carries_reason(lines, node)]
+    return ["L{0}: except block drops the exception without a reason - {1}"
+            .format(node.lineno, SWALLOW_ADVICE) for node in silent]
+
+
+def find_empty_catch(source):
+    """Empty catch blocks. Text-based, so only the plainly empty case is found."""
+    findings = []
+    for match in EMPTY_CATCH.finditer(source):
+        line = source.count("\n", 0, match.start()) + 1
+        findings.append("L{0}: catch block is empty - {1}".format(line, SWALLOW_ADVICE))
+    return findings
+
+
 def inspect_python(source, limits):
     """Findings for a Python module."""
     try:
         tree = ast.parse(source)
     except SyntaxError:
         return []
-    findings = []
+    findings = find_swallowed(tree, source.splitlines()) if limits["swallowed"] else []
     for node in ast.walk(tree):
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             findings.extend(check_function(node, limits))
@@ -94,8 +131,8 @@ def check_function(node, limits):
 
 
 def inspect_generic(source, limits):
-    """Naming and parameter findings for non-Python languages, best effort."""
-    findings = []
+    """Naming, parameter and empty-catch findings for other languages, best effort."""
+    findings = find_empty_catch(source) if limits["swallowed"] else []
     for number, line in enumerate(source.splitlines(), start=1):
         match = SIGNATURE.search(line)
         if not match:
@@ -120,6 +157,8 @@ def read_limits():
         "words": config.get("max_name_words", 3),
         "file": config.get("max_file_lines", 300),
         "depth": config.get("max_nesting_depth", 3),
+        # not a threshold but a switch; it rides along because every check reads this bundle
+        "swallowed": config.get("flag_swallowed_exceptions", True),
     }
 
 

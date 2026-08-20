@@ -5,6 +5,8 @@
   "max_name_words": 3,
   "max_file_lines": 300,
   "max_nesting_depth": 3,
+  "_swallow_comment": "Flags an except/catch block that drops the exception without a comment saying why. Set false to switch the check off.",
+  "flag_swallowed_exceptions": true,
   "contract_required": true,
   "contract_exempt_globs": [
     "**/test_*.*", "**/*_test.*", "**/*.test.*", "**/*.spec.*",

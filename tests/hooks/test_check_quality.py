@@ -49,3 +49,88 @@ def test_long_without_state_passes(tmp_path):
 
 def test_clean_function_is_silent(tmp_path):
     assert findings(tmp_path, "small.py", CLEAN_FUNCTION) == ""
+
+
+# --- swallowed exceptions (T-0026) ---
+
+SILENT_EXCEPT = (
+    "def load(path):\n"
+    "    try:\n"
+    "        return open(path).read()\n"
+    "    except OSError:\n"
+    "        pass\n"
+)
+
+EXPLAINED_EXCEPT = (
+    "def load(path):\n"
+    "    try:\n"
+    "        return open(path).read()\n"
+    "    except OSError:\n"
+    "        pass  # optional cache file, absence is normal\n"
+)
+
+RERAISING_EXCEPT = (
+    "def load(path):\n"
+    "    try:\n"
+    "        return open(path).read()\n"
+    "    except OSError:\n"
+    "        raise\n"
+)
+
+HANDLING_EXCEPT = (
+    "def load(path, log):\n"
+    "    try:\n"
+    "        return open(path).read()\n"
+    "    except OSError as error:\n"
+    "        log(error)\n"
+)
+
+EMPTY_CATCH = (
+    "function load(path) {\n"
+    "  try {\n"
+    "    return read(path);\n"
+    "  } catch (error) {\n"
+    "  }\n"
+    "}\n"
+)
+
+COMMENTED_CATCH = (
+    "function load(path) {\n"
+    "  try {\n"
+    "    return read(path);\n"
+    "  } catch (error) {\n"
+    "    // optional cache file, absence is normal\n"
+    "  }\n"
+    "}\n"
+)
+
+
+def test_silent_except_is_flagged(tmp_path):
+    assert "drops the exception" in findings(tmp_path, "silent.py", SILENT_EXCEPT)
+
+
+def test_explained_except_passes(tmp_path):
+    assert findings(tmp_path, "explained.py", EXPLAINED_EXCEPT) == ""
+
+
+def test_reraising_except_passes(tmp_path):
+    assert findings(tmp_path, "reraise.py", RERAISING_EXCEPT) == ""
+
+
+def test_handling_except_passes(tmp_path):
+    assert findings(tmp_path, "handled.py", HANDLING_EXCEPT) == ""
+
+
+def test_empty_catch_is_flagged(tmp_path):
+    assert "catch block is empty" in findings(tmp_path, "silent.js", EMPTY_CATCH)
+
+
+def test_commented_catch_passes(tmp_path):
+    assert findings(tmp_path, "explained.js", COMMENTED_CATCH) == ""
+
+
+def test_swallow_check_can_be_disabled(tmp_path):
+    hooks = tmp_path / ".claude" / "hooks"
+    hooks.mkdir(parents=True)
+    (hooks / "config.json").write_text('{"flag_swallowed_exceptions": false}')
+    assert findings(tmp_path, "silent.py", SILENT_EXCEPT) == ""
