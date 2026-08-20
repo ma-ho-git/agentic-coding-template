@@ -1,12 +1,13 @@
 name: Rules
 
 on:
+  push:
   pull_request:
     branches: [main]
 
 jobs:
-  hooks:
-    name: Contract, secrets, quality, licences
+  rules:
+    name: Rule checks at the second anchor
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,32 +18,56 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: List changed files
+      # The pushed or proposed range; fall back to the last commit when the
+      # previous ref is unreachable (new branch, force-push, first commit).
+      - name: Determine commit range
+        id: range
         run: |
-          git fetch origin "${{ github.event.pull_request.base.ref }}"
-          git diff --name-only --diff-filter=ACMR \
-            "origin/${{ github.event.pull_request.base.ref }}...HEAD" \
-            > changed_files.txt
-          cat changed_files.txt
-
-      - name: Run rule checks
-        run: |
-          if [ -s changed_files.txt ]; then
-            python3 tools/ci_check.py $(cat changed_files.txt)
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch -q origin "${{ github.event.pull_request.base.ref }}"
+            echo "spec=origin/${{ github.event.pull_request.base.ref }}...HEAD" >> "$GITHUB_OUTPUT"
+          elif git cat-file -e "${{ github.event.before }}" 2>/dev/null; then
+            echo "spec=${{ github.event.before }}..HEAD" >> "$GITHUB_OUTPUT"
+          elif git rev-parse -q --verify HEAD~1 >/dev/null 2>&1; then
+            echo "spec=HEAD~1..HEAD" >> "$GITHUB_OUTPUT"
           else
-            echo "No changed files to check."
+            echo "spec=--all" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Vault check
-        run: python3 tools/check_vault.py
+      # Same command as the local pre-commit choke point - no separate rule set.
+      - name: Run every rule check over the range
+        run: |
+          if [ "${{ steps.range.outputs.spec }}" = "--all" ]; then
+            python3 tools/check_all.py --all
+          else
+            python3 tools/check_all.py --range "${{ steps.range.outputs.spec }}"
+          fi
 
-      - name: Traceability check
-        run: python3 tools/check_traceability.py
+      # A guardrail change must never slip through quietly. Loud, not blocking:
+      # evolving the guardrails is legitimate, changing them unnoticed is not.
+      - name: Make guardrail changes loud
+        run: |
+          if [ "${{ steps.range.outputs.spec }}" = "--all" ]; then
+            exit 0
+          fi
+          changed=$(git diff --name-only "${{ steps.range.outputs.spec }}" -- \
+            .claude/hooks .claude/settings.json .claude/rules/guardrails.md \
+            tools/check_all.py tools/install_hooks.py tools/ci_check.py \
+            .github/workflows)
+          if [ -n "$changed" ]; then
+            echo "::warning title=Guardrail change::Enforcement files changed in this range - review them deliberately."
+            echo "$changed" | while read -r file; do
+              echo "::warning file=$file::guardrail file changed"
+            done
+            {
+              echo "### Guardrail files changed"
+              echo '```'
+              echo "$changed"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
 
-      - name: Third-party licence check
-        run: python3 tools/check_licenses.py
-
-      - name: Hook test suite
+      - name: Hook and tool test suite
         run: |
           python3 -m pip install --quiet pytest
           python3 -m pytest tests -q

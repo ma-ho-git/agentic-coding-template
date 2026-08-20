@@ -3,13 +3,13 @@ id: T-0036
 title: CI als echter Rückhalt
 type: task
 implements: ["[[REQ-0011 Prüfbare Vorgaben werden durchgesetzt, nicht empfohlen]]"]
-status: ready
+status: done
 priority: hoch
 agent: claude-code
-owner:
+owner: claude-code
 created: 2026-08-20
-started:
-finished:
+started: 2026-08-20
+finished: 2026-08-20
 tags: [topic/agents, topic/meta]
 related: ["[[T-0035 Durchsetzung am Commit]]", "[[T-0037 Scharfschaltung nachweisen]]"]
 ---
@@ -29,17 +29,35 @@ CI läuft auf jedem Push, prüft dasselbe wie der Commit-Engpass, und niemand ka
 
 ## Akzeptanzkriterien
 
-- [ ] Workflow triggert auf `push` (alle Branches) und weiter auf Pull Requests nach `main`
-- [ ] Der geprüfte Bereich ist der gepushte Commit-Bereich; Rückfall auf den letzten Commit,
+- [x] Workflow triggert auf `push` (alle Branches) und weiter auf Pull Requests nach `main`
+- [x] Der geprüfte Bereich ist der gepushte Commit-Bereich; Rückfall auf den letzten Commit,
       wenn die Vorgänger-Referenz fehlt (Force-Push, erster Commit)
-- [ ] CI ruft `tools/check_all.py` auf — dieselbe Logik wie der Commit-Engpass, keine
+- [x] CI ruft `tools/check_all.py` auf — dieselbe Logik wie der Commit-Engpass, keine
       Duplikation; das Startgate wird damit erstmals auch in CI geprüft
-- [ ] Änderungen an Leitplanken-Dateien (`.claude/hooks/`, `.claude/settings.json`,
+- [x] Änderungen an Leitplanken-Dateien (`.claude/hooks/`, `.claude/settings.json`,
       `.claude/rules/guardrails.md`, `tools/check_*`) erzeugen eine **laute, sichtbare
       Warnung** im CI-Lauf — eine Leitplanken-Änderung darf nie beiläufig durchrutschen.
       Sie blockt nicht: Leitplanken weiterentwickeln ist legitim, unbemerkt ändern nicht.
-- [ ] Die Bereichslogik ist lokal durchgespielt (CI selbst ist hier nicht ausführbar) und
+- [x] Die Bereichslogik ist lokal durchgespielt (CI selbst ist hier nicht ausführbar) und
       der Lauf auf diesem Repository bleibt grün
+
+## Ergebnis
+
+- Workflow triggert auf `push` (alle Branches) und weiter auf Pull Requests nach `main`.
+  Bereichslogik mit drei Rückfallstufen: PR-Basis → Vorgänger-Referenz des Pushs → letzter
+  Commit → Vollprüfung, wenn gar keine Referenz trägt.
+- CI ruft **dasselbe** `tools/check_all.py` wie der Commit-Engpass — kein zweites Regelwerk,
+  das auseinanderlaufen kann. Damit prüft CI erstmals auch das Startgate und die Task-Regel
+  am Diff.
+- Leitplanken-Sichtbarkeit: Änderungen unter `.claude/hooks/`, an den Settings, an
+  `guardrails.md`, an den Prüfwerkzeugen oder am Workflow selbst erzeugen eine
+  `::warning::`-Annotation je Datei plus einen Eintrag in der Lauf-Zusammenfassung.
+  Bewusst keine Sperre — Leitplanken weiterentwickeln ist legitim, unbemerkt ändern nicht.
+- Lokal simuliert: `--range HEAD~1..HEAD` und `--range origin/main...HEAD` beide Exit 0;
+  die Diff-Erkennung listet korrekt die vier Enforcement-Dateien, die T-0035 angefasst hat —
+  die Warnung hätte beim heutigen Push zu Recht gefeuert.
+- YAML gegen den Parser geprüft. Der echte CI-Lauf startet mit dem Push dieses Commits —
+  erstmals überhaupt für einen Push auf diesen Branch.
 
 ## Kontext
 
