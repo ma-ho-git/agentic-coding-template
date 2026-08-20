@@ -4,7 +4,7 @@ aliases: ["Rahmen und Startgate", "baseline"]
 type: knowledge
 tags: [topic/requirements]
 status: active
-baseline_status: entwurf
+baseline_status: vereinbart
 created: 2026-08-19
 updated: 2026-08-20
 review_after: 2026-11-20
@@ -136,7 +136,7 @@ vereinbarten Rahmen, nicht nach erbrachten Nachweisen.
 | Anforderungen einzeln bestätigt | 2026-08-20 durch Marcus (Auftraggeber), alle 26 einzeln vorgelegt und bestätigt |
 | Nachtrag nach der Bestätigung | REQ-0026 (Anpassbarkeit) kam am 2026-08-20 dazu, nachdem der Einzeldurchgang der Qualitätsmerkmale die Lücke sichtbar gemacht hatte. Ebenfalls einzeln vorgelegt und bestätigt. |
 | Änderung bei der Bestätigung | REQ-0020: Abnahme sagte „ein kleiner Zuschnitt schaltet Zeremonie ab" — widersprach [[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]. Vor der Bestätigung korrigiert: der Zuschnitt verringert Dokumentationspflicht und Erhebungstiefe und schaltet nie eine starre Leitplanke ab. |
-| Startgate freigegeben durch | — offen: `baseline_status` steht auf `entwurf` |
+| Startgate freigegeben durch | Marcus (Auftraggeber), 2026-08-20 — nach Bestätigung aller 26 Anforderungen und dem bestandenen Erstlauf im frischen Klon ([[T-0034 Erstlauf im frischen Klon durchspielen]]) |
 
 **Kategorienabdeckung:** alle sechs belegt — funktional (4), technisch (2), organisatorisch (7),
 sicherheit (2), recht (2), qualitaet (9). Keine Kategorie ist als „nicht zutreffend" begründet;
@@ -151,6 +151,9 @@ ursprünglichen Vorgabe abgeleitet und die bereits erledigten Aufgaben rückwirk
 Für ein neu geklontes Projekt gilt der normale Weg: erst `/req-elicit`, dann das Gate, dann
 Code.
 
-Die Anforderungen stehen bereits auf `status: vereinbart`. Offen ist nur noch der
-Gate-Übertritt: `baseline_status` auf `vereinbart` setzen. Ab dann gilt —
-Rahmenanforderungen ändern sich nur über `/req-change`, nicht durch stilles Überschreiben.
+**Das Gate ist offen.** Ab jetzt gilt: Rahmenanforderungen ändern sich nur über
+`/req-change`, nicht durch stilles Überschreiben.
+
+Für ein geklontes Projekt gilt das **nicht**: `tools/handover.py --apply` setzt
+`baseline_status` auf `entwurf` zurück, bevor die Erhebung beginnt — nachgewiesen in
+[[T-0038 Übergabe von der Vorlage zum Projekt]]. Ein Klon startet also mit geschlossenem Gate.
