@@ -2,8 +2,7 @@
 id: T-0002
 title: Hooks zur Durchsetzung der Vorgaben
 type: task
-implements: []
-infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
+implements: ["[[REQ-0007 Grenzen für Funktionsgröße und Benennung]]", "[[REQ-0009 Kein Code mit bekannten Sicherheitslücken]]", "[[REQ-0010 Agenten gefährden weder das Projekt noch sein Umfeld]]", "[[REQ-0011 Prüfbare Vorgaben werden durchgesetzt, nicht empfohlen]]"]
 status: done
 priority: hoch
 agent: claude-code

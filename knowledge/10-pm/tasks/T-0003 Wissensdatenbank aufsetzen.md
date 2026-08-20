@@ -2,8 +2,7 @@
 id: T-0003
 title: Wissensdatenbank aufsetzen
 type: task
-implements: []
-infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
+implements: ["[[REQ-0002 Projektmanagement in der Wissensdatenbank]]", "[[REQ-0003 Projektwissen wird eigenständig dokumentiert]]", "[[REQ-0004 Dokumentation ist für Mensch und Agent nutzbar]]", "[[REQ-0005 Veraltetes Wissen wird gekennzeichnet statt gelöscht]]"]
 status: done
 priority: hoch
 agent: claude-code

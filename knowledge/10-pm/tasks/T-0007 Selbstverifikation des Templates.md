@@ -2,8 +2,7 @@
 id: T-0007
 title: Selbstverifikation des Templates
 type: task
-implements: []
-infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
+implements: ["[[REQ-0018 Das Template hält seine eigenen Vorgaben ein]]"]
 status: done
 priority: hoch
 agent: claude-code

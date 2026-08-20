@@ -2,8 +2,7 @@
 id: T-0018
 title: Grenzwerte auf die Projektvorgabe zurückführen
 type: task
-implements: []
-infrastruktur: Korrektur des eigenen Regelwerks nach Nutzer-Audit; die Anforderungen, die das abdecken würden, entstehen erst in T-0017
+implements: ["[[REQ-0007 Grenzen für Funktionsgröße und Benennung]]"]
 status: done
 priority: hoch
 agent: claude-code

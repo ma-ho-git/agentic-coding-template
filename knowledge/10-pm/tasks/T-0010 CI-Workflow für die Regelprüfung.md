@@ -2,8 +2,7 @@
 id: T-0010
 title: CI-Workflow für die Regelprüfung
 type: task
-implements: []
-infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
+implements: ["[[REQ-0011 Prüfbare Vorgaben werden durchgesetzt, nicht empfohlen]]"]
 status: done
 priority: mittel
 agent: claude-code

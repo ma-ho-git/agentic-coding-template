@@ -2,8 +2,7 @@
 id: T-0014
 title: Rückverfolgbarkeit maschinell prüfen
 type: task
-implements: []
-infrastruktur: Aufbau der Anforderungsebene selbst - kann sich nicht auf eine Anforderung stützen, die es noch nicht gibt
+implements: ["[[REQ-0017 Anforderungserhebung vor der Entwicklung]]"]
 status: done
 priority: hoch
 agent: claude-code

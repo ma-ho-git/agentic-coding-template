@@ -2,8 +2,7 @@
 id: T-0001
 title: Agentenregeln und Repo-Grundgerüst
 type: task
-implements: []
-infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
+implements: ["[[REQ-0001 Einsatzbereites Gerüst für strukturiertes Vibe-Coding]]", "[[REQ-0006 Testgetriebene Entwicklung ist verpflichtend]]", "[[REQ-0008 Contract-Kommentar macht den Wirkungsradius lesbar]]", "[[REQ-0009 Kein Code mit bekannten Sicherheitslücken]]", "[[REQ-0013 Der erste Lauf prüft die Annahmen und orientiert den Nutzer]]", "[[REQ-0014 Subagenten nur nach Kosten-Nutzen-Prüfung]]"]
 status: done
 priority: hoch
 agent: claude-code

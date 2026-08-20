@@ -2,8 +2,7 @@
 id: T-0004
 title: Stack-Profile und Doku-Schema
 type: task
-implements: []
-infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
+implements: ["[[REQ-0016 Dokumentationsschema je Programmiersprache]]"]
 status: done
 priority: hoch
 agent: claude-code

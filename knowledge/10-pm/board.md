@@ -8,7 +8,6 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0017 Anforderungskette am Beispiel nachweisen]]
 
 ## Doing
 
@@ -35,6 +34,7 @@ kanban-plugin: board
 - [x] [[T-0015 Bestehenden Arbeitszyklus anpassen]]
 - [x] [[T-0018 Grenzwerte auf die Projektvorgabe zurückführen]]
 - [x] [[T-0016 Architekturschritt aus Qualitätsanforderungen]]
+- [x] [[T-0017 Anforderungskette am Beispiel nachweisen]]
 
 %% kanban:settings
 ```

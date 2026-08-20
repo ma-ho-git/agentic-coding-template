@@ -2,8 +2,7 @@
 id: T-0005
 title: Cowork-Onboarding-Paket
 type: task
-implements: []
-infrastruktur: Template-Grundgerüst, entstanden vor Einführung der Anforderungspflicht (ADR-0005)
+implements: ["[[REQ-0012 Aufgaben werden dem passenden Agenten zugeordnet]]"]
 status: done
 priority: hoch
 agent: claude-code
