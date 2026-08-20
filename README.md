@@ -16,10 +16,13 @@ nur zu empfehlen.
 
 | Bereich | Inhalt |
 | --- | --- |
+| **Anforderungen zuerst** | Bevor die erste Zeile Produktivcode entsteht, ist geklärt, *was* gebaut wird — und welche funktionalen, technischen, organisatorischen, Sicherheits-, Rechts- und Qualitätsanforderungen dabei gelten. Ein **Startgate** setzt das durch: Solange der Rahmen nicht freigegeben ist, werden Schreibzugriffe auf Produktivcode abgelehnt. Freigeben darf nur ein Mensch |
 | **Regeln** | TDD verpflichtend, harte Größen- und Namensgrenzen, Design-Pattern-Prüfung vor dem Schreiben, Sicherheitsvorgaben |
+| **Fehler- und Ausfallverhalten** | Der Agent handelt als erfahrener Entwickler: Für jede Eingabe, jede Ausnahme und jedes angebundene System wird entschieden, was im Fehlerfall passiert — und zwar für alle drei Arten von Ausfall getrennt: *nicht erreichbar*, *zu langsam*, *falsche Antwort*. Jeder behandelte Fehlerpfad braucht einen Test, der ihn auslöst |
 | **Contract-Kommentare** | Jede Quelldatei nennt ihre Abhängigkeiten und ihre bekannten Aufrufer — der Wirkungsradius einer Änderung ist am Code ablesbar, ohne die Codebasis zu durchsuchen |
 | **Wissensdatenbank** | Obsidian-Vault: Projektmanagement, Kanban-Board, Recherchewissen, Troubleshooting, ADRs — inklusive Deprecation-Workflow für veraltetes Wissen |
-| **Durchsetzung** | Hooks blockieren Geheimnisse, fehlende Contract-Kommentare und zerstörerische Kommandos; Größen- und Namensverstöße erzeugen Hinweise. Läuft zusätzlich als GitHub-Actions-Check auf jedem Pull Request — gilt auch für Beiträge ohne die lokalen Hooks |
+| **Leitplanken in zwei Klassen** | **Starre** Leitplanken sind maschinell durchgesetzt und für den Agenten nicht übersteuerbar: Geheimnisse, fehlende Contract-Blöcke, Aufgaben ohne Anforderung, zerstörerische Git-Kommandos, das Startgate. **Flexible** blockieren nie, sondern verlangen bei bewusster Abweichung eine Begründung im Code. Jede Meldung nennt ihre Klasse — sonst kann man eine Wand nicht von einem Hinweis unterscheiden |
+| **Durchsetzung an drei Stellen** | Beim **Werkzeugaufruf** (Hooks), beim **Commit** (`pre-commit`, von `/bootstrap` installiert) und in der **CI** (jeder Push) — überall dieselben Prüfungen. Der Commit ist der Punkt, den jeder Schreibweg passiert, auch einer, den kein Hook gesehen hat |
 | **Agenten-Routing** | Für jede Aufgabe wird entschieden, ob Claude Code oder Cowork besser passt |
 
 ## Voraussetzungen
@@ -54,6 +57,20 @@ Dann in Claude Code:
 
 `/bootstrap` prüft, ob die Annahmen des Templates noch stimmen (Claude Code, Cowork, GitHub,
 Stack), passt das Repo an, richtet das Projekt ein und erklärt dir kurz, wie es weitergeht.
+
+**Dabei hört das Repository auf, eine Vorlage zu sein.** Das ist ein eigener Schritt, und du
+solltest wissen, was er tut:
+
+- Die Anforderungen, Aufgaben und Entscheidungen der Vorlage wandern nach
+  `knowledge/90-meta/beispiel/` — **archiviert, nicht gelöscht**. Ein ausgefülltes Beispiel
+  zeigt mehr als ein leeres Formular; wer es nicht braucht, löscht den Ordner.
+- Die Rahmendokumente (Vision, Rahmen, Stakeholder, Glossar, Risiken …) werden durch **leere
+  Formulare mit Ausfüllhinweisen** ersetzt. Sie sagen dir, was hineingehört — das ist genau
+  das, wonach `/req-elicit` gleich fragt.
+- Das Startgate wird **geschlossen**. Die Vorlage selbst hat ein offenes; ohne diesen Schritt
+  erbte dein Projekt eine Freigabe, die nie jemand für dein Vorhaben erteilt hat.
+- Der `pre-commit`-Haken wird installiert. Ein frischer Klon bringt ihn nicht mit — Git-Haken
+  liegen in `.git/hooks/` und werden nicht mitgeklont.
 
 Dabei wird dir angeboten, dein Vorhaben zunächst in eigenen Worten zu **erzählen** —
 `/szenario`. Kein Formular: du schreibst drauflos, der Agent ordnet es und fragt nach, wo
@@ -113,7 +130,7 @@ Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
 | `knowledge/` | Obsidian-Vault, deutschsprachig |
 | `stacks/` | Stack-Profile (Python, TypeScript, Vorlage) |
 | `cowork/` | Einrichtung für Claude Cowork |
-| `tools/` | Prüfskripte, z. B. `check_vault.py`, `check_licenses.py`, `check_placeholders.py`, `ci_check.py` |
+| `tools/` | Prüfskripte: `check_all.py` (führt alle aus), `check_vault.py`, `check_traceability.py`, `check_licenses.py`, `check_placeholders.py`, `check_armed.py`, `handover.py`, `install_hooks.py` |
 | `licenses/` | Lizenztexte übernommener Fremdkomponenten (hier leer, siehe unten) |
 | `tests/` | Tests für die Hooks und Tools selbst |
 | `.github/workflows/` | CI: prüft Pull Requests mit denselben Skripten wie die Hooks |
@@ -124,8 +141,9 @@ Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
 - **Schwellenwerte** — `.claude/hooks/config.json` (Zuweisungen je Funktion, Parameterzahl, Namenslänge …)
 - **Projektzuschnitt** — `project_scope` in `.claude/hooks/config.json`; die Begründung gehört
   in `knowledge/05-requirements/baseline.md`, die alte bleibt stehen
-- **Blockieren vs. warnen** — welche Prüfung wie hart ist, steht in
-  `knowledge/10-pm/decisions/ADR-0002 …`; geändert wird es in `.claude/settings.json`
+- **Blockieren vs. warnen** — welche Prüfung starr und welche flexibel ist, steht in
+  `.claude/rules/guardrails.md` samt Zuordnungstest für neue Regeln
+  (`knowledge/10-pm/decisions/ADR-0006 …`); verdrahtet wird es in `.claude/settings.json`
 - **Sprache der Dokumentation** — `CLAUDE.md` §7
 - **Stack** — `stacks/` erweitern, beim Bootstrap auswählen
 

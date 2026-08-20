@@ -8,7 +8,7 @@ stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: demo
 status: vereinbart
-tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]"]
+tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]", "[[T-0042 README auf den gebauten Stand bringen]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
 updated: 2026-08-20
