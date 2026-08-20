@@ -1,9 +1,5 @@
 """TDD example (T-0009): tests for examples/slugify/slugify.py.
 
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
-
 v2 (below the first two tests, added later) demonstrates a real breaking
 change and the /contract-sync follow-through - see examples/slugify/README.md.
 """

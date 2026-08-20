@@ -25,6 +25,15 @@ EMPTY_CATCH = re.compile(r"catch\s*(?:\([^)]*\))?\s*\{\s*;?\s*\}")
 SWALLOW_ADVICE = "handle it, re-raise it, or write in the code why it is ignorable"
 
 
+# A test name is a sentence about behaviour, not an identifier callers type. The test
+# runner owns the prefix (pytest: test_, Go: Test), and .claude/rules/tdd.md requires the
+# name to state the behaviour in full - three words plus the prefix by construction. See
+# ADR-0013; the word limit would have fired on 139 of this repository's 154 test names.
+def is_test_name(name):
+    """True for a name the test runner requires to start with its prefix."""
+    return name.startswith("test_") or (name.startswith("Test") and name[4:5].isupper())
+
+
 def split_words(name):
     """Identifier -> word list, for snake_case, kebab-case and camelCase."""
     parts = re.split(r"[_\-]+", name.strip("_"))
@@ -124,7 +133,7 @@ def check_function(node, limits):
     if depth > limits["depth"]:
         findings.append("L{0}: {1}() nests {2} levels deep (limit {3}) - extract or invert"
                         .format(node.lineno, node.name, depth, limits["depth"]))
-    if len(split_words(node.name)) > limits["words"]:
+    if not is_test_name(node.name) and len(split_words(node.name)) > limits["words"]:
         findings.append("L{0}: name '{1}' has more than {2} words"
                         .format(node.lineno, node.name, limits["words"]))
     return findings
@@ -139,6 +148,7 @@ def inspect_generic(source, limits):
             continue
         name = match.group("fn") or match.group("cn") or match.group("mn") or ""
         if name and name not in ("if", "for", "while", "switch", "catch") \
+                and not is_test_name(name) \
                 and len(split_words(name)) > limits["words"]:
             findings.append("L{0}: name '{1}' has more than {2} words"
                             .format(number, name, limits["words"]))

@@ -4,10 +4,6 @@ No production code before the framework is agreed and the existing-solutions
 question is answered - enforced, not announced.
 Tooling, tests, examples and everything that is not source stay writable, or
 you could not even reach the point of eliciting requirements.
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
 """
 from __future__ import annotations
 

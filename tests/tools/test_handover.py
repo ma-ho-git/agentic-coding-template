@@ -3,10 +3,6 @@
 The template's own state ships with every clone. Until the handover runs, a
 new project starts with an open start gate and /req-elicit skips framework
 elicitation - the single most important guardrail, disabled by cloning.
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
 """
 from __future__ import annotations
 

@@ -1,9 +1,5 @@
 """Positive/negative cases for check_secrets.py (PostToolUse Write|Edit guard).
 
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
-
 Fake secrets below are built by concatenation, not as bare literals: a
 contiguous literal would trip this very hook when this test file itself is
 written, since the hook scans line by line regardless of intent.

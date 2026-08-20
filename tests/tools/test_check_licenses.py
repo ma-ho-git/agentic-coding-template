@@ -3,10 +3,6 @@
 The tool checks completeness, not lawfulness: whether every registered
 component carries its licence text in the repository. Whether a licence fits
 the project is a human decision and is recorded as an ADR.
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
 """
 from __future__ import annotations
 

@@ -1,9 +1,4 @@
-"""Unit tests for .claude/hooks/_common.py#matches_any (T-0011).
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
-"""
+"""Unit tests for .claude/hooks/_common.py#matches_any (T-0011)."""
 from __future__ import annotations
 
 import os

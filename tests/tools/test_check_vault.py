@@ -1,9 +1,4 @@
-"""Frontmatter checks in tools/check_vault.py (T-0012).
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
-"""
+"""Frontmatter checks in tools/check_vault.py (T-0012)."""
 from __future__ import annotations
 
 import os

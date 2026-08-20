@@ -54,6 +54,11 @@ the code harder to read — and then write one line in the code saying why.
   `usr`, `cfg`, `mgr`, `hndlr` are not.
 - Booleans read as predicates: `is_expired`, `has_access`, `can_retry`.
 - Functions are verbs, values are nouns. Consistency beats cleverness.
+- **Test functions are exempt from the word limit.** A test name is a sentence about
+  behaviour, not an identifier callers type, and `.claude/rules/tdd.md` requires it to state
+  that behaviour in full — three words plus the runner's mandatory prefix by construction.
+  The exemption hangs on the name (`test_…`, `TestXxx`), not on the directory: a helper in
+  `tests/` is still a function. Every other limit applies to tests unchanged. `ADR-0013`.
 
 ## Design patterns
 

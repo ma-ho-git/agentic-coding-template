@@ -1,9 +1,4 @@
-"""Positive/negative cases for check_task.py (PostToolUse Write|Edit guard).
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
-"""
+"""Positive/negative cases for check_task.py (PostToolUse Write|Edit guard)."""
 from __future__ import annotations
 
 from hook_runner import run_hook

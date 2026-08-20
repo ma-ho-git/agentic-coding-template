@@ -1,9 +1,4 @@
-"""Advisory findings from check_quality.py (PostToolUse Write|Edit, non-blocking).
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
-"""
+"""Advisory findings from check_quality.py (PostToolUse Write|Edit, non-blocking)."""
 from __future__ import annotations
 
 import json
@@ -134,3 +129,28 @@ def test_swallow_check_can_be_disabled(tmp_path):
     hooks.mkdir(parents=True)
     (hooks / "config.json").write_text('{"flag_swallowed_exceptions": false}')
     assert findings(tmp_path, "silent.py", SILENT_EXCEPT) == ""
+
+
+# --- test names are behaviour sentences, not identifiers (T-0041) ---
+
+LONG_TEST_NAME = "def test_rejects_an_expired_token():\n    assert True\n"
+LONG_GO_TEST_NAME = "func TestRejectsAnExpiredToken(t *testing.T) {\n\tt.Fail()\n}\n"
+LONG_HELPER_NAME = "def make_a_fake_token():\n    return 1\n"
+FAT_TEST_SIGNATURE = "def test_it(one, two, three, four):\n    assert one\n"
+
+
+def test_long_test_name_passes(tmp_path):
+    assert findings(tmp_path, "test_auth.py", LONG_TEST_NAME) == ""
+
+
+def test_go_test_name_passes(tmp_path):
+    assert "more than 3 words" not in findings(tmp_path, "auth_test.go", LONG_GO_TEST_NAME)
+
+
+def test_helper_in_test_file_flagged(tmp_path):
+    """The exemption hangs on the name, not on the directory."""
+    assert "make_a_fake_token" in findings(tmp_path, "test_auth.py", LONG_HELPER_NAME)
+
+
+def test_other_limits_still_apply_to_tests(tmp_path):
+    assert "takes 4 parameters" in findings(tmp_path, "test_auth.py", FAT_TEST_SIGNATURE)

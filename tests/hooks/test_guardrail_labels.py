@@ -2,10 +2,6 @@
 
 A user who cannot tell a wall from a hint ends up treating both as noise,
 so the class has to travel with the message, not sit only in the rules.
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
 """
 from __future__ import annotations
 

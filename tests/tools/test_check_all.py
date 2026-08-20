@@ -2,10 +2,6 @@
 
 Bash-written files bypass the Write|Edit hooks; the commit is the one gate
 every write path must pass. check_all is what runs there and in CI.
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
 """
 from __future__ import annotations
 

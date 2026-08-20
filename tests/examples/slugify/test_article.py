@@ -1,9 +1,4 @@
-"""TDD example (T-0009): tests for examples/slugify/article.py.
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
-"""
+"""TDD example (T-0009): tests for examples/slugify/article.py."""
 from __future__ import annotations
 
 import os

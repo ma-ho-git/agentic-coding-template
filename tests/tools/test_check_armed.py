@@ -3,10 +3,6 @@
 The hooks fail open: a crashed script or a missing interpreter lets the
 write through. check_armed fires every hook with a canary and expects the
 refusal - "armed" becomes a checked state, not an assumption.
-
-Test names exceed the 3-word naming limit: pytest's mandatory `test_` prefix
-already spends one word, and TDD conventions require the name to state the
-behaviour in full - shortening further would make it meaningless.
 """
 from __future__ import annotations
 
