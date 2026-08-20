@@ -118,3 +118,27 @@ def test_second_apply_changes_nothing(tmp_path):
     handover.apply(str(tmp_path))
     handover.apply(str(tmp_path))
     assert handover.pending(str(tmp_path)) == []
+
+
+def test_archive_is_findable(tmp_path):
+    """Archived, not deleted, only helps if someone can find it (T-0038)."""
+    make_template(tmp_path)
+    index = tmp_path / "knowledge" / "00-index.md"
+    index.write_text("---\ntitle: Index\n---\n\n# Index\n\n## Meta\n\n- [[Konventionen]]\n",
+                     encoding="utf-8")
+    handover.apply(str(tmp_path))
+    readme = tmp_path / "knowledge" / "90-meta" / "beispiel" / "README.md"
+    assert readme.exists()
+    assert "[[00-index]]" in readme.read_text(encoding="utf-8")
+    assert "Beispielarchiv" in index.read_text(encoding="utf-8")
+
+
+def test_index_link_added_once(tmp_path):
+    make_template(tmp_path)
+    index = tmp_path / "knowledge" / "00-index.md"
+    index.write_text("---\ntitle: Index\n---\n\n## Meta\n\n- [[Konventionen]]\n",
+                     encoding="utf-8")
+    handover.apply(str(tmp_path))
+    handover.apply(str(tmp_path))
+    # Count the link line itself: "Beispielarchiv" also appears in the heading.
+    assert index.read_text(encoding="utf-8").count(handover.INDEX_LINK) == 1

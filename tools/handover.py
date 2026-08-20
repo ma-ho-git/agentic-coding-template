@@ -22,6 +22,7 @@ Run from the repository root:
 """
 from __future__ import annotations
 
+import datetime as dt
 import os
 import re
 import shutil
@@ -35,6 +36,8 @@ REQUIREMENTS = os.path.join("knowledge", "05-requirements")
 PROJECT_MANAGEMENT = os.path.join("knowledge", "10-pm")
 ARCHIVE = os.path.join("knowledge", "90-meta", "beispiel")
 BOARD = os.path.join(PROJECT_MANAGEMENT, "board.md")
+INDEX = os.path.join("knowledge", "00-index.md")
+INDEX_LINK = "- [[Beispielarchiv]] — die Anforderungen, Aufgaben und Entscheidungen der Vorlage"
 
 # Two machine-readable gate conditions; both ship pre-satisfied without this.
 GATE_FIELDS = (
@@ -49,6 +52,41 @@ ARCHIVED = (
     (os.path.join(PROJECT_MANAGEMENT, "decisions"), lambda name: name.startswith("ADR-")),
     (os.path.join(PROJECT_MANAGEMENT, "progress"), lambda name: name.endswith(".md")),
 )
+ARCHIVE_README = """---
+title: Beispielarchiv
+aliases: ["Beispielarchiv"]
+type: knowledge
+tags: [topic/meta]
+status: active
+created: {today}
+updated: {today}
+review_after: {review}
+related: ["[[00-index]]"]
+---
+
+# Beispielarchiv
+
+## Kurz
+
+Hier liegt der Projektstand der **Vorlage**, aus der dieses Projekt geklont wurde:
+ihre Anforderungen, Aufgaben, Entscheidungen, ihr Fortschrittslog und ihr Szenario.
+Verschoben von `tools/handover.py`, damit sie das eigene Projekt nicht belasten.
+
+## Wozu das gut ist
+
+Ein ausgefülltes Beispiel zeigt mehr als eine leere Vorlage. Wer wissen will, wie eine
+brauchbare Anforderung aussieht, was in einen ADR gehört oder wie eine Aufgabe geschnitten
+wird, findet hier vier Dutzend echte Fälle — samt der Fehler, die dabei gemacht wurden.
+
+## Was es nicht ist
+
+**Keine Anforderung dieses Projekts.** Die Prüfwerkzeuge sehen dieses Verzeichnis nicht an:
+`check_traceability.py` liest nur `05-requirements` und `10-pm/tasks`, und die
+Platzhalterprüfung überspringt diesen Pfad. Nichts hier gilt für dich.
+
+Wenn du es nicht brauchst: löschen. Es hängt nichts daran.
+"""
+
 EMPTY_BOARD = """---
 
 kanban-plugin: board
@@ -126,6 +164,22 @@ def pending(root):
     return findings
 
 
+def write_archive_readme(root):
+    """Explain the archive, and link it from the index so it can be found."""
+    today = dt.date.today()
+    review = today.replace(year=today.year + 1)
+    path = os.path.join(root, ARCHIVE, "README.md")
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write(ARCHIVE_README.format(today=today.isoformat(),
+                                           review=review.isoformat()))
+    index = os.path.join(root, INDEX)
+    text = read_text(index)
+    if not text or INDEX_LINK in text:
+        return
+    with open(index, "a", encoding="utf-8") as handle:
+        handle.write("\n## Beispielarchiv\n\n" + INDEX_LINK + "\n")
+
+
 def apply(root):
     """Reset the gate markers, archive the history, empty the board."""
     for relative, field, wanted in GATE_FIELDS:
@@ -139,6 +193,8 @@ def apply(root):
         os.makedirs(os.path.join(root, ARCHIVE), exist_ok=True)
     for source, destination in plan:
         shutil.move(source, destination)
+    if os.path.isdir(os.path.join(root, ARCHIVE)):
+        write_archive_readme(root)
     board = os.path.join(root, BOARD)
     if os.path.exists(board):
         with open(board, "w", encoding="utf-8") as handle:
