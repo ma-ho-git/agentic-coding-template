@@ -56,7 +56,8 @@ TASK_BARE = (
 
 def note(name, **fields):
     """Record shaped like parse_note output; serves tasks and requirements alike."""
-    record = {"name": name, "status": "ready", "implements": [], "tasks": [], "infra": ""}
+    record = {"name": name, "status": "ready", "implements": [], "tasks": [],
+              "infra": "", "sources": []}
     record.update(fields)
     return record
 
@@ -169,3 +170,38 @@ def test_draft_requirement_without_task_silent():
     warnings = []
     trace.check_unimplemented([note("REQ-1 X", status="entwurf")], warnings)
     assert warnings == []
+
+
+# --- scenario (T-0024) ---
+
+REQUIREMENT_FROM_SCENARIO = (
+    "---\n"
+    "type: requirement\n"
+    "status: entwurf\n"
+    'quelle: Marcus (Auftraggeber) — "[[Szenario]]", Abschnitt Ablauf\n'
+    "---\n\nText\n"
+)
+
+
+def test_parses_scenario_reference_in_quelle():
+    parsed = trace.parse_note("REQ-0001 Beispiel.md", REQUIREMENT_FROM_SCENARIO)
+    assert parsed["sources"] == ["Szenario"]
+
+
+def test_scenario_without_derived_requirement_fails():
+    errors = []
+    trace.check_scenario(True, [note("REQ-1 X")], errors)
+    assert len(errors) == 1
+    assert "szenario" in errors[0].lower()
+
+
+def test_scenario_with_derived_requirement_passes():
+    errors = []
+    trace.check_scenario(True, [note("REQ-1 X", sources=["Szenario"])], errors)
+    assert errors == []
+
+
+def test_missing_scenario_needs_no_reference():
+    errors = []
+    trace.check_scenario(False, [note("REQ-1 X")], errors)
+    assert errors == []

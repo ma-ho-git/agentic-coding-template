@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: sicherheit
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0002 Hooks zur Durchsetzung der Vorgaben]]"]
@@ -34,6 +34,12 @@ zerstörerisches Kommando nur ein Tippfehler entfernt — und Kosten entstehen l
 `reset --hard`, History-Rewriting und rekursives Löschen außerhalb des Projekts; getestet.
 `.claude/rules/agent-conduct.md` verbietet kostenpflichtige Dienste und Zugriffe außerhalb
 des Repositories ohne ausdrücklichen Auftrag.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Was nicht passieren darf":
+
+> Agenten und Subagenten dürfen das durchzuführende Projekt nicht gefährden, zusätzliche Kosten verursachen oder andere Projekte gefährden
 
 ## Präzisierungen
 

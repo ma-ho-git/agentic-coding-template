@@ -48,6 +48,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[ADR-0005 Anforderungen als Pflicht vor dem Code]]
 - [[ADR-0006 Zwei Klassen von Leitplanken]]
 - [[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]
+- [[ADR-0008 Aus dem Szenario ableiten, ohne zu erfinden]]
 
 ## Projektwissen
 

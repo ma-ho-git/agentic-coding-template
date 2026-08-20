@@ -17,7 +17,7 @@ related: ["[[Rahmen und Startgate]]", "[[Projektvision]]", "[[00-index]]"]
 > zugleich ein ausgefülltes Beispiel.
 >
 > **Sonderfall dieses Repositories:** Das Szenario wurde nachträglich aus der ursprünglichen
-> Vorgabe vom 2026-08-19 rekonstruiert — die Datei gab es zu dem Zeitpunkt noch nicht.
+> Vorgabe vom 2026-08-19 und den Ergänzungen vom 2026-08-20 rekonstruiert — die Datei gab es zu dem Zeitpunkt noch nicht.
 > Wörtliche Zitate sind als solche gekennzeichnet; alles Übrige ist geordnete Wiedergabe und
 > vom Auftraggeber noch nicht bestätigt. Im Normalfall entsteht diese Datei **vor** der
 > Erhebung, aus dem, was der Nutzer selbst erzählt.

@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: sicherheit
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]", "[[T-0002 Hooks zur Durchsetzung der Vorgaben]]"]
@@ -33,6 +33,12 @@ finden. Ein einmal committetes Geheimnis bleibt in der Historie, auch nach dem L
 `.claude/hooks/check_secrets.py` blockiert Schreibvorgänge mit Anmeldedaten-Mustern
 (getestet gegen Positiv- und Negativfälle). `.claude/rules/security.md` führt eine
 Prüfliste, die vor dem Verlassen der Review-Lane gegen den Diff durchgegangen wird.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Was nicht passieren darf":
+
+> Erstellter Code darf keine (bekannten oder offensichtlichen) Sicherheitslücken beinhalten
 
 ## Präzisierungen
 

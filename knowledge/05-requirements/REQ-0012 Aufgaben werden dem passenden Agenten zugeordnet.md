@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: organisatorisch
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: review
 status: entwurf
 tasks: ["[[T-0005 Cowork-Onboarding-Paket]]"]
@@ -33,6 +33,12 @@ schreiben umgeht genau die Absicherungen, die das Template ausmachen.
 `CLAUDE.md` §6 enthält eine Routing-Tabelle. Jede Aufgabendatei nennt im Feld `agent` den
 vorgesehenen Agenten mit Begründung. `/task-next` meldet ausdrücklich, wenn der laufende
 Agent der falsche ist. `cowork/` enthält das Einrichtungspaket für Cowork.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Bestehende Systeme":
+
+> Claude Cowork — liest sie **nicht**, braucht ein eigenes Einrichtungspaket
 
 ## Präzisierungen
 

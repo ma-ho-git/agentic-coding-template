@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: funktional
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0003 Wissensdatenbank aufsetzen]]"]
@@ -34,6 +34,12 @@ das zweimal auftritt und zweimal neu gelöst wird, kostet zweimal.
 Für jede Auslöserbedingung aus `.claude/rules/knowledge-base.md` existiert eine Notiz.
 Troubleshooting-Notizen führen Symptom, Kontext, Ursache, Lösung, Sackgassen, Vorbeugung
 und ein Feld `occurrences`. `tools/check_vault.py` meldet 0 Fehler.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ablauf":
+
+> Was dabei gelernt wurde, landet in der Wissensdatenbank statt im Gesprächsverlauf.
 
 ## Präzisierungen
 

@@ -51,10 +51,10 @@ exam and gets abandoned.
 
 ## 3. Framework mode — before any production code
 
-**Is there a scenario?** Read `knowledge/05-requirements/szenario.md`. If it exists, it is
-the basis of everything below — derive from it instead of asking cold. If it does not, offer
-`/szenario` once: the user describes the project in their own words, which is far easier
-than answering six categories. A no is a complete answer, and it is not asked twice.
+**Is there a scenario?** Read `knowledge/05-requirements/szenario.md`. If it does not exist,
+offer `/szenario` once — describing the project is far easier than answering six categories.
+A no is a complete answer and is not asked twice. If it does exist, work from Section 3a
+before anything else here.
 
 Ask first what kind of thing is being built — script, tool, service, library, application.
 Every example below is then chosen to match.
@@ -102,6 +102,41 @@ Then work in this order, writing each answer down before moving on.
 7. **Propose the gate**, never open it. Summarise what is covered, what you justified as not
    applicable, and what is still open — then ask the user to set
    `baseline_status: vereinbart`.
+
+## 3a. Deriving from a scenario — without inventing
+
+This section resolves a real tension. The scenario invites you to derive; the hardest rule in
+this skill forbids inventing. Both stay in force, and this is how:
+
+**Propose, quote, confirm — in that order.**
+
+1. **Propose** the requirement you read out of the scenario.
+2. **Quote** the passage it came from, verbatim, so the user sees your source:
+
+   > Aus deinem Szenario: „Datei einlesen, Dubletten raus, nach Region sortieren."
+   > Daraus würde ich machen: „Das Werkzeug entfernt Dubletten anhand der Kundennummer
+   > und sortiert nach Region." Die Kundennummer steht nicht im Szenario — rate ich da
+   > richtig, oder ist das Merkmal ein anderes?
+
+3. **Confirm.** The user corrects or agrees. Only then does it go into a `REQ` file, still
+   `status: entwurf`.
+
+**Name what you added.** Every derivation adds something the scenario did not say —
+a threshold, a mechanism, a boundary. Say which part is the user's and which is yours, in
+the same breath. A derivation whose additions stay invisible is an invention with a citation
+stapled to it.
+
+**Write both down.** The derived requirement carries `quelle: <Stakeholder> — "[[Szenario]]"`
+and a `## Herkunft` section quoting the passage with its section name. Not optional:
+`tools/check_traceability.py` reports a scenario that no requirement derives from.
+
+**What the scenario does not answer stays open.** A category the scenario is silent on gets
+asked normally — the scenario is a head start, never a substitute for the six categories.
+Never fill a gap with something that merely sounds consistent with the scenario.
+
+**Contradictions are findings, not noise.** When the scenario contradicts itself, or a later
+statement contradicts it, say so and let the user decide. Do not quietly pick the version
+that fits your draft.
 
 ## 4. Stage mode — one development stage at a time
 
@@ -162,5 +197,7 @@ End with the one next step, not a list. A beginner needs to know what to do now.
 - Set `baseline_status: vereinbart` yourself.
 - Mark a requirement `vereinbart` without the user agreeing to that exact wording.
 - Elicit requirements for stages beyond the next one.
+- Derive a requirement from the scenario without quoting the passage it came from.
+- Present your own addition as if the scenario had said it.
 - Accept an unverifiable statement without offering a measurable alternative.
 - Use a method term without explaining it or pointing at the glossary.

@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: qualitaet
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]", "[[T-0009 Beispielprojekt als Smoke-Test]]"]
@@ -37,6 +37,12 @@ als keiner, weil man ihm glaubt.
 mit allen Pflichtschlüsseln und meldet veraltete `updated`-Daten. `/contract-sync` findet
 Konsumenten über die Liste statt über eine Repo-Suche; nicht sofort machbare Folgearbeit
 liegt als Aufgabe in `Ready`, nie in `Backlog`.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ablauf":
+
+> Je Aufgabe: Test zuerst, dann Code, dann die betroffenen Stellen nachziehen.
 
 ## Präzisierungen
 

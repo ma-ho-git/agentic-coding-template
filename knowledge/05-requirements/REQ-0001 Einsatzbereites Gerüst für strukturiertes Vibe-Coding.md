@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: funktional
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: demo
 status: entwurf
 tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]"]
@@ -38,6 +38,12 @@ arbeitende Hooks. Es fehlt keine Datei, die der Zyklus voraussetzt.
 Abgegrenzt gegen [[REQ-0017 Anforderungserhebung vor der Entwicklung]]: „einsatzbereit"
 heißt, dass das **Gerüst** vollständig ist — nicht, dass sofort codiert wird. Der Weg zum
 ersten Code führt über die Anforderungserhebung und das Startgate.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ablauf":
+
+> Vorlage klonen, erster Lauf prüft die eigenen Annahmen und richtet das Projekt ein.
 
 ## Präzisierungen
 

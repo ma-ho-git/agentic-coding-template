@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: recht
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: review
 status: entwurf
 tasks: ["[[T-0006 README und Lizenz]]"]
@@ -34,6 +34,12 @@ verwenden, obwohl genau das sein Zweck ist.
 `LICENSE` liegt im Repository-Wurzelverzeichnis und ist in der README benannt. Die README
 erklärt Zweck, Voraussetzungen, erste Schritte, Nutzeraufgaben und Struktur. Sie hält fest,
 dass erzeugter Projektcode nicht unter der Lizenz des Templates steht.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ergebnis":
+
+> Am Ende steht ein kurzes README, das den Einstieg ermöglicht, samt geklärter Nutzungsrechte.
 
 ## Präzisierungen
 

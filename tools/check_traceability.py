@@ -1,10 +1,10 @@
 # @contract
-# provides:   CLI check of the requirement <-> task chain; exit 1 on error, 0 otherwise
-# depends-on: knowledge/05-requirements/ (REQ notes), knowledge/10-pm/tasks/ (task notes),
+# provides:   CLI check of the scenario <-> requirement <-> task chain; exit 1 on error
+# depends-on: knowledge/05-requirements/ (REQ notes, szenario.md), knowledge/10-pm/tasks/,
 #             .claude/rules/requirements.md (the rules being enforced)
 # consumers:  .github/workflows/rules.yml
 # invariants: read-only; never writes to the vault; warnings never fail the run
-# updated:    2026-08-19
+# updated:    2026-08-20
 
 #!/usr/bin/env python3
 """Validate traceability: every task serves a requirement, and both sides agree.
@@ -20,6 +20,7 @@ import sys
 
 TASKS = os.path.join("knowledge", "10-pm", "tasks")
 REQUIREMENTS = os.path.join("knowledge", "05-requirements")
+SCENARIO = os.path.join(REQUIREMENTS, "szenario.md")
 LINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
 
 
@@ -56,6 +57,7 @@ def parse_note(path, text):
         "implements": wikilinks(text, "implements"),
         "tasks": wikilinks(text, "tasks"),
         "infra": scalar(text, "infrastruktur"),
+        "sources": wikilinks(text, "quelle"),
     }
 
 
@@ -129,6 +131,20 @@ def check_unimplemented(requirements, warnings):
                             .format(requirement["name"]))
 
 
+def cites_scenario(requirement):
+    """True when the requirement names the scenario note among its sources."""
+    return any(name.lower().startswith("szenario") for name in requirement["sources"])
+
+
+def check_scenario(present, requirements, errors):
+    """A captured scenario nothing was derived from is decoration, not a basis."""
+    if not present or any(cites_scenario(item) for item in requirements):
+        return
+    errors.append("{0} exists, but no requirement names [[Szenario]] in quelle:. "
+                  "Derive from it via /req-elicit, or remove the file."
+                  .format(SCENARIO.replace(os.sep, "/")))
+
+
 def report(errors, warnings):
     for item in warnings:
         print("WARN  " + item)
@@ -148,6 +164,7 @@ def main():
     check_backlinks(tasks, requirements, errors)
     check_finished(requirements, done, errors)
     check_unimplemented(requirements, warnings)
+    check_scenario(os.path.exists(SCENARIO), requirements, errors)
     sys.exit(report(errors, warnings))
 
 

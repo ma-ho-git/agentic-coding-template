@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: organisatorisch
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: review
 status: entwurf
 tasks: ["[[T-0012 Anforderungsregeln und Vault-Struktur]]", "[[T-0013 Skills für die Anforderungserhebung]]", "[[T-0014 Rückverfolgbarkeit maschinell prüfen]]", "[[T-0015 Bestehenden Arbeitszyklus anpassen]]", "[[T-0016 Architekturschritt aus Qualitätsanforderungen]]", "[[T-0017 Anforderungskette am Beispiel nachweisen]]"]
@@ -38,6 +38,12 @@ architekturprägende Vorgaben zu spät auftauchen.
 bei `vereinbart`, und jede der sechs Rahmenkategorien ist belegt oder ausdrücklich als nicht
 zutreffend begründet. Jede Aufgabe nennt `implements:` oder eine Infrastrukturbegründung.
 `tools/check_traceability.py` meldet 0 Fehler.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Was schiefgehen kann":
+
+> Es wird sofort codiert, ohne dass festgehalten ist, was entstehen soll.
 
 ## Präzisierungen
 

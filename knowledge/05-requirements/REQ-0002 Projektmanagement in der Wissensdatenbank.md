@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: funktional
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0003 Wissensdatenbank aufsetzen]]"]
@@ -35,6 +35,12 @@ nicht im Sitzungsverlauf verschwinden.
 Board mit den Lanes Backlog/Ready/Doing/Review/Done, eine Datei je Aufgabe mit
 Status im Frontmatter, Fortschrittslog je Monat. `/board-sync` meldet keine Abweichungen
 zwischen Board und Aufgabendateien.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ablauf":
+
+> Aufgaben auf einem Kanban-Board führen, eine nach der anderen abarbeiten.
 
 ## Präzisierungen
 

@@ -6,6 +6,28 @@ task said; a requirement is the only thing that says the task was worth doing.
 Decision: `knowledge/10-pm/decisions/ADR-0005 …`. What is adopted from Sommerville and what
 is not: `knowledge/20-knowledge/Sommerville Software Engineering - was das Template übernimmt.md`.
 
+## The scenario — optional to have, binding once it exists
+
+Before elicitation the user may describe the project in their own words — `/szenario`,
+written to `knowledge/05-requirements/szenario.md`. Optional: offered once, a no is a
+complete answer.
+
+**Once it exists, it is the basis.** Elicitation derives proposals from it instead of asking
+cold, and every requirement derived from it does two things:
+
+- names it in `quelle` — `quelle: <Stakeholder> — "[[Szenario]]"`
+- **quotes the passage** it came from, under `## Herkunft`, with the section name
+
+The quote is what separates deriving from inventing. Without it, nobody can tell afterwards
+which sentence the user actually said and which the agent supplied — and a requirement the
+user never stated, wearing the look of one they agreed, is the worst artefact this method
+can produce. `tools/check_traceability.py` reports a scenario that no requirement derives
+from; the *content* of the coverage is checked by `/req-validate` and by the user, because
+prose cannot be diffed mechanically.
+
+A scenario is not a requirement: it is unstructured, may contradict itself, and carries no
+`Abnahme`. Never build from it directly.
+
 ## Two levels
 
 Not purely incremental — that leaves the target artefact too vaguely described and lets
@@ -76,7 +98,10 @@ Name the conflict and decide it in an ADR; never quietly satisfy one and drop th
 
 ## Traceability
 
-`Stakeholder → baseline.md → REQ-XXXX → T-XXXX → test → code (@contract)`
+`Stakeholder → Szenario → baseline.md → REQ-XXXX → T-XXXX → test → code (@contract)`
+
+The scenario link is present only when a scenario was captured; the chain is complete
+without it.
 
 Both directions, checked by `tools/check_traceability.py` and by a hook on task files.
 A task without `implements:` is an error; infrastructure and maintenance work is the only

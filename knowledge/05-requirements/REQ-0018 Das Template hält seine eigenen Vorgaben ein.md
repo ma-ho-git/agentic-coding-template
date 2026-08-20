@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: qualitaet
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 ("die Wissensdatenbank ... sollte aber auch schon für dieses Projekt angelegt und genutzt werden")
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 ("die Wissensdatenbank ... sollte aber auch schon für dieses Projekt angelegt und genutzt werden") — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0007 Selbstverifikation des Templates]]"]
@@ -36,6 +36,12 @@ selten für fremde. Die Selbstanwendung ist zugleich der einzige realistische Te
 - Die Testsuite unter `tests/` deckt jeden Hook mit Positiv- **und** Negativfall ab und ist grün
 - Jede Aufgabe nennt eine Anforderung oder eine Infrastrukturbegründung
 - Der Vault wird für dieses Projekt selbst geführt, nicht nur für fremde vorbereitet
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ergebnis":
+
+> Der Projektstand ist nach Sitzungsende aus dem Repository lesbar, nicht aus dem Chat.
 
 ## Präzisierungen
 

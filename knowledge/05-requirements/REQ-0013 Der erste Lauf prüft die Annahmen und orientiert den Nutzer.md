@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: organisatorisch
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: demo
 status: entwurf
 tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]"]
@@ -36,6 +36,12 @@ auf Annahmen, die nicht mehr gelten — und merkt es erst, wenn etwas bricht.
 `verified` und `state`, passt betroffene Dateien an und schließt mit einer Orientierung von
 höchstens 20 Zeilen in drei Abschnitten. Der SessionStart-Hook fordert `/bootstrap` an,
 wenn der jüngste Eintrag älter als 30 Tage ist.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ablauf":
+
+> Vorlage klonen, erster Lauf prüft die eigenen Annahmen und richtet das Projekt ein.
 
 ## Präzisierungen
 

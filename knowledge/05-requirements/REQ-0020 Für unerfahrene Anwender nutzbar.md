@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: qualitaet
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20
+quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20 — "[[Szenario]]"
 nachweis: demo
 status: entwurf
 tasks: ["[[T-0021 Anfängermodus für die Anforderungserhebung]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]"]
@@ -42,6 +42,12 @@ gerade Unerfahrene brauchen die Leitplanken am dringendsten.
 - Der Projektzuschnitt wird beim Bootstrap geklärt; ein kleiner Zuschnitt schaltet Zeremonie
   ab, mit protokollierter Begründung
 - Jede Meldung einer Leitplanke nennt ihre Klasse, damit erkennbar ist, was verhandelbar ist
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Wer und wann":
+
+> Ausdrücklich auch Anwender ohne Erfahrung in Softwareentwicklung.
 
 ## Präzisierungen
 

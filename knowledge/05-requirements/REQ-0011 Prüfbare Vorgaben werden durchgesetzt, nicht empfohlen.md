@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: technisch
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0002 Hooks zur Durchsetzung der Vorgaben]]", "[[T-0010 CI-Workflow für die Regelprüfung]]"]
@@ -34,6 +34,12 @@ Was verbindlich sein soll, braucht eine Instanz, die es ablehnt.
 Hooks in `.claude/hooks/` laufen bei SessionStart, vor Bash-Kommandos und nach
 Schreibvorgängen. `.github/workflows/rules.yml` führt dieselben Skripte am Pull Request aus.
 Jeder Hook hat Tests für Positiv- und Negativfall; die Suite ist grün.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ergebnis":
+
+> Eine Regelverletzung wird abgelehnt, nicht bloß angemahnt.
 
 ## Präzisierungen
 

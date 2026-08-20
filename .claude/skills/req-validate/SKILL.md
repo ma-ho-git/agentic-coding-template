@@ -40,6 +40,14 @@ an ADR via `/architecture`, not in a silent edit.
 
 ### Completeness
 
+- **Scenario coverage.** If `knowledge/05-requirements/szenario.md` exists, walk it section by
+  section: is every statement in it either covered by a requirement or knowingly out of
+  scope? Name the uncovered passage verbatim — this is the check the machine cannot do, and
+  the one most likely to find a real gap, because a scenario is where users mention things
+  they never think to repeat.
+- Reverse direction too: a requirement citing `[[Szenario]]` whose `## Herkunft` quote is not
+  actually in the scenario is a **fabricated derivation**. Report it as the most severe kind
+  of finding — it looks agreed and is not.
 - Does every category in `baseline.md` have either requirements or a written justification?
 - Does every framework requirement have a `quelle`?
 - Are error and boundary cases covered, or only the happy path?
@@ -94,6 +102,10 @@ Group by check, most severe first. Per finding: requirement ID, what is wrong, a
 concrete proposal.
 
 ```
+Szenario-Abdeckung
+  „Der Server antwortet manchmal nicht"  → keine Anforderung. Vorschlag: Kategorie
+                                           qualitaet, Verhalten bei Ausfall festlegen.
+
 Prüfbarkeit
   REQ-0004 „schnell genug"  → kein Schwellwert. Vorschlag: p95 unter 200 ms bei 50 Nutzern.
 

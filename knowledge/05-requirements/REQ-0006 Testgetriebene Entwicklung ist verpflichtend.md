@@ -5,7 +5,7 @@ ebene: rahmen
 kategorie: qualitaet
 prioritaet: muss
 stufe:
-quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
+quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: test
 status: entwurf
 tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]"]
@@ -33,6 +33,12 @@ besteht auch dann, wenn die Absicht verfehlt wurde.
 `.claude/rules/tdd.md` ist verbindlich und nennt genau drei Ausnahmen, jede im
 Commit zu begründen. Für jede Verhaltensänderung existiert ein Test, der ohne die Änderung
 fehlschlägt. Volle Suite grün vor jedem Abschluss einer Aufgabe.
+
+## Herkunft
+
+[[Szenario]], Abschnitt „Ablauf":
+
+> Je Aufgabe: Test zuerst, dann Code, dann die betroffenen Stellen nachziehen.
 
 ## Präzisierungen
 

@@ -28,8 +28,9 @@ Die Fehlermeldung bricht mitten im Namen ab — das ist der Hinweis.
 
 - Beim Schreiben von Fortschritts- und Aufgabennotizen, wenn eine Zeile die übliche
   Zeilenbreite überschreitet und der Umbruch mitten in den Linktext fällt.
-- Zweimal aufgetreten am 2026-08-20, beide Male beim Anhängen an
-  `knowledge/10-pm/progress/2026-08.md`.
+- **Dreimal** aufgetreten am 2026-08-20, in Fortschritts- und Aufgabennotizen. Die dritte
+  Fundstelle entstand, nachdem diese Notiz bereits geschrieben war — der Fehler passiert
+  beim Formatieren, nicht aus Unkenntnis.
 
 ## Ursache
 
@@ -53,6 +54,7 @@ Den Link geschlossen auf eine Zeile setzen, notfalls den Satz davor umbrechen:
 ## Vorbeugung
 
 - **Wikilinks nie umbrechen.** Lieber eine zu lange Zeile als ein toter Link — oder den
-  Umbruch vor die öffnende Klammer legen.
+  Umbruch **vor** die öffnende Klammer legen. Praktisch heißt das: einen langen Link am
+  Zeilenanfang beginnen, nicht am Zeilenende anhängen.
 - `check_vault.py` nach jedem Anhängen an eine Vault-Datei laufen lassen; der Fehler ist
   sofort sichtbar und in einer Zeile behoben.
