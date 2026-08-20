@@ -30,6 +30,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[Glossar]] — verbindliches Vokabular, auch für die Benennung im Code
 - [[Methodenglossar]] — die Begriffe des Verfahrens, für den Einstieg ohne Vorkenntnisse
 - [[Fremdlösungen]] — ob vor dem Codieren nach einer bestehenden Lösung gesucht wurde
+- [[Fremdkomponenten]] — übernommener Fremdcode und die geerbten Lizenzpflichten
 - [[Randbedingungen]] — was von außen feststeht
 - [[Risiken]] — was das Projekt gefährdet, und was dagegen läuft
 - Einzelanforderungen: `05-requirements/REQ-XXXX ….md`

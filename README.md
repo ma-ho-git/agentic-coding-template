@@ -108,7 +108,8 @@ Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
 | `knowledge/` | Obsidian-Vault, deutschsprachig |
 | `stacks/` | Stack-Profile (Python, TypeScript, Vorlage) |
 | `cowork/` | Einrichtung für Claude Cowork |
-| `tools/` | Prüfskripte, z. B. `check_vault.py`, `ci_check.py` |
+| `tools/` | Prüfskripte, z. B. `check_vault.py`, `check_licenses.py`, `ci_check.py` |
+| `licenses/` | Lizenztexte übernommener Fremdkomponenten (hier leer, siehe unten) |
 | `tests/` | Tests für die Hooks und Tools selbst |
 | `.github/workflows/` | CI: prüft Pull Requests mit denselben Skripten wie die Hooks |
 | `examples/` | Kleines Beispielfeature, zeigt den Zyklus TDD → Contract → `/contract-sync`; beim eigenen Projektstart löschen |
@@ -129,3 +130,11 @@ Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
 
 Die Lizenz gilt für das Template. Code, den du damit erzeugst, gehört dir und steht nicht
 unter dieser Lizenz.
+
+**Fremdcode:** keiner. Das Template setzt auf keiner fremden Codebasis auf
+(`knowledge/10-pm/decisions/ADR-0010 …`), das Register unter
+`knowledge/05-requirements/fremdkomponenten.md` ist entsprechend leer.
+
+Übernimmst du in deinem Projekt eine fremde Komponente, gehören ihre Pflichten dorthin: der
+Lizenztext nach `licenses/`, die Namensnennung in **dein** README, und der Eintrag ins
+Register. `tools/check_licenses.py` prüft das in CI — Vollständigkeit, nicht Rechtmäßigkeit.

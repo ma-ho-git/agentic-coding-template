@@ -97,8 +97,15 @@ an omission wearing the same clothes.
 
 ## 7. If a candidate is chosen
 
-- The legal side runs through `T-0029`: licence checked against the project's distribution
-  intent, obligations recorded and **fulfilled** in the repository.
+- **The legal side comes first**, before any code is written against it:
+  `knowledge/05-requirements/fremdkomponenten.md` holds the procedure and the register.
+  Read the licence file in the candidate's own repository, not the label on a package page —
+  they differ more often than you would think. A component naming no licence grants no
+  rights, however public the code is. The decision goes into an ADR, including the reason
+  when a candidate is rejected over its licence: that is a finding, not a dead end to hide.
+- Once adopted: entry in the register, licence text into `licenses/`, attribution into the
+  project `README.md` where the licence demands it. `tools/check_licenses.py` reports a
+  registered component whose licence text is missing.
 - Requirements the candidate already satisfies do not disappear. They stay, and their
   `nachweis` becomes a test against the candidate — you still have to show it does what was
   asked.

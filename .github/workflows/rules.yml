@@ -6,7 +6,7 @@ on:
 
 jobs:
   hooks:
-    name: Contract, secrets, quality
+    name: Contract, secrets, quality, licences
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +38,9 @@ jobs:
 
       - name: Traceability check
         run: python3 tools/check_traceability.py
+
+      - name: Third-party licence check
+        run: python3 tools/check_licenses.py
 
       - name: Hook test suite
         run: |

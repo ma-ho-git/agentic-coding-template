@@ -48,6 +48,7 @@ a wrongly flexible one costs quality.
 | Destructive git commands | rigid | `git_guard.py`, `deny` |
 | Production code before the framework is agreed | rigid | `check_gate.py`, `deny` |
 | Production code before the existing-solutions decision | rigid | `check_gate.py`, `deny` |
+| Registered component without its licence text | CI | `check_licenses.py`, error in CI |
 | Assignments, parameters, name length | flexible | `check_quality.py`, hint |
 | Nesting depth, file length | flexible | `check_quality.py`, hint |
 | Exception dropped without a reason | flexible | `check_quality.py`, hint |
@@ -73,8 +74,8 @@ whatever cannot be told apart is eventually treated the same — as noise. `bloc
 ## Project scope never moves a rigid guardrail
 
 `project_scope` (`.claude/rules/workflow.md`) scales how much gets *written* — elicitation
-depth, ADR duty, progress detail. It does not scale what is *enforced*. All ten checks in
-the table above behave identically in `skript`, `werkzeug` and `produkt`, and no scope
+depth, ADR duty, progress detail. It does not scale what is *enforced*. Every check in
+the table above behaves identically in `skript`, `werkzeug` and `produkt`, and no scope
 exempts a path, lowers a threshold to zero, or opens the start gate.
 
 This is deliberate. „Ist doch nur ein kleines Skript" is exactly the argument under which a
@@ -83,6 +84,20 @@ that cannot be repaired afterwards, which is what made them rigid in the first p
 scope that could switch them off would make the class meaningless.
 
 An unknown or missing scope is read as `produkt`: falling back costs ceremony, never safety.
+
+## A third place: the CI check
+
+Two classes cover what a hook can decide at write time. The licence register is neither:
+the damage from an unfulfilled licence obligation happens at **distribution**, not at
+writing, and a write hook would block the wrong moment — you would be refused a source file
+because of a component the file has nothing to do with.
+
+So `check_licenses.py` runs in CI, which is the last gate before a change is merged and
+published. It fails the run like an error, not like a hint. That is deliberate and it is
+recorded here so nobody later "fixes" it into a hook.
+
+The same reasoning applies to `check_traceability.py`. Both are boundaries; they simply sit
+at the moment where the boundary is actually crossed.
 
 ## What this does not cover
 
