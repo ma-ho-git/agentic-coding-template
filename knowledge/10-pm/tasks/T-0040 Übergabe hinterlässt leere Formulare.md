@@ -3,13 +3,13 @@ id: T-0040
 title: Übergabe hinterlässt leere Formulare
 type: task
 implements: ["[[REQ-0020 Für unerfahrene Anwender nutzbar]]"]
-status: doing
+status: done
 priority: hoch
 agent: claude-code
 owner: claude-code
 created: 2026-08-20
 started: 2026-08-20
-finished:
+finished: 2026-08-20
 tags: [topic/meta, topic/requirements]
 related: ["[[T-0038 Übergabe von der Vorlage zum Projekt]]", "[[T-0034 Erstlauf im frischen Klon durchspielen]]"]
 ---
@@ -37,17 +37,17 @@ als das ausgefüllte Formular eines fremden Projekts.
 
 ## Akzeptanzkriterien
 
-- [ ] `handover --apply` ersetzt die Rahmendokumente durch Skelette: Struktur und
+- [x] `handover --apply` ersetzt die Rahmendokumente durch Skelette: Struktur und
       Ausfüllhinweise, kein fremder Inhalt
-- [ ] Die Skelette behalten Titel, Aliasse und Frontmatter, damit Wikilinks und
+- [x] Die Skelette behalten Titel, Aliasse und Frontmatter, damit Wikilinks und
       `check_vault.py` weiter tragen — insbesondere `[[Rahmen und Startgate]]`
-- [ ] Gate-Marker in den Skeletten: `baseline_status: entwurf`, `scan_status: offen`
-- [ ] Der Platzhalter-Marker bleibt in jedem Skelett, damit `handover --check` das Ausfüllen
+- [x] Gate-Marker in den Skeletten: `baseline_status: entwurf`, `scan_status: offen`
+- [x] Der Platzhalter-Marker bleibt in jedem Skelett, damit `handover --check` das Ausfüllen
       weiterhin einfordert
-- [ ] Nach `--apply` in einem frischen Klon: `check_vault.py` und `check_traceability.py`
+- [x] Nach `--apply` in einem frischen Klon: `check_vault.py` und `check_traceability.py`
       ohne Befund, keine Waisen, keine kaputten Links
-- [ ] Tests je Dokument; zusätzlich ein Test, dass zweimaliges `--apply` nichts kaputt macht
-- [ ] Am echten Klon nachgewiesen, nicht nur an Testdoppeln
+- [x] Tests je Dokument; zusätzlich ein Test, dass zweimaliges `--apply` nichts kaputt macht
+- [x] Am echten Klon nachgewiesen, nicht nur an Testdoppeln
 
 ## Kontext
 
@@ -62,6 +62,31 @@ als das ausgefüllte Formular eines fremden Projekts.
 ## Abhängigkeiten
 
 - [[T-0038 Übergabe von der Vorlage zum Projekt]]
+
+## Ergebnis
+
+- `tools/handover_texts.py` — alle acht Skelette plus die beiden schon vorhandenen
+  Dokumentvorlagen (Archiv-README, leeres Board). Eigene Datei, weil es Literale sind und
+  `handover.py` sonst über die Dateilängen-Grenze läuft.
+- `handover.py` schreibt sie in `apply()`; ein zweiter `--apply` ist ein No-op und kann die
+  Antworten des Projekts nicht mehr durch ein leeres Formular ersetzen.
+- `pending()` und `unfilled()` trennen zwei Fragen, die vorher eine waren: *noch die
+  Vorlage* (blockiert, nur `--apply` behebt es) gegen *noch nicht ausgefüllt* (Arbeit des
+  Projekts; nur die vier Kerndokumente blockieren).
+- `reset_field()` entfällt — die Skelette bringen `entwurf`/`offen` selbst mit. Das Verhalten
+  prüft weiterhin `test_apply_resets_both_gate_markers`.
+
+## Nachweis am echten Klon
+
+`git clone` des Branches, `--apply`, dann:
+
+| Prüfung | Ergebnis |
+| --- | --- |
+| `check_vault.py` | 0 Fehler, 0 Warnungen — keine Waisen, keine kaputten Links |
+| `check_traceability.py` | 0 Fehler, 0 Warnungen |
+| `handover.py` (check) | keine `PENDING`-Zeile mehr; 11 Formulare als To-do, davon 4 Kern |
+| `check_gate.py` gegen `src/app.py` | `deny`, `[RIGID] Start gate closed` |
+| Testsuite | 154 grün |
 
 ## Notizen
 

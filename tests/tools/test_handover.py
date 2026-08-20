@@ -51,19 +51,8 @@ def make_template(tmp_path):
     return tmp_path
 
 
-# --- resetting the two gate markers ---
-
-def test_field_is_reset_in_place():
-    result = handover.reset_field(BASELINE, "baseline_status", "entwurf")
-    assert "baseline_status: entwurf" in result
-    assert "vereinbart" not in result
-    assert "title: Rahmen" in result
-
-
-def test_absent_field_leaves_text_alone():
-    assert handover.reset_field("---\ntitle: X\n---\n", "baseline_status", "entwurf") == \
-        "---\ntitle: X\n---\n"
-
+# The gate markers used to be patched in place; since T-0040 they arrive with the
+# skeletons instead. test_apply_resets_both_gate_markers still guards the outcome.
 
 # --- what still marks this as the template ---
 
@@ -189,3 +178,74 @@ def test_archive_readme_links_everything(tmp_path):
         encoding="utf-8")
     for name in ("REQ-0001 Beispiel", "T-0001 Etwas", "ADR-0001 Wahl", "2026-08", "szenario"):
         assert "[[" + name + "]]" in text, name
+
+
+# --- empty forms instead of a foreign project's filled ones (T-0040) ---
+
+FRAMEWORK = ("baseline.md", "vision.md", "constraints.md", "glossary.md",
+             "risks.md", "stakeholders.md", "fremdloesungen.md", "fremdkomponenten.md")
+
+
+def make_framework(tmp_path):
+    """The template's own filled framework documents, as a clone inherits them."""
+    requirements = tmp_path / "knowledge" / "05-requirements"
+    for name in FRAMEWORK:
+        (requirements / name).write_text(
+            "---\ntitle: Alt\n---\n\n# Vorlage\n\nZielartefakt der Vorlage, 36 REQ-Verweise.\n",
+            encoding="utf-8")
+
+
+def test_framework_loses_foreign_content(tmp_path):
+    make_template(tmp_path)
+    make_framework(tmp_path)
+    handover.apply(str(tmp_path))
+    requirements = tmp_path / "knowledge" / "05-requirements"
+    for name in FRAMEWORK:
+        text = (requirements / name).read_text(encoding="utf-8")
+        assert "Vorlage" not in text, name
+        assert "36 REQ" not in text, name
+
+
+def test_skeletons_keep_frontmatter_and_marker(tmp_path):
+    make_template(tmp_path)
+    make_framework(tmp_path)
+    handover.apply(str(tmp_path))
+    requirements = tmp_path / "knowledge" / "05-requirements"
+    for name in FRAMEWORK:
+        text = (requirements / name).read_text(encoding="utf-8")
+        assert text.startswith("---\ntitle: "), name
+        assert "type: knowledge" in text, name
+        assert "<!-- template-placeholder -->" in text, name
+        assert "[[" in text, name + " has no outgoing wikilink"
+
+
+def test_baseline_skeleton_keeps_its_alias(tmp_path):
+    """Everything links to [[Rahmen und Startgate]] - the alias must survive."""
+    make_template(tmp_path)
+    make_framework(tmp_path)
+    handover.apply(str(tmp_path))
+    text = (tmp_path / "knowledge" / "05-requirements" / "baseline.md").read_text(
+        encoding="utf-8")
+    assert "Rahmen und Startgate" in text
+    assert "baseline_status: entwurf" in text
+
+
+def test_scan_skeleton_closes_the_second_gate(tmp_path):
+    make_template(tmp_path)
+    make_framework(tmp_path)
+    handover.apply(str(tmp_path))
+    text = (tmp_path / "knowledge" / "05-requirements" / "fremdloesungen.md").read_text(
+        encoding="utf-8")
+    assert "scan_status: offen" in text
+
+
+def test_skeletons_survive_a_second_apply(tmp_path):
+    make_template(tmp_path)
+    make_framework(tmp_path)
+    handover.apply(str(tmp_path))
+    (tmp_path / "knowledge" / "05-requirements" / "vision.md").write_text(
+        "---\ntitle: Projektvision\n---\n\nEchter Inhalt des Projekts.\n", encoding="utf-8")
+    handover.apply(str(tmp_path))
+    text = (tmp_path / "knowledge" / "05-requirements" / "vision.md").read_text(
+        encoding="utf-8")
+    assert "Echter Inhalt" in text, "a second apply must not wipe the project's own work"

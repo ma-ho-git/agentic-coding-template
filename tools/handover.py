@@ -1,11 +1,12 @@
 # @contract
-# provides:   pending(root) -> [finding]; apply(root) -> [moved]; is_done(root) -> bool;
-#             reset_field(text, k, v);
+# provides:   pending(root) -> [finding]; unfilled(root) -> [path]; apply(root) -> [moved];
+#             is_done(root) -> bool;
 #             main() CLI: --check (default, read-only) | --apply
-# depends-on: tools/check_placeholders.py#scan, knowledge/05-requirements/,
-#             knowledge/10-pm/, knowledge/90-meta/beispiel/ (the archive)
+# depends-on: tools/check_placeholders.py#scan and #CORE, tools/handover_texts.py#SKELETONS,
+#             knowledge/05-requirements/, knowledge/10-pm/, knowledge/90-meta/beispiel/
 # consumers:  .claude/skills/bootstrap/SKILL.md (handover step and final check)
-# invariants: --check never writes; --apply archives, never deletes; idempotent;
+# invariants: --check never writes; --apply archives, never deletes; a second --apply is a
+#             no-op, so it never overwrites the project's own answers with a blank form;
 #             deliberately NOT in CI - in the template repository red is correct
 # updated:    2026-08-20
 
@@ -32,7 +33,8 @@ import sys
 
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, TOOLS_DIR)
-from check_placeholders import markdown_files, read_documents, scan  # noqa: E402
+from check_placeholders import CORE, markdown_files, read_documents, scan  # noqa: E402
+from handover_texts import ARCHIVE_README, EMPTY_BOARD, SKELETONS  # noqa: E402
 
 REQUIREMENTS = os.path.join("knowledge", "05-requirements")
 PROJECT_MANAGEMENT = os.path.join("knowledge", "10-pm")
@@ -56,69 +58,6 @@ ARCHIVED = (
     (os.path.join(PROJECT_MANAGEMENT, "decisions"), lambda name: name.startswith("ADR-")),
     (os.path.join(PROJECT_MANAGEMENT, "progress"), lambda name: name.endswith(".md")),
 )
-ARCHIVE_README = """---
-title: Beispielarchiv
-aliases: ["Beispielarchiv"]
-type: knowledge
-tags: [topic/meta]
-status: active
-created: {today}
-updated: {today}
-review_after: {review}
-related: ["[[00-index]]"]
----
-
-# Beispielarchiv
-
-## Kurz
-
-Hier liegt der Projektstand der **Vorlage**, aus der dieses Projekt geklont wurde:
-ihre Anforderungen, Aufgaben, Entscheidungen, ihr Fortschrittslog und ihr Szenario.
-Verschoben von `tools/handover.py`, damit sie das eigene Projekt nicht belasten.
-
-## Wozu das gut ist
-
-Ein ausgefülltes Beispiel zeigt mehr als eine leere Vorlage. Wer wissen will, wie eine
-brauchbare Anforderung aussieht, was in einen ADR gehört oder wie eine Aufgabe geschnitten
-wird, findet hier vier Dutzend echte Fälle — samt der Fehler, die dabei gemacht wurden.
-
-## Was hier liegt
-
-{inhalt}
-
-## Was es nicht ist
-
-**Keine Anforderung dieses Projekts.** Die Prüfwerkzeuge sehen dieses Verzeichnis nicht an:
-`check_traceability.py` liest nur `05-requirements` und `10-pm/tasks`, und die
-Platzhalterprüfung überspringt diesen Pfad. Nichts hier gilt für dich.
-
-Wenn du es nicht brauchst: löschen. Es hängt nichts daran.
-"""
-
-EMPTY_BOARD = """---
-
-kanban-plugin: board
-
----
-
-## Backlog
-
-## Ready
-
-## Doing
-
-## Review
-
-## Done
-
-%% kanban:settings
-```
-{"kanban-plugin":"board","show-checkboxes":true,"lane-width":320}
-```
-%%
-"""
-
-
 def read_text(path):
     """File contents, empty when unreadable - a missing file is not a crash."""
     try:
@@ -126,14 +65,6 @@ def read_text(path):
             return handle.read()
     except OSError:
         return ""
-
-
-def reset_field(text, field, value):
-    """Frontmatter field set to value; text unchanged when the field is absent."""
-    pattern = re.compile(r"^{0}:.*$".format(re.escape(field)), re.M)
-    if not pattern.search(text):
-        return text
-    return pattern.sub("{0}: {1}".format(field, value), text, count=1)
 
 
 def archive_plan(root):
@@ -188,21 +119,30 @@ def mark_done(root):
         handle.write("\n")
 
 
+def unfilled(root):
+    """Forms still awaiting the project's own answers - a to-do list, not a defect.
+
+    Kept apart from pending() on purpose: after the handover an empty skeleton is
+    the project's homework, and only the project can do it. Only the core
+    documents block, because a project cannot ship with the template's vision.
+    """
+    return scan(read_documents(root, markdown_files(root)))
+
+
 def pending(root):
     """Everything still marking this clone as the template itself.
 
-    Once the handover has run, only placeholders remain checkable: gate markers
-    and REQ files then belong to the project, not to the template.
+    Empty once the handover has run: gate markers, REQ files and placeholder
+    forms then belong to the project, not to the template.
     """
-    documents = read_documents(root, markdown_files(root))
-    findings = ["{0}: template placeholder".format(path) for path in scan(documents)]
     if is_done(root):
-        return findings
-    inherited = gate_findings(root)
+        return []
+    findings = gate_findings(root)
     for source, _destination in archive_plan(root):
-        inherited.append("{0}: template history, not this project's"
-                         .format(os.path.relpath(source, root).replace(os.sep, "/")))
-    return inherited + findings
+        findings.append("{0}: template history, not this project's"
+                        .format(os.path.relpath(source, root).replace(os.sep, "/")))
+    return findings + ["{0}: template placeholder".format(path)
+                       for path in unfilled(root)]
 
 
 GROUPS = (("Anforderungen", "REQ-"), ("Aufgaben", "T-"), ("Entscheidungen", "ADR-"))
@@ -246,14 +186,29 @@ def write_archive_readme(root, names):
         handle.write("\n## Beispielarchiv\n\n" + INDEX_LINK + "\n")
 
 
+def write_skeletons(root):
+    """Replace the framework documents with empty forms carrying fill-in prompts.
+
+    Replaced, not archived: baseline.md and vision.md keep their names in the
+    archive, and Obsidian resolves a wikilink by name - two files called
+    "Rahmen und Startgate" would make every link to it ambiguous.
+    """
+    today = dt.date.today()
+    review = today.replace(year=today.year + 1)
+    os.makedirs(os.path.join(root, REQUIREMENTS), exist_ok=True)
+    for name, skeleton in SKELETONS.items():
+        with open(os.path.join(root, REQUIREMENTS, name), "w", encoding="utf-8") as handle:
+            handle.write(skeleton.format(today=today.isoformat(), review=review.isoformat()))
+
+
 def apply(root):
-    """Reset the gate markers, archive the history, empty the board."""
-    for relative, field, wanted in GATE_FIELDS:
-        path = os.path.join(root, relative)
-        text = read_text(path)
-        if text:
-            with open(path, "w", encoding="utf-8") as handle:
-                handle.write(reset_field(text, field, wanted))
+    """Reset the gate markers, archive the history, empty the board, leave blank forms.
+
+    A no-op once it has run: a second call must never overwrite the answers the
+    project has since written with an empty skeleton again.
+    """
+    if is_done(root):
+        return []
     plan = archive_plan(root)
     if plan:
         os.makedirs(os.path.join(root, ARCHIVE), exist_ok=True)
@@ -266,18 +221,34 @@ def apply(root):
     if os.path.exists(board):
         with open(board, "w", encoding="utf-8") as handle:
             handle.write(EMPTY_BOARD)
+    write_skeletons(root)
     mark_done(root)
     return [destination for _source, destination in plan]
 
 
-def report(findings):
+def report(findings, forms):
+    """Print both lists; fail on template leftovers and on unfilled core documents.
+
+    A blank form is not a defect - it is work only the project can do. The four
+    core documents are the exception: shipping the template's vision is.
+    """
     for item in findings:
         print("PENDING  " + item)
-    if not findings:
+    core = [path for path in forms if path in CORE]
+    for path in core:
+        print("TO FILL  " + path + "  (core - required before starting)")
+    for path in forms:
+        if path not in core:
+            print("to fill  " + path)
+    if not findings and not core:
         print("Handover complete - this is a project of its own.")
         return 0
-    print("\n{0} item(s) still belong to the template. Run:\n"
-          "  python3 tools/handover.py --apply".format(len(findings)), file=sys.stderr)
+    if findings:
+        print("\n{0} item(s) still belong to the template. Run:\n"
+              "  python3 tools/handover.py --apply".format(len(findings)), file=sys.stderr)
+    if core:
+        print("\n{0} core document(s) still hold the template's text. Fill them via "
+              "/req-elicit before writing code.".format(len(core)), file=sys.stderr)
     return 1
 
 
@@ -287,11 +258,11 @@ def main():
         moved = apply(root)
         print("Archived {0} document(s) to {1}/.".format(len(moved),
                                                          ARCHIVE.replace(os.sep, "/")))
-        sys.exit(report(pending(root)))
+        sys.exit(report(pending(root), unfilled(root)))
     if sys.argv[1:] not in ([], ["--check"]):
         print("usage: handover.py [--check | --apply]", file=sys.stderr)
         sys.exit(2)
-    sys.exit(report(pending(root)))
+    sys.exit(report(pending(root), unfilled(root)))
 
 
 if __name__ == "__main__":

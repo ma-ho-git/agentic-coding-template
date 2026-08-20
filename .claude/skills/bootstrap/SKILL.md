@@ -71,10 +71,18 @@ The template's own state travels with every clone. Until this has run, the proje
 single requirement exists**, and `/req-elicit` reads the same field and goes into stage mode,
 skipping framework elicitation entirely. That is why this cannot wait until after Step 3.
 
-What it does: resets both gate markers, empties the board, and **archives** the template's
+What it does: closes both gate markers, empties the board, and **archives** the template's
 own requirements, tasks, ADRs, progress log and scenario to `knowledge/90-meta/beispiel/`.
 Archived, not deleted - a beginner learns more from a filled-in example than from an empty
 form. Say that when you report it, and offer to delete the archive if the user prefers.
+
+The eight framework documents - `baseline.md`, `vision.md`, `stakeholders.md`,
+`constraints.md`, `glossary.md`, `risks.md`, `fremdloesungen.md`, `fremdkomponenten.md` -
+are **replaced by empty forms** with fill-in prompts. Replaced rather than archived: Obsidian
+resolves a wikilink by name, and two files called „Rahmen und Startgate" would make every
+link to it ambiguous. Read the prompts before Step 3 - they say what belongs in each
+document, and that is what Step 3 is about to elicit. Never append to a form; the whole
+point is that it holds this project's answers and nobody else's.
 
 Knowledge notes and troubleshooting entries stay: they describe the tooling this project
 keeps using, not what the template once decided.
@@ -134,15 +142,20 @@ already finished. Then let them decide.
 
 ## Step 3a — Check for leftovers
 
-Run `python3 tools/handover.py` (check mode - it changes nothing). It reports everything
-still marking this clone as the template: gate markers, leftover template history, and every
-document that still carries the template's own placeholder text. The four core documents — `README.md`,
-`knowledge/00-index.md`, `vision.md`, `baseline.md` — must come back clean; the rest may keep
-their notes if the user wants them.
+Run `python3 tools/handover.py` (check mode - it changes nothing). It answers two
+different questions and prints them apart:
 
-It must come back **clean** before you orient the user. Deliberately **not** a CI check: in
-the template repository red is the correct answer, so CI would be red forever. It belongs
-here, at the one moment a clone stops being a template.
+- `PENDING` — still the template's: gate markers, leftover history. Only `--apply` fixes it,
+  and none of it may remain.
+- `TO FILL` / `to fill` — empty forms waiting for this project's answers. Not a defect; work.
+  The four core documents — `README.md`, `knowledge/00-index.md`, `vision.md`, `baseline.md` —
+  must be filled before code is written, so they fail the check. The rest is a to-do list:
+  `fremdloesungen.md` stays open until `/solution-scan`, and the others may wait as long as
+  the user wants them to.
+
+No `PENDING` line and no core document left over: then orient the user. Deliberately **not**
+a CI check: in the template repository red is the correct answer, so CI would be red forever.
+It belongs here, at the one moment a clone stops being a template.
 
 ## Step 4 — Orient the user
 

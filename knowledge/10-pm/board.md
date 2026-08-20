@@ -15,13 +15,13 @@ kanban-plugin: board
 
 ## Doing
 
-- [ ] [[T-0040 Übergabe hinterlässt leere Formulare]]
 
 
 ## Review
 
 ## Done
 
+- [x] [[T-0040 Übergabe hinterlässt leere Formulare]]
 **Complete**
 
 - [x] [[T-0001 Agentenregeln und Repo-Grundgerüst]]
