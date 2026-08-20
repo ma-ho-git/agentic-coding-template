@@ -111,7 +111,7 @@ Machine enforcement lives at three moments, because no single one sees every wri
 | Anchor | Sees | Misses |
 | --- | --- | --- |
 | Tool call - the hooks above | Write/Edit calls by the agent | files written via Bash or any other program |
-| Commit - pre-commit runs `check_all --staged` | every staged change, whoever wrote it | changes never committed; a removed hook |
+| Commit - pre-commit runs `check_all --staged` | every staged change, whoever wrote it | changes never committed; a removed hook; **a fresh clone until `/bootstrap` installs it** |
 | CI - every push runs `check_all --range` | everything that leaves the machine | work that never gets pushed |
 
 The known bypasses, written down instead of wished away:
@@ -122,6 +122,10 @@ The known bypasses, written down instead of wished away:
 - **Skipping the commit hook.** git_guard denies the skip flag and a redirected hook path
   for the agent. A human can still remove `.git/hooks/pre-commit` by hand - deliberately,
   visibly, on their own machine. That is the human overriding a rule, which is their right.
+- **A fresh clone is not armed.** Git hooks live in `.git/hooks/`, which no clone carries.
+  Measured, not assumed: a real clone reports six of seven armed, the commit anchor missing.
+  `/bootstrap` installs it and then proves it. The same applies to the template's own state -
+  `tools/handover.py` resets the two gate markers a clone would otherwise inherit.
 - **A crashed or missing interpreter fails open** at the tool-call anchor. `/bootstrap`
   therefore proves the hooks fire (`tools/check_armed.py` - every guardrail answers a canary
   with its refusal) instead of assuming it, and records the result in the environment

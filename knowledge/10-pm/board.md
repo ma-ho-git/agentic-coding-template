@@ -15,8 +15,6 @@ kanban-plugin: board
 
 ## Doing
 
-- [ ] [[T-0038 Übergabe von der Vorlage zum Projekt]]
-
 
 ## Review
 
@@ -60,6 +58,7 @@ kanban-plugin: board
 - [x] [[T-0035 Durchsetzung am Commit]]
 - [x] [[T-0036 CI als echter Rückhalt]]
 - [x] [[T-0037 Scharfschaltung nachweisen]]
+- [x] [[T-0038 Übergabe von der Vorlage zum Projekt]]
 
 %% kanban:settings
 ```

@@ -75,7 +75,7 @@ bis dahin bleibt die Anforderung `vereinbart`, nicht `umgesetzt`.
 | Stackwechsel ohne Regeländerung | **belegt** — `git diff --name-only` zeigt nur `stacks/active.md`; alle Prüfungen und 106 Tests blieben grün |
 | Schwellwerte ohne Codeänderung | **belegt** — `max_assignments` auf 2 gesetzt, der Hook meldete sofort vier Überschreitungen; nur `config.json` im Diff |
 | Zeremonie ohne Regeländerung | **belegt** — `project_scope: skript` änderte den Sitzungsbericht; nur `config.json` im Diff |
-| Keine Rückstände nach `/bootstrap` | **offen** — im Template selbst nicht zeigbar, hier gehören die Platzhalter hin. Prüfwerkzeug existiert (`tools/check_placeholders.py`), der Durchlauf fehlt: [[T-0034 Erstlauf im frischen Klon durchspielen]] |
+| Keine Rückstände nach `/bootstrap` | **überwiegend belegt** — [[T-0038 Übergabe von der Vorlage zum Projekt]] hat den maschinellen Teil an einem echten Klon nachgewiesen: Gate-Marker zurückgesetzt, Geschichte archiviert, alle Prüfwerkzeuge grün, Produktivcode vom Gate verweigert. Offen bleibt der Teil, den nur ein Mensch abnimmt: die Platzhalter in README, Index und Vision durch echten Projektinhalt ersetzen ([[T-0034 Erstlauf im frischen Klon durchspielen]]) |
 | Starre Leitplanken nicht anpassbar | **gilt konstruktionsbedingt** — es gibt keinen Konfigurationswert, der eine starre Prüfung abschaltet; `project_scope` und `config.json` erreichen sie nicht |
 
 **Deshalb bleibt die Anforderung `vereinbart`, nicht `umgesetzt`.** Vier von fünf Punkten

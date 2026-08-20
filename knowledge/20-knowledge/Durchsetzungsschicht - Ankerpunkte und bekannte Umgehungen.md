@@ -39,6 +39,16 @@ Durchsetzung „vereinfacht".
   muss wie ein echtes Geheimnis aussehen, sonst prüft er die Ausnahme statt der Regel —
   gefunden beim allerersten Lauf des Selbsttests.
 
+- **Git-Hooks werden nicht mitgeklont.** `.git/hooks/` gehört nicht zum Repository-Inhalt.
+  **Jeder frische Klon startet also ohne den Commit-Anker** — am 2026-08-20 an einem echten
+  Klon nachgemessen: `check_armed.py` meldete sechs von sieben ARMED, allein der
+  pre-commit-Engpass fehlte. Deshalb installiert `/bootstrap` ihn, und deshalb läuft der
+  Scharfschaltungs-Nachweis **danach**.
+- **Der Zustand der Vorlage reist mit.** `baseline_status` und `scan_status` sind
+  maschinenlesbare Gate-Bedingungen und liegen in versionierten Dateien. Ohne
+  `tools/handover.py --apply` startet ein Klon mit den Antworten der Vorlage — und
+  `/req-elicit` liest dasselbe Feld und überspränge die Rahmenerhebung.
+
 ## Details — die Abdeckung
 
 | Anker | Sieht | Sieht nicht |
