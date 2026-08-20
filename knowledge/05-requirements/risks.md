@@ -12,6 +12,7 @@ related: ["[[Rahmen und Startgate]]", "[[Projektvision]]", "[[00-index]]"]
 
 # Risiken
 
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** Register leeren und mit den eigenen Risiken füllen.
 
 ## Kurz

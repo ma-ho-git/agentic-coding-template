@@ -8,7 +8,7 @@ stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20 — Lücke aus dem Qualitätsmerkmale-Durchgang (T-0031)
 nachweis: demo
 status: vereinbart
-tasks: ["[[T-0004 Stack-Profile und Doku-Schema]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0033 Anpassbarkeit nachweisen]]"]
+tasks: ["[[T-0004 Stack-Profile und Doku-Schema]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0033 Anpassbarkeit nachweisen]]", "[[T-0034 Erstlauf im frischen Klon durchspielen]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
 updated: 2026-08-20
@@ -67,6 +67,30 @@ dass eine Anforderung sie verlangte. Beide sind rückwirkend verknüpft.
 
 **Vorgeführt ist bisher keine davon.** Das holt [[T-0033 Anpassbarkeit nachweisen]] nach —
 bis dahin bleibt die Anforderung `vereinbart`, nicht `umgesetzt`.
+
+### 2026-08-20 — Stand der Abnahme nach T-0033
+
+| Abnahmepunkt | Stand |
+| --- | --- |
+| Stackwechsel ohne Regeländerung | **belegt** — `git diff --name-only` zeigt nur `stacks/active.md`; alle Prüfungen und 106 Tests blieben grün |
+| Schwellwerte ohne Codeänderung | **belegt** — `max_assignments` auf 2 gesetzt, der Hook meldete sofort vier Überschreitungen; nur `config.json` im Diff |
+| Zeremonie ohne Regeländerung | **belegt** — `project_scope: skript` änderte den Sitzungsbericht; nur `config.json` im Diff |
+| Keine Rückstände nach `/bootstrap` | **offen** — im Template selbst nicht zeigbar, hier gehören die Platzhalter hin. Prüfwerkzeug existiert (`tools/check_placeholders.py`), der Durchlauf fehlt: [[T-0034 Erstlauf im frischen Klon durchspielen]] |
+| Starre Leitplanken nicht anpassbar | **gilt konstruktionsbedingt** — es gibt keinen Konfigurationswert, der eine starre Prüfung abschaltet; `project_scope` und `config.json` erreichen sie nicht |
+
+**Deshalb bleibt die Anforderung `vereinbart`, nicht `umgesetzt`.** Vier von fünf Punkten
+tragen; einer ist erst im Klon beobachtbar.
+
+**Zwei Befunde aus dem Nachweis, die niemand bestellt hatte:**
+
+1. Der Stackwechsel ist folgenlos, **weil kein Code das Stack-Profil liest**. `stacks/active.md`
+   ist Dokumentation für den Agenten, kein Konfigurationswert. Die Abnahme trägt — aber aus
+   einem schwächeren Grund als die Formulierung nahelegt, und nichts prüft, ob das aktive
+   Profil zur Wirklichkeit passt.
+2. `.github/workflows/rules.yml` verdrahtet `python3` und `pytest` fest. Ein Projekt, das auf
+   TypeScript wechselt, **muss die CI-Datei anfassen**. Der Wortlaut der Anforderung nennt nur
+   `.claude/rules/` und `.claude/hooks/`, ist also nicht verletzt — dem Sinn nach ist der
+   Stackwechsel damit trotzdem nicht vollständig.
 
 ## Offene Fragen
 

@@ -12,6 +12,7 @@ related: ["[[Projektvision]]", "[[Rahmen und Startgate]]", "[[00-index]]"]
 
 # Stakeholder
 
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** diese Datei vollständig ersetzen. Der Inhalt beschreibt die
 > Beteiligten **dieses Templates** und dient als ausgefülltes Beispiel.
 

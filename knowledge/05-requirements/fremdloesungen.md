@@ -18,6 +18,7 @@ related: ["[[Rahmen und Startgate]]", "[[Spec-Driven-Development - was andere Pr
 > keine. `check_gate.py` liest `scan_status` und verweigert Produktivcode, solange `offen`
 > steht oder die Datei fehlt ([[ADR-0011 Das Startgate hat zwei Bedingungen]]).
 >
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** Inhalt ersetzen, `scan_status` auf `offen` zurücksetzen.
 
 ## Kurz

@@ -14,6 +14,7 @@ related: ["[[Konventionen der Wissensdatenbank]]"]
 > **Projekt:** Agentic Coding Template
 > **Zweck:** Vorlage für strukturiertes Vibe-Coding mit Claude Code und Claude Cowork.
 >
+<!-- template-placeholder -->
 > *Beim Start eines eigenen Projekts: diese beiden Zeilen ersetzen.*
 
 Einstiegspunkt des Vaults. Jede Notiz ist von hier aus erreichbar — direkt oder über eine

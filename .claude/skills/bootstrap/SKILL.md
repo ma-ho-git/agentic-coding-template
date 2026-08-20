@@ -113,6 +113,16 @@ Then, and only then, tell the user — **short, three headings, no preamble**:
 
 Write this part in German. Keep it under 20 lines total.
 
+## Step 4a — Check for leftovers
+
+Run `python3 tools/check_placeholders.py`. It lists every document that still carries the
+template's own placeholder text. The four core documents — `README.md`,
+`knowledge/00-index.md`, `vision.md`, `baseline.md` — must come back clean; the rest may keep
+their notes if the user wants them.
+
+Deliberately **not** a CI check: in the template repository the placeholders belong there, so
+CI would be red forever. It belongs here, at the one moment a clone stops being a template.
+
 ## Step 5 — Record it
 
 Append a progress entry to `knowledge/10-pm/progress/` naming what you verified,

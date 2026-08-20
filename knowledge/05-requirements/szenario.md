@@ -12,6 +12,7 @@ related: ["[[Rahmen und Startgate]]", "[[Projektvision]]", "[[00-index]]"]
 
 # Szenario
 
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** diese Datei vollständig ersetzen — oder löschen, wenn kein
 > Szenario aufgenommen wurde. Was hier steht, ist das Szenario **dieses Templates** und
 > zugleich ein ausgefülltes Beispiel.

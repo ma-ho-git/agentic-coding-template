@@ -12,6 +12,7 @@ related: ["[[Rahmen und Startgate]]", "[[Stakeholder]]", "[[00-index]]"]
 
 # Projektvision
 
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** diese Datei vollständig ersetzen. Was hier steht, ist die
 > Vision **dieses Templates** — sie dient zugleich als ausgefülltes Beispiel dafür, wie die
 > Datei aussehen soll.

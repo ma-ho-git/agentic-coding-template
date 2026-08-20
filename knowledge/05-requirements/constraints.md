@@ -12,6 +12,7 @@ related: ["[[Rahmen und Startgate]]", "[[Projektvision]]", "[[00-index]]"]
 
 # Randbedingungen
 
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** Inhalt ersetzen. Was hier steht, sind die Randbedingungen
 > **dieses Templates** und zugleich ein ausgefülltes Beispiel.
 

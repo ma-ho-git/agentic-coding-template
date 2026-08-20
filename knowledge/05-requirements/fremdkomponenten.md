@@ -16,6 +16,7 @@ related: ["[[Fremdlösungen]]", "[[REQ-0025 Übernommene Fremdkomponenten sind r
 > und `tools/check_licenses.py` prüft in CI, dass zu jedem Eintrag der Lizenztext im
 > Repository liegt.
 >
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** Tabelle leeren und beim Übernehmen einer Komponente füllen.
 
 ## Kurz

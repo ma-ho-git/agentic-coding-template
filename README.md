@@ -7,6 +7,11 @@ Das Template gibt den Agenten verbindliche Regeln, eine Obsidian-Wissensdatenban
 Kanban-Aufgabenverwaltung und automatische Prüfungen, die die Regeln durchsetzen statt sie
 nur zu empfehlen.
 
+<!-- template-placeholder -->
+> **Für ein eigenes Projekt:** Diese README beschreibt die *Vorlage*. Ersetze sie durch die
+> deines Projekts — `/bootstrap` erinnert daran, und `tools/check_placeholders.py` findet,
+> was noch übrig ist.
+
 ## Was es macht
 
 | Bereich | Inhalt |
@@ -108,7 +113,7 @@ Die Agenten arbeiten, entscheiden aber nicht. Das bleibt bei dir:
 | `knowledge/` | Obsidian-Vault, deutschsprachig |
 | `stacks/` | Stack-Profile (Python, TypeScript, Vorlage) |
 | `cowork/` | Einrichtung für Claude Cowork |
-| `tools/` | Prüfskripte, z. B. `check_vault.py`, `check_licenses.py`, `ci_check.py` |
+| `tools/` | Prüfskripte, z. B. `check_vault.py`, `check_licenses.py`, `check_placeholders.py`, `ci_check.py` |
 | `licenses/` | Lizenztexte übernommener Fremdkomponenten (hier leer, siehe unten) |
 | `tests/` | Tests für die Hooks und Tools selbst |
 | `.github/workflows/` | CI: prüft Pull Requests mit denselben Skripten wie die Hooks |

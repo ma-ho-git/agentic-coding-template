@@ -8,7 +8,8 @@ kanban-plugin: board
 
 ## Ready
 
-- [ ] [[T-0033 Anpassbarkeit nachweisen]]
+- [ ] [[T-0034 Erstlauf im frischen Klon durchspielen]]
+
 
 
 ## Doing
@@ -52,6 +53,7 @@ kanban-plugin: board
 - [x] [[T-0030 Funktional und nicht-funktional benennen]]
 - [x] [[T-0031 Qualitätsmerkmale vollständig abfragen]]
 - [x] [[T-0032 Artefakttyp bestimmt die Beispiele]]
+- [x] [[T-0033 Anpassbarkeit nachweisen]]
 
 %% kanban:settings
 ```

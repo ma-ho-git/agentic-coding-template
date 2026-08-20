@@ -12,6 +12,7 @@ related: ["[[Projektvision]]", "[[Konventionen der Wissensdatenbank]]", "[[00-in
 
 # Glossar
 
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** Begriffe durch die eigene Fachdomäne ersetzen. Die Einträge
 > hier sind das Vokabular **dieses Templates** und zugleich ein ausgefülltes Beispiel.
 

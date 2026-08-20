@@ -99,6 +99,11 @@ recorded here so nobody later "fixes" it into a hook.
 The same reasoning applies to `check_traceability.py`. Both are boundaries; they simply sit
 at the moment where the boundary is actually crossed.
 
+`check_placeholders.py` sits at a third moment again — `/bootstrap`, the one point at which a
+clone stops being a template. In this repository it reports twelve documents and exits 1, and
+that is the correct answer: the placeholders belong here. A check whose correct result is
+"red" must never run in CI.
+
 ## What this does not cover
 
 Guardrails constrain **how** work is done. They say nothing about **whether** it is worth

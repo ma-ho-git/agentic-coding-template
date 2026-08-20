@@ -17,6 +17,7 @@ related: ["[[ADR-0005 Anforderungen als Pflicht vor dem Code]]", "[[ADR-0007 Pro
 > Solange `baseline_status: entwurf` steht, wird kein Produktivcode geschrieben.
 > Nur der Mensch setzt sie auf `vereinbart` — ein Agent schlägt vor, er bescheinigt sich nichts selbst.
 >
+<!-- template-placeholder -->
 > **Für ein eigenes Projekt:** Inhalt ersetzen, `baseline_status` auf `entwurf` zurücksetzen.
 > Was hier steht, ist der Rahmen **dieses Templates** und zugleich ein ausgefülltes Beispiel.
 
