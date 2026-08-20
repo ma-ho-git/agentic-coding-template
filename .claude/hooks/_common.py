@@ -90,9 +90,17 @@ def is_code(path):
     return os.path.splitext(path)[1].lower() in CODE_EXTENSIONS
 
 
+# Guardrail classes, see .claude/rules/guardrails.md. The label travels with the
+# message: a reader who cannot tell a wall from a hint treats both as noise.
+RIGID = "[RIGID]"
+FLEXIBLE = "[FLEXIBLE]"
+FLEXIBLE_NOTE = ("\nFlexible guardrail: you may exceed it when the case warrants, "
+                 "but write the justification into the code.")
+
+
 def block(message):
-    """Reject the action and hand the reason back to the agent."""
-    print(message, file=sys.stderr)
+    """Reject the action. Rigid guardrail - the agent cannot override this."""
+    print("{0} {1}".format(RIGID, message), file=sys.stderr)
     sys.exit(2)
 
 
@@ -101,7 +109,7 @@ def advise(message):
     print(json.dumps({
         "hookSpecificOutput": {
             "hookEventName": "PostToolUse",
-            "additionalContext": message,
+            "additionalContext": "{0} {1}{2}".format(FLEXIBLE, message, FLEXIBLE_NOTE),
         }
     }))
     sys.exit(0)

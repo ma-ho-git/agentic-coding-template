@@ -15,8 +15,6 @@ kanban-plugin: board
 
 ## Doing
 
-- [ ] [[T-0019 Leitplanken benennen und klassifizieren]]
-
 ## Review
 
 ## Done
@@ -41,6 +39,7 @@ kanban-plugin: board
 - [x] [[T-0018 Grenzwerte auf die Projektvorgabe zurückführen]]
 - [x] [[T-0016 Architekturschritt aus Qualitätsanforderungen]]
 - [x] [[T-0017 Anforderungskette am Beispiel nachweisen]]
+- [x] [[T-0019 Leitplanken benennen und klassifizieren]]
 
 %% kanban:settings
 ```

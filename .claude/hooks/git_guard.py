@@ -8,7 +8,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _common import read_event  # noqa: E402
+from _common import RIGID, read_event  # noqa: E402
 
 DENIED = [
     (r"\bgit\s+push\b[^|;&]*\s(?:--force\b|-f\b)",
@@ -45,10 +45,10 @@ def deny(reason, command):
             "hookEventName": "PreToolUse",
             "permissionDecision": "deny",
             "permissionDecisionReason": (
-                "Blocked by .claude/rules/agent-conduct.md: {0}.\n"
-                "Command: {1}\n"
+                "{0} Blocked by .claude/rules/agent-conduct.md: {1}.\n"
+                "Command: {2}\n"
                 "If this really is needed, explain why and let the user run it."
-                .format(reason, command.strip()[:200])
+                .format(RIGID, reason, command.strip()[:200])
             ),
         }
     }))

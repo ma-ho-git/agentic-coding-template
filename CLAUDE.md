@@ -22,7 +22,11 @@ run `/bootstrap` before anything else. Do not skip it, do not do it silently.
 4. **Knowledge base is part of the work, not paperwork.** Research, decisions, and any
    problem that took more than one attempt get written down. See `.claude/rules/knowledge-base.md`.
 5. **The board is the truth.** No work outside a task in `knowledge/10-pm/board.md`.
-6. **Never endanger the project.** No destructive git operations, no force-push, no rewriting
+6. **Two classes of guardrail.** `[RIGID]` guardrails cover critical decisions, are machine-
+   enforced, and you cannot override them — one that is only written down is not rigid.
+   `[FLEXIBLE]` guardrails cover optimisation decisions: exceed them when the case warrants
+   and write the reason into the code. See `.claude/rules/guardrails.md`.
+7. **Never endanger the project.** No destructive git operations, no force-push, no rewriting
    published history, no spending on paid services, no touching anything outside this repo.
 
 ## 2. Where things live

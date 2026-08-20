@@ -5,8 +5,13 @@ paths:
 
 # Code Quality
 
-Hard limits. The hooks in `.claude/hooks/` check these and will tell you when you cross them.
+**Every limit on this page is a `[FLEXIBLE]` guardrail** (`.claude/rules/guardrails.md`):
+the hooks report, they never block. Exceed one where the case warrants — and write the
+reason into the code, so the deviation is visible rather than silent.
 Thresholds live in `.claude/hooks/config.json` and are meant to be tuned per project.
+
+The one rigid rule nearby is not a threshold: a source file without an `@contract` block is
+refused outright, because losing traceability cannot be repaired later.
 
 ## Size and shape
 
