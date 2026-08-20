@@ -12,7 +12,10 @@ kanban-plugin: board
 
 
 
+
 ## Doing
+
+- [ ] [[T-0040 Übergabe hinterlässt leere Formulare]]
 
 
 ## Review
@@ -59,6 +62,7 @@ kanban-plugin: board
 - [x] [[T-0037 Scharfschaltung nachweisen]]
 - [x] [[T-0038 Übergabe von der Vorlage zum Projekt]]
 - [x] [[T-0034 Erstlauf im frischen Klon durchspielen]]
+- [x] [[T-0039 Bootstrap Schritt 1 eindeutig machen]]
 
 %% kanban:settings
 ```

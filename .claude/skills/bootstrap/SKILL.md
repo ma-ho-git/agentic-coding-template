@@ -12,7 +12,16 @@ Run this before any other work in a fresh clone. Do it visibly, not silently.
 `knowledge/90-meta/environment-manifest.md` lists every external assumption this template
 depends on, with the date it was last verified and the source URL.
 
-For each entry whose `verified` date is older than 30 days, or which has no date:
+**First decide whether there is anything to do.** An entry counts as stale when its
+`verified` date is older than 30 days or missing. If **no** entry is stale, this step is
+done: fetch nothing, change nothing, and tell the user so — „Die Annahmen wurden zuletzt am
+<Datum> geprüft, das ist innerhalb der 30 Tage" — rather than skipping it in silence.
+
+A clone inherits the **template's** verification dates. Cloned today, everything is fresh and
+this step is a no-op; cloned in six months, everything is stale and gets checked. That is the
+intended behaviour, not an oversight.
+
+For each entry that **is** stale:
 
 1. Fetch the source and compare against the `assumption` text.
 2. Mark the entry `ok`, `changed`, or `unknown`, and set `verified` to today.
@@ -20,7 +29,8 @@ For each entry whose `verified` date is older than 30 days, or which has no date
    in the entry's `action` field. If the fix is larger than a few lines, create a task
    instead and put it in the `Ready` lane.
 
-Check at minimum:
+The entries worth the most attention when they are stale — this is *what* to check, not a
+list to work through regardless:
 
 - Claude Code configuration surfaces — `CLAUDE.md`, `.claude/rules/`, `.claude/skills/`,
   `.claude/agents/`, hook event names and the settings schema.

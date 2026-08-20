@@ -8,7 +8,7 @@ stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20 — "[[Szenario]]"
 nachweis: demo
 status: vereinbart
-tasks: ["[[T-0021 Anfängermodus für die Anforderungserhebung]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0032 Artefakttyp bestimmt die Beispiele]]"]
+tasks: ["[[T-0021 Anfängermodus für die Anforderungserhebung]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0032 Artefakttyp bestimmt die Beispiele]]", "[[T-0040 Übergabe hinterlässt leere Formulare]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
 updated: 2026-08-20
