@@ -55,12 +55,15 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[ADR-0009 Fehlerbehandlung ändert die Form, nicht die Grenze]]
 - [[ADR-0010 Eigene Umsetzung statt Fremdbasis]]
 - [[ADR-0011 Das Startgate hat zwei Bedingungen]]
+- [[ADR-0012 Durchsetzung an drei Ankerpunkten]]
 
 ## Projektwissen
 
 ### Agenten und Werkzeuge
 
 - [[Konfigurationsebenen von Claude Code]] — welche Ebene lädt wann, und was das kostet
+- [[Durchsetzungsschicht - Ankerpunkte und bekannte Umgehungen]] — warum Hooks allein nicht
+  tragen, und was Commit und CI zusätzlich halten
 - [[Cowork liest die Repo-Konfiguration nicht]] — die zentrale Einschränkung für das Routing
 - [[Spec-Driven-Development - was andere Projekte machen]] — Marktumschau und Abgrenzung
 
@@ -87,6 +90,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[SessionStart meldet BOOTSTRAP REQUIRED trotz aktuellem Manifest]]
 - [[matches_any() exemption trifft falsche Pfade]]
 - [[Wikilink über Zeilenumbruch wird nicht erkannt]]
+- [[git_guard verwechselt Erwähnung mit Gebrauch]]
 
 ## Meta
 

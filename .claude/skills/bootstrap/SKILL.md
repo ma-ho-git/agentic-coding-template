@@ -46,6 +46,10 @@ Do not rewrite entries you did not verify. An honest `unknown` beats a guessed `
    every commit runs every rule check (`tools/check_all.py --staged`) - including files
    written through Bash or another editor, which the Write|Edit hooks never see. An
    existing pre-commit hook of the user's own is left alone and reported.
+   Then **prove the guardrails fire**: `python3 tools/check_armed.py` - every guardrail
+   must answer its canary with a refusal (ARMED on every line). Record the result as the
+   "Leitplanken - Scharfschaltung" entry in the environment manifest. A FAILED line means
+   the rigid layer is silently absent - stop and fix that before anything else.
 6. Determine the **project scope**. See Step 2a.
 
 ## Step 2a — Determine the project scope

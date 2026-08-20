@@ -3,13 +3,13 @@ id: T-0037
 title: Scharfschaltung nachweisen
 type: task
 implements: ["[[REQ-0011 Prüfbare Vorgaben werden durchgesetzt, nicht empfohlen]]"]
-status: ready
+status: done
 priority: hoch
 agent: claude-code
-owner:
+owner: claude-code
 created: 2026-08-20
-started:
-finished:
+started: 2026-08-20
+finished: 2026-08-20
 tags: [topic/agents, topic/meta]
 related: ["[[T-0035 Durchsetzung am Commit]]", "[[T-0036 CI als echter Rückhalt]]", "[[ADR-0006 Zwei Klassen von Leitplanken]]"]
 ---
@@ -30,20 +30,49 @@ schwarz auf weiß in der Leitplanken-Regel, statt verschwiegen zu werden.
 
 ## Akzeptanzkriterien
 
-- [ ] `tools/check_armed.py` feuert jeden Hook mit einem Kanarienvogel-Ereignis und erwartet
+- [x] `tools/check_armed.py` feuert jeden Hook mit einem Kanarienvogel-Ereignis und erwartet
       die Ablehnung: git_guard verweigert ein zerstörerisches Kommando, das Gate verweigert
       Produktivcode bei geschlossenem Rahmen, Geheimnis-, Contract- und Task-Prüfung blocken
       ihre Negativfälle, die Qualitätsprüfung meldet ihren Hinweis
-- [ ] Zusätzlich geprüft: pre-commit-Hook installiert und von uns
-- [ ] Kanarien-Literale werden zur Laufzeit zusammengesetzt (Gebrauch-vs.-Erwähnung)
-- [ ] `/bootstrap` führt den Selbsttest aus und trägt das Ergebnis ins Umgebungs-Manifest
-- [ ] `guardrails.md` bekommt den Abschnitt **„Drei Ankerpunkte, und was sie nicht halten"**:
+- [x] Zusätzlich geprüft: pre-commit-Hook installiert und von uns
+- [x] Kanarien-Literale werden zur Laufzeit zusammengesetzt (Gebrauch-vs.-Erwähnung)
+- [x] `/bootstrap` führt den Selbsttest aus und trägt das Ergebnis ins Umgebungs-Manifest
+- [x] `guardrails.md` bekommt den Abschnitt **„Drei Ankerpunkte, und was sie nicht halten"**:
       die Abdeckungstabelle (Tool-Aufruf / Commit / CI) und die bekannten Umgehungen —
       Hook-Datei editieren, Hook-Verzeichnis löschen, Ausfall bei fehlendem Python. Ehrlich:
       lokal ist Verhinderung best effort, garantiert ist Sichtbarkeit im Diff und in CI
-- [ ] ADR hält die Entscheidung fest: Durchsetzung an drei Ankerpunkten, samt verworfener
+- [x] ADR hält die Entscheidung fest: Durchsetzung an drei Ankerpunkten, samt verworfener
       Alternativen (Bash-Kommando-Analyse je Schreibvorgang, nur CI)
-- [ ] Wissensnotiz mit der Recherche vom 2026-08-20 und allen Quellen
+- [x] Wissensnotiz mit der Recherche vom 2026-08-20 und allen Quellen
+
+## Ergebnis
+
+- `tools/check_armed.py`: sieben Kanarienvögel, sieben Ablehnungen erwartet — Gate,
+  Geheimnisse, Contract, Task, Qualität, git_guard und der installierte pre-commit-Engpass.
+  Ein crashender Hook zählt als FAILED, nie als scharf. Live-Lauf: sieben von sieben ARMED.
+- **Der Selbsttest fand beim allerersten Lauf einen Fehler — meinen:** Der
+  Geheimnis-Kanarienvogel war AWSs dokumentierter Beispielschlüssel, und der enthält
+  „EXAMPLE" — genau das Wort, das die Platzhalter-Ausnahme absichtlich durchlässt. Der
+  Kanarienvogel prüfte die Ausnahme statt der Regel. Ersetzt durch einen unauffälligen
+  Fake-Schlüssel; die Falle steht in der Wissensnotiz.
+- **Und git_guard verweigerte beim Schreiben des Selbsttests mein eigenes Kommando:**
+  `--force` war zerlegt, „origin main" nicht — das Push-auf-main-Muster griff im
+  Heredoc-Text. Zweiter Vorfall dieser Klasse, jetzt als Troubleshooting-Notiz
+  [[git_guard verwechselt Erwähnung mit Gebrauch]] mit occurrences: 2.
+- `/bootstrap` führt den Selbsttest nach der Hook-Installation aus; das Umgebungs-Manifest
+  trägt den Eintrag „Leitplanken — Scharfschaltung" mit Datum und Ergebnis.
+- `guardrails.md`: Abschnitt „Three anchor points - and what they do not hold" —
+  Abdeckungstabelle plus die bekannten Umgehungen, ausgeschrieben statt gewünscht:
+  Enforcement-Dateien editierbar (Diff und CI-Warnung sind die Antwort), Mensch kann den
+  Hook entfernen (sein Recht — der Mensch überstimmt Regeln, der Agent nicht), fehlender
+  Interpreter versagt offen (dafür der Selbsttest), das TDD-Signal prüft Beilage, nicht
+  Reihenfolge. Garantie der drei Anker: Ein Verstoß kommt nicht leise weit. Nicht mehr.
+- [[ADR-0012 Durchsetzung an drei Ankerpunkten]] hält die Entscheidung samt verworfener
+  Alternativen fest (Bash-Analyse je Aufruf: unzuverlässiges Raten; nur CI: erreicht die
+  Zielgruppe nicht). Wissensnotiz mit allen Quellen:
+  [[Durchsetzungsschicht - Ankerpunkte und bekannte Umgehungen]].
+
+Vier neue Tests, Suite 134 grün. Vault- und Rückverfolgbarkeitsprüfung ohne Befund.
 
 ## Kontext
 

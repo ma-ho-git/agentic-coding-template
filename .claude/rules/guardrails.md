@@ -104,6 +104,36 @@ clone stops being a template. In this repository it reports twelve documents and
 that is the correct answer: the placeholders belong here. A check whose correct result is
 "red" must never run in CI.
 
+## Three anchor points - and what they do not hold
+
+Machine enforcement lives at three moments, because no single one sees every write:
+
+| Anchor | Sees | Misses |
+| --- | --- | --- |
+| Tool call - the hooks above | Write/Edit calls by the agent | files written via Bash or any other program |
+| Commit - pre-commit runs `check_all --staged` | every staged change, whoever wrote it | changes never committed; a removed hook |
+| CI - every push runs `check_all --range` | everything that leaves the machine | work that never gets pushed |
+
+The known bypasses, written down instead of wished away:
+
+- **Editing the enforcement files themselves.** Deny rules do not reliably protect them
+  (upstream issue #11226), and the agent must be able to write them to build them. CI marks
+  every change to an enforcement file with a loud warning; the diff is the record.
+- **Skipping the commit hook.** git_guard denies the skip flag and a redirected hook path
+  for the agent. A human can still remove `.git/hooks/pre-commit` by hand - deliberately,
+  visibly, on their own machine. That is the human overriding a rule, which is their right.
+- **A crashed or missing interpreter fails open** at the tool-call anchor. `/bootstrap`
+  therefore proves the hooks fire (`tools/check_armed.py` - every guardrail answers a canary
+  with its refusal) instead of assuming it, and records the result in the environment
+  manifest. Armed is a checked state, not a hope.
+- **The TDD signal checks presence, not order.** It can see that a test change accompanies a
+  code change; that the test came first is beyond any scanner. The loop itself stays a rule
+  for the agent and a question for the review.
+
+What the three anchors guarantee together is not perfect prevention - it is that a violation
+cannot travel far quietly. Claiming more would be exactly the false certainty this file
+exists to prevent.
+
 ## What this does not cover
 
 Guardrails constrain **how** work is done. They say nothing about **whether** it is worth

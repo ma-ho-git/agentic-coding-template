@@ -45,6 +45,14 @@ Jeder Hook hat Tests für Positiv- und Negativfall; die Suite ist grün.
 
 - keine
 
+### 2026-08-20 — Durchsetzung an drei Ankerpunkten
+
+Die Grundsatzprüfung vor dem Startgate zeigte: Die Hook-Schicht allein erfüllt diese
+Anforderung nicht — über Bash geschriebene Dateien sah sie nie. Präzisiert, ohne den
+Wortlaut zu ändern: Durchsetzung wirkt an drei Ankerpunkten (Tool-Aufruf, Commit, CI) mit
+einem gemeinsamen Regelwerk, und die Scharfschaltung wird nachgewiesen statt angenommen
+([[ADR-0012 Durchsetzung an drei Ankerpunkten]]).
+
 ## Offene Fragen
 
 - keine

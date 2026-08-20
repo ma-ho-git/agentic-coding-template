@@ -111,3 +111,14 @@ Feldbedeutung: `verified` = Datum der letzten Prüfung gegen die Quelle.
 - **action:** `stacks/active.md` angelegt, Python-Version auf 3.11+ korrigiert (installiert:
   3.11.15, Vorlage sagte 3.12+), Layout/Commands auf `.claude/hooks/`+`tools/` umgestellt.
   Fehlendes `pyproject.toml` für Test-Setup an T-0007 verwiesen, nicht hier erledigt.
+
+## Leitplanken — Scharfschaltung
+
+- **assumption:** Jede starre Leitplanke beantwortet ihren Kanarienvogel mit der Ablehnung;
+  der pre-commit-Engpass ist installiert und stammt von uns
+- **verified:** 2026-08-20
+- **state:** ok — `python3 tools/check_armed.py`: sieben von sieben ARMED
+- **source:** tools/check_armed.py (lokal, kein Netzzugriff nötig)
+- **action:** Bei FAILED zuerst den Interpreter prüfen (python3 vorhanden?), dann den
+  jeweiligen Hook einzeln mit check_armed eingrenzen. Nicht weiterarbeiten, solange eine
+  starre Prüfung offen versagt.
