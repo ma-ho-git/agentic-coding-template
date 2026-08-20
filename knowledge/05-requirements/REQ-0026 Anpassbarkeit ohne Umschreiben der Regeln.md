@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20 — Lücke aus dem Qualitätsmerkmale-Durchgang (T-0031)
 nachweis: demo
-status: vereinbart
+status: umgesetzt
 tasks: ["[[T-0004 Stack-Profile und Doku-Schema]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]", "[[T-0033 Anpassbarkeit nachweisen]]", "[[T-0034 Erstlauf im frischen Klon durchspielen]]", "[[T-0038 Übergabe von der Vorlage zum Projekt]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
@@ -75,11 +75,12 @@ bis dahin bleibt die Anforderung `vereinbart`, nicht `umgesetzt`.
 | Stackwechsel ohne Regeländerung | **belegt** — `git diff --name-only` zeigt nur `stacks/active.md`; alle Prüfungen und 106 Tests blieben grün |
 | Schwellwerte ohne Codeänderung | **belegt** — `max_assignments` auf 2 gesetzt, der Hook meldete sofort vier Überschreitungen; nur `config.json` im Diff |
 | Zeremonie ohne Regeländerung | **belegt** — `project_scope: skript` änderte den Sitzungsbericht; nur `config.json` im Diff |
-| Keine Rückstände nach `/bootstrap` | **überwiegend belegt** — [[T-0038 Übergabe von der Vorlage zum Projekt]] hat den maschinellen Teil an einem echten Klon nachgewiesen: Gate-Marker zurückgesetzt, Geschichte archiviert, alle Prüfwerkzeuge grün, Produktivcode vom Gate verweigert. Offen bleibt der Teil, den nur ein Mensch abnimmt: die Platzhalter in README, Index und Vision durch echten Projektinhalt ersetzen ([[T-0034 Erstlauf im frischen Klon durchspielen]]) |
+| Keine Rückstände nach `/bootstrap` | **belegt** — [[T-0034 Erstlauf im frischen Klon durchspielen]] hat den vollständigen Ablauf an einem echten Klon mit einem echten Vorhaben durchgespielt: `handover --check` meldet „complete", alle vier Prüfwerkzeuge sauber, sieben von sieben Leitplanken scharf, Produktivcode vom geschlossenen Gate verweigert |
 | Starre Leitplanken nicht anpassbar | **gilt konstruktionsbedingt** — es gibt keinen Konfigurationswert, der eine starre Prüfung abschaltet; `project_scope` und `config.json` erreichen sie nicht |
 
-**Deshalb bleibt die Anforderung `vereinbart`, nicht `umgesetzt`.** Vier von fünf Punkten
-tragen; einer ist erst im Klon beobachtbar.
+**Alle fünf Punkte tragen; die Anforderung steht auf `umgesetzt`.** Der letzte wurde am
+2026-08-20 im echten Klon nachgewiesen — dabei fielen zwei Defekte der Übergabe auf, die nur
+ein echter Durchlauf zeigen konnte; beide behoben und mit Tests abgesichert.
 
 **Zwei Befunde aus dem Nachweis, die niemand bestellt hatte:**
 
