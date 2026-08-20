@@ -98,7 +98,42 @@ Then work in this order, writing each answer down before moving on.
    `baseline.md`, never by being skipped. „Für ein Wegwerfskript brauche ich nichts" is a
    perfectly good reason; write it down as one.
 
-3a. **Ask what happens when things break.** For every connected system the user named —
+3a. **The quality sweep — eight characteristics, not one question.**
+
+   `qualitaet` is the category users under-answer, because it is asked as one question and
+   answered with one word: „schnell". Ask it as a sweep. Three passes, and a small project is
+   through in two minutes.
+
+   **Pass 1 — show the list, ask which ones bite.** One screen, not eight questions. Mark the
+   two or three you expect to matter for *their* artefact and say why you think so:
+
+   > Was davon muss bei dir wirklich gut sein? Nenn einfach, was zutrifft — der Rest ist dann
+   > bewusst kein Thema, und das schreiben wir auch so hin.
+   >
+   > - **Tempo** — wie schnell, bei wie viel Menge
+   > - **Zusammenspiel** — muss es mit anderer Software oder fremden Formaten zusammenpassen
+   > - **Bedienbarkeit** — wer bedient es, wie viel Einarbeitung ist zumutbar
+   > - **Zuverlässigkeit** — was soll passieren, wenn etwas ausfällt oder abstürzt
+   > - **Sicherheit** — was ist zu schützen, und vor wem
+   > - **Wartbarkeit** — wer ändert das in einem Jahr, und wie leicht fällt ihm das
+   > - **Anpassbarkeit** — muss es woanders laufen, erweiterbar sein, umziehen können
+   > - **Gefahr für Mensch oder Sachwert** — kann ein Fehler jemanden verletzen oder etwas
+   >   beschädigen
+
+   **Pass 2 — je genanntes Merkmal eine messbare Aussage.** Use the scenario form below.
+
+   **Pass 3 — die übrigen einmal abwählen.** One line each in the `Qualitätsmerkmale` section
+   of `baseline.md`: „trifft nicht zu, weil …". Not silently skipped — written down.
+
+   The list is the same in every scope and for every artefact. What changes is which entries
+   get a real answer: a `skript` may dismiss seven of eight in one sentence, a service will
+   not get away with dismissing reliability.
+
+   Two of these are the ones users never raise on their own: **Wartbarkeit**, because the
+   person maintaining it in a year is not in the room — and **Anpassbarkeit**, because nobody
+   plans to move. Ask those two by name even when the user says they are done.
+
+3b. **Ask what happens when things break.** For every connected system the user named —
    network, service, database, file, device — ask what should happen when it is unavailable,
    too slow, or answers wrongly. Beginners never volunteer this, and it is not a technical
    detail: what the user *sees* on failure is their decision, and guessing it produces
@@ -114,6 +149,29 @@ Then work in this order, writing each answer down before moving on.
    `technisch` or `qualitaet`. „Weiß ich nicht" is a valid answer and becomes an open point —
    the mechanism is the agent's job (`.claude/rules/robustness.md`), the visible behaviour
    is not.
+
+3c. **Make it measurable — the scenario form.**
+
+   „Schnell", „stabil", „einfach zu bedienen" cannot be tested. The way out is not a better
+   adjective but three fields:
+
+   **Auslöser → erwartete Reaktion → Messgröße**
+
+   > „schnell genug"
+   >   Auslöser: Nutzer startet den Export für 50.000 Zeilen.
+   >   Reaktion: Die Datei wird vollständig geschrieben.
+   >   Messgröße: unter 10 Sekunden auf einem üblichen Laptop.
+
+   > „zuverlässig"
+   >   Auslöser: Die API antwortet 30 Sekunden lang nicht.
+   >   Reaktion: Abbruch mit verständlicher Meldung, keine halb geschriebene Datei.
+   >   Messgröße: Abbruch nach spätestens 35 Sekunden, Zieldatei unverändert.
+
+   Walk the three fields with the user instead of asking for a number. „Wann genau wäre es
+   dir zu langsam?" produces a threshold; „wie schnell soll es sein?" produces „schnell".
+
+   If they cannot name a measure, that is an **open question**, never a number you supply.
+   A threshold the agent invented looks agreed and is not — see Never, below.
 
 4. **Glossary** → `glossary.md`. Capture domain terms as they come up. Fix one spelling per
    term; the code will use exactly that.

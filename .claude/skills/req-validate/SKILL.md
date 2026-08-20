@@ -49,6 +49,14 @@ an ADR via `/architecture`, not in a silent edit.
   actually in the scenario is a **fabricated derivation**. Report it as the most severe kind
   of finding — it looks agreed and is not.
 - Does every category in `baseline.md` have either requirements or a written justification?
+- **Quality coverage.** `qualitaet` is one category covering eight characteristics, and it is
+  the one that hides gaps. Walk them individually against the `Qualitätsmerkmale` section of
+  `baseline.md`: Tempo, Zusammenspiel, Bedienbarkeit, Zuverlässigkeit, Sicherheit,
+  Wartbarkeit, Anpassbarkeit, Gefahr für Mensch oder Sachwert. Report every one that has
+  **neither** a requirement **nor** a written dismissal. Name it in the user's words, not as
+  an ISO label — the point is that they can answer, not that they can classify.
+  Wartbarkeit and Anpassbarkeit are the two that go missing most often, because nobody plans
+  to maintain or to move.
 - Does every framework requirement have a `quelle`?
 - Are error and boundary cases covered, or only the happy path?
 - Anything in `vision.md` under success criteria with no requirement behind it?
@@ -102,6 +110,11 @@ Group by check, most severe first. Per finding: requirement ID, what is wrong, a
 concrete proposal.
 
 ```
+Qualitätsmerkmale
+  Wartbarkeit               → weder Anforderung noch Abwahl. Zu tun: entweder festlegen,
+                              wer das in einem Jahr ändert und wie leicht — oder in
+                              baseline.md hinschreiben, warum das hier egal ist.
+
 Szenario-Abdeckung
   „Der Server antwortet manchmal nicht"  → keine Anforderung. Vorschlag: Kategorie
                                            qualitaet, Verhalten bei Ausfall festlegen.

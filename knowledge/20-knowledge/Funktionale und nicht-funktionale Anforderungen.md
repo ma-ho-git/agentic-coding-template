@@ -45,6 +45,28 @@ Kategorienliste angefasst wird.
   ableiten** — genau das, was Menschen vergessen. Dokumentierte Schwäche: Mehrdeutigkeit und
   die **korrekte Einordnung in Kategorien**.
 
+## Details — die acht Merkmale, die wir abfragen
+
+`/req-elicit` fragt sie in Nutzerworten ab, nicht in Normbegriffen. Die Zuordnung:
+
+| Unsere Frage | ISO/IEC 25010:2023 |
+| --- | --- |
+| Tempo | Leistungseffizienz |
+| Zusammenspiel | Kompatibilität |
+| Bedienbarkeit | Interaktionsfähigkeit |
+| Zuverlässigkeit | Zuverlässigkeit |
+| Sicherheit | Sicherheit |
+| Wartbarkeit | Wartbarkeit |
+| Anpassbarkeit | Flexibilität |
+| Gefahr für Mensch oder Sachwert | Safety |
+
+Das neunte Merkmal, **funktionale Eignung**, fällt bei uns mit der Kategorie `funktional`
+zusammen und wird dort abgefragt.
+
+Zwei Merkmale nennt fast nie jemand von selbst: **Wartbarkeit**, weil die Person, die es in
+einem Jahr ändert, nicht im Raum sitzt — und **Anpassbarkeit**, weil niemand plant umzuziehen.
+Sie werden namentlich gefragt, auch wenn der Nutzer sagt, er sei fertig.
+
 ## Details — unsere sechs Kategorien
 
 | Kategorie | Art | Sommerville-Gruppe |

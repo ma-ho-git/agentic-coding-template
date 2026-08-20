@@ -51,6 +51,11 @@ durch einen Hook, nicht nur angemahnt. Nur ein Mensch öffnet sie.
 Der Teil der Anforderung, der sagt, woran man erkennt, dass sie erfüllt ist. Muss messbar,
 beobachtbar oder testbar sein.
 
+**Qualitätsszenario**
+Das Werkzeug, mit dem aus „schnell" etwas Prüfbares wird: **Auslöser → erwartete Reaktion →
+Messgröße**. „Nutzer startet den Export für 50.000 Zeilen → Datei wird vollständig
+geschrieben → unter 10 Sekunden." Drei Felder statt eines besseren Adjektivs.
+
 **Prüfbarkeit**
 Die Regel, dass eine Anforderung ohne prüfbare Abnahme noch keine ist. „Benutzerfreundlich"
 fällt durch, „geübter Nutzer schafft X in unter 30 Sekunden" besteht.

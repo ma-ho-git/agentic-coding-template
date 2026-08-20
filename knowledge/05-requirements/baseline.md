@@ -97,6 +97,29 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 - [[REQ-0008 Contract-Kommentar macht den Wirkungsradius lesbar]]
 - [[REQ-0018 Das Template hält seine eigenen Vorgaben ein]]
 - [[REQ-0020 Für unerfahrene Anwender nutzbar]]
+
+#### Qualitätsmerkmale im Einzelnen
+
+Die Kategorie `qualitaet` deckt acht Merkmale ab. Jedes braucht eine Anforderung **oder** eine
+Abwahl mit Grund — sonst fällt es durch, ohne dass es jemand merkt. Geprüft von `/req-validate`.
+
+| Merkmal | Stand |
+| --- | --- |
+| **Tempo** | Keine Anforderung. Abgewählt: Die Prüfungen arbeiten auf einzelnen Dateien, der Vault hat Projektgröße, niemand wartet auf sie. Bei sehr großen Vaults wäre das nachzuholen — `session_brief.py` liest bei jedem Start den ganzen Vault. |
+| **Zusammenspiel** | Teilweise über [[REQ-0002 Projektmanagement in der Wissensdatenbank]]. Die Kompatibilität zu Obsidian und zum Kanban-Plugin steht bewusst in [[Randbedingungen]] und nicht als Anforderung: Das Board bleibt auch ohne Plugin lesbar, es hängt kein Code daran. |
+| **Bedienbarkeit** | [[REQ-0020 Für unerfahrene Anwender nutzbar]], [[REQ-0004 Dokumentation ist für Mensch und Agent nutzbar]], [[REQ-0013 Der erste Lauf prüft die Annahmen und orientiert den Nutzer]] |
+| **Zuverlässigkeit** | [[REQ-0023 Fehler- und Ausfallverhalten wird bewusst entschieden]] |
+| **Sicherheit** | Eigene Kategorie: [[REQ-0009 Kein Code mit bekannten Sicherheitslücken]], [[REQ-0010 Agenten gefährden weder das Projekt noch sein Umfeld]] |
+| **Wartbarkeit** | [[REQ-0005 Veraltetes Wissen wird gekennzeichnet statt gelöscht]], [[REQ-0007 Grenzen für Funktionsgröße und Benennung]], [[REQ-0008 Contract-Kommentar macht den Wirkungsradius lesbar]], [[REQ-0018 Das Template hält seine eigenen Vorgaben ein]] |
+| **Anpassbarkeit** | **Lücke.** Siehe unten. |
+| **Gefahr für Mensch oder Sachwert** | Trifft nicht zu. Das Template erzeugt Text und Prüfskripte; ein Fehler kostet Arbeitszeit, nicht Gesundheit oder Sachwerte. Der einzige Schadensfall wäre ein zerstörerisch handelnder Agent, und den deckt [[REQ-0010 Agenten gefährden weder das Projekt noch sein Umfeld]] ab. |
+
+**Offene Lücke — Anpassbarkeit.** Das Template *ist* anpassbar: Stack-Profile, Schwellwerte in
+`config.json`, Projektzuschnitt, austauschbare Regeldateien. Aber **keine Anforderung verlangt
+das**. Gefunden am 2026-08-20 beim ersten Durchgang der Merkmale einzeln — vorher war es unter
+der einen Frage „wie gut, wie schnell, wie bedienbar" nicht sichtbar. Zu entscheiden: entweder
+eine Anforderung ergänzen (dann ist sie vor dem Gate zu bestätigen) oder hier mit Grund
+abwählen. Bis dahin ist der Rahmen an dieser Stelle unvollständig.
 - [[REQ-0023 Fehler- und Ausfallverhalten wird bewusst entschieden]]
 
 ## Freigabe
@@ -111,6 +134,10 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 **Kategorienabdeckung:** alle sechs belegt — funktional (4), technisch (2), organisatorisch (7),
 sicherheit (2), recht (2), qualitaet (8). Keine Kategorie ist als „nicht zutreffend" begründet;
 für dieses Projekt greift jede.
+
+**Offen seit 2026-08-20:** Innerhalb von `qualitaet` fehlt dem Merkmal **Anpassbarkeit** noch
+Anforderung wie Abwahl — gefunden beim Einzeldurchgang der Qualitätsmerkmale (siehe oben).
+Das ist vor dem Gate zu entscheiden.
 
 **Hinweis zum Sonderfall dieses Repositories:** Das Template wurde gebaut, bevor es seine
 eigene Anforderungsebene besaß. Die Anforderungen sind daher nachträglich aus der
