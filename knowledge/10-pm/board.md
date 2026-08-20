@@ -9,11 +9,12 @@ kanban-plugin: board
 ## Ready
 
 
-- [ ] [[T-0034 Erstlauf im frischen Klon durchspielen]]
 
 
 
 ## Doing
+
+- [ ] [[T-0034 Erstlauf im frischen Klon durchspielen]]
 
 
 ## Review

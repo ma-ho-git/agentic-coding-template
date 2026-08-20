@@ -3,12 +3,12 @@ id: T-0034
 title: Erstlauf im frischen Klon durchspielen
 type: task
 implements: ["[[REQ-0026 Anpassbarkeit ohne Umschreiben der Regeln]]"]
-status: ready
+status: doing
 priority: mittel
 agent: claude-code
-owner:
+owner: claude-code
 created: 2026-08-20
-started:
+started: 2026-08-20
 finished:
 tags: [topic/meta, topic/requirements]
 related: ["[[T-0033 Anpassbarkeit nachweisen]]", "[[REQ-0013 Der erste Lauf prüft die Annahmen und orientiert den Nutzer]]"]
