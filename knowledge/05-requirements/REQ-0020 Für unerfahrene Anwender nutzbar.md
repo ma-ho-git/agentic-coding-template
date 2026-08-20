@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20 — "[[Szenario]]"
 nachweis: demo
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0021 Anfängermodus für die Anforderungserhebung]]", "[[T-0022 Projektzuschnitt bestimmt die Zeremonie]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
@@ -39,8 +39,9 @@ gerade Unerfahrene brauchen die Leitplanken am dringendsten.
   erfundene Anforderung
 - Ein Methoden-Glossar erklärt die Begriffe des Verfahrens (Anforderung, Rahmen, Startgate,
   ADR, Contract, Rückverfolgbarkeit) in je zwei Zeilen
-- Der Projektzuschnitt wird beim Bootstrap geklärt; ein kleiner Zuschnitt schaltet Zeremonie
-  ab, mit protokollierter Begründung
+- Der Projektzuschnitt wird beim Bootstrap geklärt; ein kleiner Zuschnitt verringert
+  Dokumentationspflicht und Erhebungstiefe — mit protokollierter Begründung — und schaltet
+  niemals eine starre Leitplanke ab
 - Jede Meldung einer Leitplanke nennt ihre Klasse, damit erkennbar ist, was verhandelbar ist
 
 ## Herkunft

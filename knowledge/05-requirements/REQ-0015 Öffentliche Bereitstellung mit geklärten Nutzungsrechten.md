@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: review
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0006 README und Lizenz]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20

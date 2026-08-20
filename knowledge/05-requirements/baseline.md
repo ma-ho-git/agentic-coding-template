@@ -103,9 +103,14 @@ Bei einer späteren Änderung: neue Begründung hier ergänzen, die alte stehen 
 
 | Feld | Wert |
 | --- | --- |
-| Rahmen vollständig geprüft am | 2026-08-20 (durch den Agenten vorgelegt) |
-| Freigegeben durch | — offen, siehe Hinweis |
-| Bemerkungen | Alle 25 Anforderungen stehen auf `status: entwurf`. Sie sind aus der Projektvorgabe vom 2026-08-19 und den Ergänzungen vom 2026-08-20 abgeleitet (REQ-0019 bis REQ-0025), nicht erfunden — aber der Auftraggeber hat den Wortlaut noch nicht bestätigt. |
+| Rahmen vollständig geprüft am | 2026-08-20 |
+| Anforderungen einzeln bestätigt | 2026-08-20 durch Marcus (Auftraggeber), alle 25 einzeln vorgelegt und bestätigt |
+| Änderung bei der Bestätigung | REQ-0020: Abnahme sagte „ein kleiner Zuschnitt schaltet Zeremonie ab" — widersprach [[ADR-0007 Projektzuschnitt skaliert nur die Dokumentation]]. Vor der Bestätigung korrigiert: der Zuschnitt verringert Dokumentationspflicht und Erhebungstiefe und schaltet nie eine starre Leitplanke ab. |
+| Startgate freigegeben durch | — offen: `baseline_status` steht auf `entwurf` |
+
+**Kategorienabdeckung:** alle sechs belegt — funktional (4), technisch (2), organisatorisch (7),
+sicherheit (2), recht (2), qualitaet (8). Keine Kategorie ist als „nicht zutreffend" begründet;
+für dieses Projekt greift jede.
 
 **Hinweis zum Sonderfall dieses Repositories:** Das Template wurde gebaut, bevor es seine
 eigene Anforderungsebene besaß. Die Anforderungen sind daher nachträglich aus der
@@ -113,6 +118,6 @@ ursprünglichen Vorgabe abgeleitet und die bereits erledigten Aufgaben rückwirk
 Für ein neu geklontes Projekt gilt der normale Weg: erst `/req-elicit`, dann das Gate, dann
 Code.
 
-Nach der Freigabe `baseline_status` auf `vereinbart` setzen und die Anforderungen auf
-`status: vereinbart`. Ab dann gilt: Rahmenanforderungen ändern sich nur über `/req-change`,
-nicht durch stilles Überschreiben.
+Die Anforderungen stehen bereits auf `status: vereinbart`. Offen ist nur noch der
+Gate-Übertritt: `baseline_status` auf `vereinbart` setzen. Ab dann gilt —
+Rahmenanforderungen ändern sich nur über `/req-change`, nicht durch stilles Überschreiben.

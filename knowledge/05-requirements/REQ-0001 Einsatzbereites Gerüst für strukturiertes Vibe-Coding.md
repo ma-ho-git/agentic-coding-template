@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: demo
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0001 Agentenregeln und Repo-Grundgerüst]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20

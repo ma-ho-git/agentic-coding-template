@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20
 nachweis: review
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0025 Robustheit als Pflicht des Agenten]]", "[[T-0026 Verschluckte Ausnahmen sichtbar machen]]"]
 tags: [topic/requirements, topic/code]
 created: 2026-08-20

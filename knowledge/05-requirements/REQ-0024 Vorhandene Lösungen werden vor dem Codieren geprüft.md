@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20
 nachweis: review
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0027 Bestehende Lösungen vor dem Codieren prüfen]]", "[[T-0028 Startgate verlangt die Fremdlösungs-Entscheidung]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20

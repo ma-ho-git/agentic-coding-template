@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 ("die Wissensdatenbank ... sollte aber auch schon für dieses Projekt angelegt und genutzt werden") — "[[Szenario]]"
 nachweis: test
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0007 Selbstverifikation des Templates]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20

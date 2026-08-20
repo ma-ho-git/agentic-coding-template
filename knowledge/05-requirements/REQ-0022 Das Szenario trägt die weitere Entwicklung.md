@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20
 nachweis: test
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0024 Szenario trägt die Anforderungserhebung]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20

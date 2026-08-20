@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
 nachweis: test
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0002 Hooks zur Durchsetzung der Vorgaben]]", "[[T-0018 Grenzwerte auf die Projektvorgabe zurückführen]]"]
 tags: [topic/requirements, stack/python]
 created: 2026-08-20

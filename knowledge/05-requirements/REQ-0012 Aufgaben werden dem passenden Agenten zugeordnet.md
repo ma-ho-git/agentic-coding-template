@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19 — "[[Szenario]]"
 nachweis: review
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0005 Cowork-Onboarding-Paket]]"]
 tags: [topic/requirements, topic/agents]
 created: 2026-08-20

@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Ergänzung vom 2026-08-20
 nachweis: test
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0019 Leitplanken benennen und klassifizieren]]", "[[T-0020 Startgate als starre Leitplanke durchsetzen]]"]
 tags: [topic/requirements, topic/agents]
 created: 2026-08-20

@@ -7,7 +7,7 @@ prioritaet: muss
 stufe:
 quelle: Marcus (Auftraggeber), Projektvorgabe vom 2026-08-19
 nachweis: review
-status: entwurf
+status: vereinbart
 tasks: ["[[T-0004 Stack-Profile und Doku-Schema]]"]
 tags: [topic/requirements, topic/meta]
 created: 2026-08-20
