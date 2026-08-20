@@ -91,6 +91,7 @@ Der Rahmen steht vor dem ersten Code — Regeln in `.claude/rules/requirements.m
 - [[matches_any() exemption trifft falsche Pfade]]
 - [[Wikilink über Zeilenumbruch wird nicht erkannt]]
 - [[git_guard verwechselt Erwähnung mit Gebrauch]]
+- [[Deutsche Anführungszeichen brechen Python-Heredocs]]
 
 ## Meta
 
